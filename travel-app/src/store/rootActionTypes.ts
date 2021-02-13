@@ -1,4 +1,4 @@
 import { SearchActionTypes } from "./search/models/actions";
-import { FetchCommonActionTypes } from "./common/models/actions";
+import { CommonActionTypes } from "./common/models/actions";
 
-export type AppActionTypes = FetchCommonActionTypes | SearchActionTypes;
+export type AppActionTypes = CommonActionTypes | SearchActionTypes;
