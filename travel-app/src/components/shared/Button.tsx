@@ -1,22 +1,29 @@
 import React, { PropsWithChildren, ReactNode } from "react";
 import { Text, TouchableOpacity } from "react-native";
+import StyleGuide from "../../styles/StyleGuide";
 
 interface IButtonProps {
-  width: number;
-  height: number;
-  backgroundColor: string;
-  color?: string;
+  style: {
+    width: number;
+    height: number;
+    backgroundColor: string;
+    color?: string;
+    borderRadius?: number;
+  };
   handler: () => void;
 }
+
 const Button = (props: PropsWithChildren<IButtonProps>) => {
-  const { handler, width, height, color, backgroundColor, children } = props;
+  const { handler, style, children } = props;
+  const { width, height, color, backgroundColor, borderRadius } = style;
   return (
     <TouchableOpacity
       style={{
         backgroundColor,
         width,
         height,
-        borderRadius: 15,
+        padding: StyleGuide.spacing / 3,
+        borderRadius: borderRadius || 15,
         justifyContent: "center",
         alignItems: "center",
       }}
@@ -26,4 +33,5 @@ const Button = (props: PropsWithChildren<IButtonProps>) => {
     </TouchableOpacity>
   );
 };
+
 export default Button;
