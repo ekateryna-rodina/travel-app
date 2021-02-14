@@ -9,7 +9,7 @@ import {
   JosefinSans_400Regular,
 } from "@expo-google-fonts/josefin-sans";
 import { connect, Provider } from "react-redux";
-import { travelStore } from "./src/store/rootStore";
+import store from "./src/store/rootStore";
 const Stack = createStackNavigator();
 
 const styles = StyleSheet.create({
@@ -17,13 +17,16 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
+setTimeout(() => console.error(store.getState()), 5000);
+
 const App = () => {
   let [font, error] = useFonts({ JosefinSans_400Regular });
   if (!font) {
     return <Text>Loading...</Text>;
   }
+  console.log(store.getState());
   return (
-    <Provider store={travelStore}>
+    <Provider store={store}>
       <View style={styles.container}>
         <NavigationContainer>
           <Stack.Navigator
@@ -38,4 +41,4 @@ const App = () => {
   );
 };
 
-export default connect()(App);
+export default App;

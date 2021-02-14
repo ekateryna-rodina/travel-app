@@ -4,6 +4,13 @@ import StyleGuide from "../styles/StyleGuide";
 import { LinearGradient } from "expo-linear-gradient";
 import SearchBarContainer from "../components/shared/search/SearchBarContainer";
 import { StackNavigationProp } from "@react-navigation/stack";
+import Button from "../components/shared/Button";
+import { connect, useSelector, useDispatch } from "react-redux";
+import { AppState } from "../store/rootStore";
+import {
+  incrementCount,
+  decrementCount,
+} from "../store/counter/CounterActions";
 
 /*Styles*/
 const styles = {
@@ -34,6 +41,9 @@ const styles = {
 
 const HomeScreen = (): JSX.Element => {
   // const [fontsLoaded, setFontsLoaded] = useState(false);
+  const counter = useSelector((state: AppState) => state.counter);
+  const dispatch = useDispatch();
+
   return (
     <View style={styles.container}>
       <LinearGradient
@@ -42,6 +52,26 @@ const HomeScreen = (): JSX.Element => {
         style={styles.linearGradient}
       >
         <SearchBarContainer />
+        <Text>{counter.count}</Text>
+        <Button
+          title={"increment"}
+          width={150}
+          height={30}
+          backgroundColor={"blue"}
+          handler={() => dispatch(incrementCount())}
+        >
+          Increase
+        </Button>
+        <Button
+          // children={React.Children}
+          title={"decrement"}
+          width={150}
+          height={30}
+          backgroundColor={"orange"}
+          handler={() => dispatch(decrementCount())}
+        >
+          Decrease
+        </Button>
         {/* <View style={styles.contentContainer}>
           <Title text="15 cities to explore" />
           <CardList items={cities} type="city" />
@@ -55,5 +85,10 @@ const HomeScreen = (): JSX.Element => {
     </View>
   );
 };
+
+// const mapStateToProps = (state) => {
+//   const { counter } = state;
+//   return { counter };
+// };
 
 export default HomeScreen;

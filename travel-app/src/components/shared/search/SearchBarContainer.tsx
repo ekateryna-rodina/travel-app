@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
 const SearchBarContainer = () => {
   return (
     <View style={styles.container}>
-      <Text style={{ fontFamily: "Raleway_200ExtraLight" }}>test</Text>
+      <Text style={{ fontFamily: "JosefinSans_400Regular" }}>test</Text>
       {/* <SearchBar />
       <SearchSettings /> */}
     </View>

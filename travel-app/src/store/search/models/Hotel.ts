@@ -6,7 +6,7 @@ export interface City {
   image: number;
 }
 
-export interface HotelBaseInterface {
+export interface IHotelBase {
   key: number;
   name: string;
   country: string;
@@ -15,7 +15,7 @@ export interface HotelBaseInterface {
   rating: number;
 }
 
-export interface Room {
+export interface IRoom {
   key: number;
   type: "family" | "single";
   amenities: string[];
@@ -23,20 +23,20 @@ export interface Room {
   images: number[];
 }
 
-export interface HotelDetails extends HotelBaseInterface {
+export interface IHotelDetails extends IHotelBase {
   minPrice: number;
   images: number[];
   geoLocation: [];
   address: string;
   phone: string;
-  rooms: Room[];
+  rooms: IRoom[];
   description: string;
   moto?: string;
   reviews?: [{}];
   policies: {};
 }
 
-export interface Activity {
+export interface IActivity {
   name: string;
   image: 1;
   description: string;

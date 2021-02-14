@@ -23,48 +23,48 @@ const StyleGuide = {
     body: {
       fontSize: 17,
       lineHeight: 20,
-      fontFamily: "Raleway_200ExtraLight",
+      fontFamily: "JosefinSans_400Regular",
     },
     callout: {
       fontSize: 16,
       lineHeight: 20,
-      fontFamily: "Raleway_200ExtraLightlar",
+      fontFamily: "JosefinSans_400Regular",
     },
     caption: {
       fontSize: 11,
       lineHeight: 13,
-      fontFamily: "Raleway_200ExtraLightlar",
+      fontFamily: "JosefinSans_400Regular",
     },
     footnote: {
       fontSize: 13,
       lineHeight: 18,
-      fontFamily: "Raleway_200ExtraLightlar",
+      fontFamily: "JosefinSans_400Regular",
       color: "#999999",
     },
     headline: {
       fontSize: 17,
       lineHeight: 22,
-      fontFamily: "Raleway_200ExtraLightbold",
+      fontFamily: "JosefinSans_400Regular",
     },
     subhead: {
       fontSize: 15,
       lineHeight: 20,
-      fontFamily: "Raleway_200ExtraLight",
+      fontFamily: "JosefinSans_400Regular",
     },
     title1: {
       fontSize: 34,
       lineHeight: 41,
-      fontFamily: "Raleway_200ExtraLight",
+      fontFamily: "JosefinSans_400Regular",
     },
     title2: {
       fontSize: 28,
       lineHeight: 34,
-      fontFamily: "Raleway_200ExtraLight",
+      fontFamily: "JosefinSans_400Regular",
     },
     title3: {
       fontSize: 22,
       lineHeight: 26,
-      fontFamily: "Raleway_200ExtraLight",
+      fontFamily: "JosefinSans_400Regular",
     },
   },
 };

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View } from "react-native";
 import { Text } from "react-native";
-import { useFonts, Raleway_200ExtraLight } from "@expo-google-fonts/raleway";
+// import { useFonts, Raleway_200ExtraLight } from "@expo-google-fonts/raleway";
 import StyleGuide from "../styles/StyleGuide";
 
 interface SearchScreenProps {
