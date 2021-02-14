@@ -1,12 +1,10 @@
 import { ActionCreator, Dispatch } from "redux";
 import { AppState } from "react-native";
-import { HotelBaseInterface } from "./models/Hotel";
+import { IHotelBase } from "./models/Hotel";
 import { AppActionTypes } from "../rootActionTypes";
 import { SEARCH_SUCCESS } from "./models/actions";
 import { request } from "../common/CommonAction";
-export const searchResults = (
-  hotels: HotelBaseInterface[]
-): AppActionTypes => ({
+export const searchResults = (hotels: IHotelBase[]): AppActionTypes => ({
   type: SEARCH_SUCCESS,
   payload: hotels,
 });

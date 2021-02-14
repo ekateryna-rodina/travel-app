@@ -1,11 +1,11 @@
-import { HotelBaseInterface } from "./Hotel";
+import { IHotelBase } from "./Hotel";
 
 /*Search*/
 export const SEARCH_SUCCESS: string = "SEARCH_SUCCESS";
 
 interface SearchResultsAction {
   type: typeof SEARCH_SUCCESS;
-  payload: HotelBaseInterface[];
+  payload: IHotelBase[];
 }
 
 export type SearchActionTypes = SearchResultsAction;

@@ -1,16 +1,14 @@
 import React, { PropsWithChildren, ReactNode } from "react";
 import { Text, TouchableOpacity } from "react-native";
 
-interface ButtonProps {
+interface IButtonProps {
   width: number;
   height: number;
-  title: string;
   backgroundColor: string;
   color?: string;
   handler: () => void;
-  // children: ReactNode;
 }
-const Button = (props: PropsWithChildren<ButtonProps>) => {
+const Button = (props: PropsWithChildren<IButtonProps>) => {
   const { handler, width, height, color, backgroundColor, children } = props;
   return (
     <TouchableOpacity

@@ -1,6 +1,6 @@
-import { HotelBaseInterface } from "./Hotel";
+import { IHotelBase } from "./Hotel";
 
-export interface SearchInterface {
+export interface ISearch {
   destination: string;
   type: "country" | "city";
   startDate: Date;
@@ -8,5 +8,5 @@ export interface SearchInterface {
   guests: number;
 }
 export interface SearchResultState {
-  hotels?: HotelBaseInterface[];
+  hotels?: IHotelBase[];
 }

@@ -1,7 +1,7 @@
 import { SEARCH_SUCCESS } from "./models/actions";
 import { SearchActionTypes } from "./models/actions";
 import { SearchResultState } from "./models/Search";
-import { HotelBaseInterface } from "./models/Hotel";
+import { IHotelBase } from "./models/Hotel";
 // import { Reducer } from "redux";
 // import { Action } from "redux";
 const initialSearchState: SearchResultState = {
