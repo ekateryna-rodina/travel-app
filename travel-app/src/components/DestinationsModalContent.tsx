@@ -7,19 +7,29 @@ import {
   Text,
   Animated,
   Easing,
+  StyleSheet,
 } from "react-native";
 import { useSelector } from "react-redux";
-import { IDestination } from "../store/search/models/Hotel";
+import { ICity, IDestination } from "../store/search/models/Hotel";
 import StyleGuide from "../styles/StyleGuide";
 import { AppState } from "../store/rootStore";
 
 interface IDestinationsModalContentProps {
-  destinations?: IDestination[];
+  destinations: IDestination[];
 }
+
+const styles = StyleSheet.create({
+  name: {
+    ...StyleGuide.typography.subhead,
+    marginHorizontal: StyleGuide.spacing,
+    padding: 3,
+  },
+});
 const DestinationsModalContent = (props: IDestinationsModalContentProps) => {
   const state = useSelector((state: AppState) => state.modal);
   const { isOpened } = state;
   const animated = React.useRef(new Animated.Value(400)).current;
+  const { destinations } = props;
   React.useEffect(() => {
     if (isOpened) {
       animated.setValue(400);
@@ -33,8 +43,11 @@ const DestinationsModalContent = (props: IDestinationsModalContentProps) => {
     }
   }, [isOpened]);
   return (
-    <Animated.ScrollView style={{ transform: [{ translateX: animated }] }}>
-      {new Array(15).fill("hey").map((item, index) => {
+    <Animated.ScrollView
+      style={{ transform: [{ translateX: animated }] }}
+      showsVerticalScrollIndicator={false}
+    >
+      {destinations.map((item, index) => {
         return (
           <TouchableHighlight
             onPress={() => console.warn("add")}
@@ -48,14 +61,28 @@ const DestinationsModalContent = (props: IDestinationsModalContentProps) => {
                 alignItems: "center",
                 marginHorizontal: StyleGuide.spacing,
                 marginVertical: StyleGuide.spacing,
+                // padding: 5,
               }}
             >
-              <Image
-                style={{ width: 50, height: 50, borderRadius: 25 }}
-                source={require("../../assets/cities/amalfi.jpg")}
-              />
-              <Text style={{ marginHorizontal: StyleGuide.spacing }}>
-                Amalfi Coast
+              {item.isCountry && (
+                <Image
+                  style={{ width: 50, height: 50, borderRadius: 25 }}
+                  source={item.image}
+                />
+              )}
+              <Text
+                style={[
+                  styles.name,
+                  {
+                    fontSize: item.isCountry ? 22 : 16,
+                    marginStart: !item.isCountry
+                      ? 50 + StyleGuide.spacing
+                      : StyleGuide.spacing,
+                    opacity: !item.isCountry ? 0.5 : 1,
+                  },
+                ]}
+              >
+                {item.name}
               </Text>
             </View>
           </TouchableHighlight>

@@ -1,4 +1,4 @@
-export interface IDestination {
+export interface ICity {
   key: number;
   name: string;
   country: string;
@@ -6,6 +6,12 @@ export interface IDestination {
   image: number;
   continent?: string;
   isHero?: boolean;
+}
+
+export interface IDestination {
+  name: string;
+  image: number;
+  isCountry: boolean;
 }
 
 export interface IHotelBase {

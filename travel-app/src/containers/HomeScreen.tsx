@@ -9,7 +9,7 @@ import Menu from "../components/Menu";
 import data from "../data";
 import Cities from "../components/Cities";
 import Trending from "../components/Trending";
-import { IRoom } from "../store/search/models/Hotel";
+import { IDestination, IRoom } from "../store/search/models/Hotel";
 import TModal from "../components/shared/TModal";
 import DestinationsModalContent from "../components/DestinationsModalContent";
 
@@ -27,7 +27,7 @@ const styles = {
   },
 };
 
-let { cities, hotels } = data;
+let { cities, hotels, destinations } = data;
 cities = cities.filter((c) => c.isHero);
 const trending = hotels
   .filter((h) => h.popularity.isTrending)
@@ -47,8 +47,31 @@ const trending = hotels
     }
   });
 
-// let animated = new Animated.Value(0);
+const destinationsModalData = (): IDestination[] => {
+  let modalData: IDestination[] = [];
+  destinations.map((item) => {
+    const destination: IDestination = {
+      name: item.country,
+      image: item.image,
+      isCountry: true,
+    };
+    modalData.push(destination);
+    for (let key of item.cityKeys) {
+      const cities = data.cities.filter((city) => city.key === key);
+      for (let city of cities) {
+        let cityDestination: IDestination = {
+          name: city.name,
+          image: city.image,
+          isCountry: false,
+        };
+        modalData.push(cityDestination);
+      }
+    }
+  });
+  return modalData;
+};
 const HomeScreen = (): JSX.Element => {
+  console.warn(destinationsModalData());
   return (
     <View style={styles.container}>
       <LinearGradient
@@ -63,7 +86,7 @@ const HomeScreen = (): JSX.Element => {
         </View>
         <Menu />
         <TModal>
-          <DestinationsModalContent />
+          <DestinationsModalContent destinations={destinationsModalData()} />
         </TModal>
       </LinearGradient>
     </View>

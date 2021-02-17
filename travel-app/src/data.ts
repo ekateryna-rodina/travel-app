@@ -43,6 +43,49 @@ const countries = [
   },
 ];
 
+const destinations = [
+  {
+    country: "Italy",
+    image: require("../assets/countries/italy.jpg"),
+    cityKeys: [1, 2, 3],
+  },
+  {
+    country: "Greece",
+    image: require("../assets/countries/greece.jpg"),
+    cityKeys: [4],
+  },
+  {
+    country: "Monaco",
+    image: require("../assets/countries/monaco.jpg"),
+    cityKeys: [5],
+  },
+  {
+    country: "Spain",
+    image: require("../assets/countries/spain.jpg"),
+    cityKeys: [6],
+  },
+  {
+    country: "Turkey",
+    image: require("../assets/countries/turkey.jpg"),
+    cityKeys: [7, 8],
+  },
+  {
+    country: "United Kindom",
+    image: require("../assets/countries/uk.jpg"),
+    cityKeys: [9],
+  },
+  {
+    country: "Egypt",
+    image: require("../assets/countries/egypt.jpg"),
+    cityKeys: [10, 11, 12],
+  },
+  {
+    country: "U.A.E.",
+    image: require("../assets/countries/uae.jpg"),
+    cityKeys: [13],
+  },
+];
+
 const cities = [
   {
     key: 1,
@@ -365,4 +408,4 @@ const hotels = [
   },
 ];
 
-export default { countries, cities, hotels, activities };
+export default { countries, cities, hotels, activities, destinations };
