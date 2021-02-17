@@ -1,18 +1,17 @@
-import React, { useState } from "react";
-import { View, StyleSheet, Text } from "react-native";
+import React, { useState, useEffect } from "react";
+import { View, StyleSheet, Animated } from "react-native";
 import StyleGuide from "../styles/StyleGuide";
 import { LinearGradient } from "expo-linear-gradient";
 import SearchBarContainer from "../components/shared/search/SearchBarContainer";
-import { StackNavigationProp } from "@react-navigation/stack";
-import Button from "../components/shared/Button";
-import { connect, useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { AppState } from "../store/rootStore";
-import {
-  incrementCount,
-  decrementCount,
-} from "../store/counter/CounterActions";
+import Menu from "../components/Menu";
+import data from "../data";
+import Cities from "../components/Cities";
+import Trending from "../components/Trending";
+import { IRoom } from "../store/search/models/Hotel";
+import TModal from "../components/shared/TModal";
 
-/*Styles*/
 const styles = {
   container: {
     flex: 1,
@@ -23,27 +22,37 @@ const styles = {
     bottom: 0,
   },
   contentContainer: {
-    paddingStart: 15,
+    paddingHorizontal: StyleGuide.spacing,
   },
 };
 
-// type RootStackParamList = {
-//   Home: undefined;
-//   // Profile: { userId: string };
-//   // Feed: { sort: 'latest' | 'top' } | undefined;
-// };
+let { cities, hotels } = data;
+cities = cities.filter((c) => c.isHero);
+const trending = hotels
+  .filter((h) => h.popularity.isTrending)
+  .map((h) => {
+    let location = data.cities.filter((c) => c.key == h.location)[0];
+    let hotelInfo = {
+      hotelName: h.name,
+      hotelKey: h.id,
+      city: location.name,
+      country: location.country,
+    };
+    const roomKeys = h.popularity.roomKeys;
+    for (let r of roomKeys) {
+      let room = h.rooms.filter((j) => j.key == r)[0];
+      let roomInfo = { type: room.type, image: room.images[0] };
+      return { ...hotelInfo, ...roomInfo };
+    }
+  });
 
-// type HomeScreenNavigationProps = StackNavigationProp<RootStackParamList, 'Home'>
-// interface HomeScreenProps {
-
-//   navigation : StackNavigationProp
-// }
-
+// let animated = new Animated.Value(0);
 const HomeScreen = (): JSX.Element => {
-  // const [fontsLoaded, setFontsLoaded] = useState(false);
-  const counter = useSelector((state: AppState) => state.counter);
-  const dispatch = useDispatch();
-
+  const state = useSelector((state: AppState) => state.modal);
+  const { isOpened } = state;
+  useEffect(() => {
+    // console.warn(isOpened);
+  }, [isOpened]);
   return (
     <View style={styles.container}>
       <LinearGradient
@@ -52,35 +61,19 @@ const HomeScreen = (): JSX.Element => {
         style={styles.linearGradient}
       >
         <SearchBarContainer />
-        <Text>{counter.count}</Text>
-        <Button
-          title={"increment"}
-          width={150}
-          height={30}
-          backgroundColor={"blue"}
-          handler={() => dispatch(incrementCount())}
-        >
-          Increase
-        </Button>
-        <Button
-          // children={React.Children}
-          title={"decrement"}
-          width={150}
-          height={30}
-          backgroundColor={"orange"}
-          handler={() => dispatch(decrementCount())}
-        >
-          Decrease
-        </Button>
-        {/* <View style={styles.contentContainer}>
-          <Title text="15 cities to explore" />
+        <View style={styles.contentContainer}>
+          <Cities items={cities} />
+          <Trending items={trending} />
+          {/* <Title text="15 cities to explore" />
           <CardList items={cities} type="city" />
           <Title text="Tranding stays" />
           <CardList items={cities} type="hotel" />
           <Title text="What people say" />
-          <CardList items={cities} type="text" />
+          <CardList items={cities} type="text" /> */}
         </View>
-        <Footer /> */}
+        <Menu />
+        <TModal />
+        {/* {isOpened && <TModal />} */}
       </LinearGradient>
     </View>
   );

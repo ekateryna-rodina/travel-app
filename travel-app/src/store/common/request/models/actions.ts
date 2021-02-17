@@ -11,6 +11,4 @@ interface FetchFailureAction {
   payload: any;
 }
 
-export type FetchCommonActionTypes = FetchRequestAction | FetchFailureAction;
-
-export type CommonActionTypes = FetchCommonActionTypes;
+export type FetchActionTypes = FetchRequestAction | FetchFailureAction;

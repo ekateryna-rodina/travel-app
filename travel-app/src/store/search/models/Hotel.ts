@@ -1,9 +1,11 @@
-export interface City {
+export interface ICity {
   key: number;
   name: string;
   country: string;
-  description: string;
+  description?: string;
   image: number;
+  continent?: string;
+  isHero?: boolean;
 }
 
 export interface IHotelBase {
@@ -17,10 +19,11 @@ export interface IHotelBase {
 
 export interface IRoom {
   key: number;
-  type: "family" | "single";
-  amenities: string[];
-  price: number;
+  type: string;
   images: number[];
+  price: number;
+  amenities: string[];
+  description: string;
 }
 
 export interface IHotelDetails extends IHotelBase {
@@ -37,8 +40,11 @@ export interface IHotelDetails extends IHotelBase {
 }
 
 export interface IActivity {
+  key: string;
   name: string;
-  image: 1;
+  city: string;
+  country: string;
   description: string;
-  locationName: string;
+  price: number;
+  image: number;
 }

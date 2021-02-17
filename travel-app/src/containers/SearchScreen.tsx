@@ -12,7 +12,6 @@ interface SearchScreenState {}
 const SearchScreen = () => {
   const [fontsLoaded, setFontsLoaded] = useState(false);
 
-  console.warn("here");
   return <Text>hi from search</Text>;
 };
 

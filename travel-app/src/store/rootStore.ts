@@ -6,9 +6,7 @@ import { AppActionTypes } from "./rootActionTypes";
 import { counterReducer } from "./counter/CounterReducer";
 
 // const store = configureStore({ reducer: counterReducer })
-const initialState = {
-  counter: {},
-};
+
 export type AppState = ReturnType<typeof rootReducer>;
 const middleware = applyMiddleware(
   thunk as ThunkMiddleware<AppState, AppActionTypes>

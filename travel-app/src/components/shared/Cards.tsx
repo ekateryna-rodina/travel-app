@@ -1,20 +1,29 @@
 import React from "react";
 import { View, FlatList, Dimensions, StyleSheet } from "react-native";
+import { CardTypes } from "../../helpers/enums";
 import StyleGuide from "../../styles/StyleGuide";
 import Card from "./Card";
 
-interface ICard {
-  key: string;
+interface ICardBase {
   name: string;
   image: number;
 }
+export interface ICardExtended extends ICardBase {
+  hotelName?: string;
+  hotelKey?: number | null;
+  city?: string;
+  country?: string;
+}
+
 interface ICardsProps {
-  items: ICard[];
+  items: ICardExtended[];
   type: CardTypes;
 }
+
+const { width, height } = StyleGuide.size;
 const styles = StyleSheet.create({
   container: {
-    height: (Dimensions.get("window").height * 16) / 100,
+    height: height * 0.16,
     paddingVertical: StyleGuide.spacing / 3,
   },
 });
@@ -31,7 +40,14 @@ const Cards = (props: ICardsProps) => {
         renderItem={(c) => (
           <Card
             key={c.index.toString()}
-            card={{ name: c.item.name, image: c.item.image }}
+            card={{
+              name: c.item.name || "",
+              image: c.item.image,
+              hotelName: c.item.hotelName || "",
+              hotelKey: c.item.hotelKey || null,
+              city: c.item.city || "",
+              country: c.item.country || "",
+            }}
             type={type}
           />
         )}

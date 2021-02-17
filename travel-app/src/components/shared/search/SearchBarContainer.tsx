@@ -2,13 +2,9 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import globalStyles from "../../../styles/GlobalStyles";
 import StyleGuide from "../../../styles/StyleGuide";
-// import SearchBar from "../SearchBar";
-// import SearchSettings from "../SearchSettings";
+import SearchBar from "./SearchBar";
 
-/*Declarations*/
 const { height, width } = StyleGuide.size;
-
-/*Styles*/
 const styles = StyleSheet.create({
   container: {
     height: height * 0.2,
@@ -27,9 +23,8 @@ const styles = StyleSheet.create({
 const SearchBarContainer = () => {
   return (
     <View style={styles.container}>
-      <Text style={{ fontFamily: "JosefinSans_400Regular" }}>test</Text>
-      {/* <SearchBar />
-      <SearchSettings /> */}
+      <SearchBar />
+      {/* <SearchSettings />  */}
     </View>
   );
 };

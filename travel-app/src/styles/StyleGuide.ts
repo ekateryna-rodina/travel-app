@@ -25,6 +25,16 @@ const StyleGuide = {
       lineHeight: 20,
       fontFamily: "JosefinSans_400Regular",
     },
+    bodyBold: {
+      fontSize: 17,
+      lineHeight: 20,
+      fontFamily: "JosefinSans_600SemiBold",
+    },
+    // body-bold: {
+    //   fontSize: 17,
+    //   lineHeight: 20,
+    //   fontFamily: "JosefinSans_400Regular",
+    // },
     callout: {
       fontSize: 16,
       lineHeight: 20,
@@ -39,7 +49,11 @@ const StyleGuide = {
       fontSize: 13,
       lineHeight: 18,
       fontFamily: "JosefinSans_400Regular",
-      color: "#999999",
+    },
+    footnoteBold: {
+      fontSize: 13,
+      lineHeight: 18,
+      fontFamily: "JosefinSans_600SemiBold",
     },
     headline: {
       fontSize: 17,

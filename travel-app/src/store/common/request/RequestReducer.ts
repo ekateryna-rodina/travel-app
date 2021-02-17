@@ -1,20 +1,21 @@
 import { Reducer } from "react";
 import { Action } from "redux";
+import { AppActionTypes } from "../../rootActionTypes";
 import {
-  CommonActionTypes,
-  FETCH_REQUEST,
+  FetchActionTypes,
   FETCH_FAILURE,
+  FETCH_REQUEST,
 } from "./models/actions";
-import { RequestState } from "./models/Common";
+import { RequestState } from "./models/Request";
 
-const initialState: RequestState = {
+const initialRequestState: RequestState = {
   loading: false,
   error: null,
 };
 
-export const commonReducer = (
-  state = initialState,
-  action: CommonActionTypes
+const requestReducer = (
+  state = initialRequestState,
+  action: FetchActionTypes
 ): RequestState => {
   switch (action.type) {
     case FETCH_REQUEST:
@@ -32,3 +33,5 @@ export const commonReducer = (
       return state;
   }
 };
+
+export default requestReducer;

@@ -1,5 +1,6 @@
 import React, { PropsWithChildren } from "react";
 import { Text, View, StyleSheet } from "react-native";
+import { TitleTypes } from "../../helpers/enums";
 import StyleGuide from "../../styles/StyleGuide";
 
 interface ITitleProps {
@@ -9,22 +10,21 @@ interface ITitleProps {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     padding: StyleGuide.spacing / 3,
-    marginVertical: StyleGuide.spacing * 2,
+    marginVertical: StyleGuide.spacing,
   },
 });
 
 /* Map title type on style */
 const styleByType = {
   [TitleTypes.primary]: StyleGuide.typography.title1,
-  [TitleTypes.secondary]: StyleGuide.typography.title2,
+  [TitleTypes.secondary]: StyleGuide.typography.title3,
 };
 export const Title = (props: PropsWithChildren<ITitleProps>) => {
   const { style, type, children } = props;
   return (
     <View style={styles.container}>
-      <Text style={styleByType[type]}>{children}</Text>
+      <Text style={[{ ...style }, styleByType[type]]}>{children}</Text>
     </View>
   );
 };

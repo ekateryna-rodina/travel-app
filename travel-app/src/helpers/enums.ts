@@ -1,10 +1,10 @@
-enum TitleTypes {
+export enum TitleTypes {
   primary,
   secondary,
 }
 
 /*TODO: make union*/
-enum CardTypes {
+export enum CardTypes {
   city,
   hotel,
   activity,

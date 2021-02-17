@@ -4,16 +4,8 @@ import StyleGuide from "../styles/StyleGuide";
 import globalStyles from "../styles/GlobalStyles";
 import { Title } from "./shared/Title";
 import CardList from "./shared/Cards";
+import { IActivity } from "../store/search/models/Hotel";
 
-interface IActivity {
-  key: string;
-  name: string;
-  city: string;
-  country: string;
-  description: string;
-  price: number;
-  image: number;
-}
 interface IActivitiesProps {
   activities: IActivity[];
 }
