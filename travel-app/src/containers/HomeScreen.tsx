@@ -11,6 +11,7 @@ import Cities from "../components/Cities";
 import Trending from "../components/Trending";
 import { IRoom } from "../store/search/models/Hotel";
 import TModal from "../components/shared/TModal";
+import DestinationsModalContent from "../components/DestinationsModalContent";
 
 const styles = {
   container: {
@@ -48,11 +49,6 @@ const trending = hotels
 
 // let animated = new Animated.Value(0);
 const HomeScreen = (): JSX.Element => {
-  const state = useSelector((state: AppState) => state.modal);
-  const { isOpened } = state;
-  useEffect(() => {
-    // console.warn(isOpened);
-  }, [isOpened]);
   return (
     <View style={styles.container}>
       <LinearGradient
@@ -64,24 +60,14 @@ const HomeScreen = (): JSX.Element => {
         <View style={styles.contentContainer}>
           <Cities items={cities} />
           <Trending items={trending} />
-          {/* <Title text="15 cities to explore" />
-          <CardList items={cities} type="city" />
-          <Title text="Tranding stays" />
-          <CardList items={cities} type="hotel" />
-          <Title text="What people say" />
-          <CardList items={cities} type="text" /> */}
         </View>
         <Menu />
-        <TModal />
-        {/* {isOpened && <TModal />} */}
+        <TModal>
+          <DestinationsModalContent />
+        </TModal>
       </LinearGradient>
     </View>
   );
 };
-
-// const mapStateToProps = (state) => {
-//   const { counter } = state;
-//   return { counter };
-// };
 
 export default HomeScreen;

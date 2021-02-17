@@ -1,13 +1,13 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import { ICity } from "../store/search/models/Hotel";
+import { IDestination } from "../store/search/models/Hotel";
 import Cards from "./shared/Cards";
 import { Title } from "./shared/Title";
 import { TitleTypes, CardTypes } from "../helpers/enums";
 import StyleGuide from "../styles/StyleGuide";
 
 interface ICitiesProps {
-  items: ICity[];
+  items: IDestination[];
 }
 const styles = StyleSheet.create({
   title: {
