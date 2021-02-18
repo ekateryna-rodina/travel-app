@@ -23,6 +23,8 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz",
+    "react-native-calendars": "^1.1249.0",
+    "react-native-day-picker": "^1.2.1",
     "react-native-gesture-handler": "^1.10.0",
     "react-native-maps": "0.27.1",
     "react-native-material-dropdown": "^0.11.1",
@@ -37,6 +39,7 @@
     "@types/react": "~16.9.35",
     "@types/react-dom": "~16.9.8",
     "@types/react-native": "~0.63.2",
+    "@types/react-native-calendars": "^1.505.0",
     "@types/react-redux": "^7.1.16",
     "typescript": "~4.0.0"
   },

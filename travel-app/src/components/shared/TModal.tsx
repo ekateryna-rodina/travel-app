@@ -1,14 +1,5 @@
 import React, { useState, useEffect, PropsWithChildren } from "react";
-import {
-  View,
-  ScrollView,
-  Text,
-  StyleSheet,
-  Animated,
-  Image,
-  TouchableHighlight,
-  Easing,
-} from "react-native";
+import { StyleSheet, Animated, Easing } from "react-native";
 import globalStyles from "../../styles/GlobalStyles";
 import StyleGuide from "../../styles/StyleGuide";
 import { useSelector, useDispatch } from "react-redux";

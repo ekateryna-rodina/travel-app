@@ -13,9 +13,12 @@ import { useSelector } from "react-redux";
 import { ICity, IDestination } from "../store/search/models/Hotel";
 import StyleGuide from "../styles/StyleGuide";
 import { AppState } from "../store/rootStore";
+import { SearchModalSettingsTypes } from "../helpers/enums";
 
 interface IDestinationsModalContentProps {
   destinations: IDestination[];
+  mount?: boolean;
+  unmount?: boolean;
 }
 
 const styles = StyleSheet.create({
@@ -27,29 +30,41 @@ const styles = StyleSheet.create({
 });
 const DestinationsModalContent = (props: IDestinationsModalContentProps) => {
   const state = useSelector((state: AppState) => state.modal);
-  const { isOpened } = state;
-  const animated = React.useRef(new Animated.Value(400)).current;
-  const { destinations } = props;
+  const [oldState, setOldState] = React.useState();
+  const { isOpened, selectedIndex } = state;
+  const animated = new Animated.Value(400);
+  const { destinations, mount, unmount } = props;
   React.useEffect(() => {
-    if (isOpened) {
+    // if (mount) {
+    if (selectedIndex === SearchModalSettingsTypes.destination) {
       animated.setValue(400);
       Animated.timing(animated, {
         toValue: 0,
         duration: 200,
-        delay: 450,
+        delay: 500,
+        easing: Easing.linear,
+        useNativeDriver: true,
+      }).start();
+    } else {
+      animated.setValue(0);
+      Animated.timing(animated, {
+        toValue: -400,
+        duration: 400,
+        delay: 500,
         easing: Easing.linear,
         useNativeDriver: true,
       }).start();
     }
-  }, [isOpened]);
+  }, [selectedIndex, mount, unmount]);
   return (
     <Animated.ScrollView
-      style={{ transform: [{ translateX: animated }] }}
+      style={{ position: "absolute", transform: [{ translateX: animated }] }}
       showsVerticalScrollIndicator={false}
     >
       {destinations.map((item, index) => {
         return (
           <TouchableHighlight
+            key={index.toString()}
             onPress={() => console.warn("add")}
             underlayColor={"rgba(255, 255, 255, 0.3)"}
           >
@@ -61,7 +76,6 @@ const DestinationsModalContent = (props: IDestinationsModalContentProps) => {
                 alignItems: "center",
                 marginHorizontal: StyleGuide.spacing,
                 marginVertical: StyleGuide.spacing,
-                // padding: 5,
               }}
             >
               {item.isCountry && (

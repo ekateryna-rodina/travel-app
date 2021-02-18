@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from "react-native";
 import globalStyles from "../../../styles/GlobalStyles";
 import StyleGuide from "../../../styles/StyleGuide";
 import SearchBar from "./SearchBar";
+import { SearchSettings } from "./SearchSettings";
 
 const { height, width } = StyleGuide.size;
 const styles = StyleSheet.create({
@@ -24,7 +25,7 @@ const SearchBarContainer = () => {
   return (
     <View style={styles.container}>
       <SearchBar />
-      {/* <SearchSettings />  */}
+      <SearchSettings />
     </View>
   );
 };

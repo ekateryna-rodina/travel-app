@@ -12,6 +12,9 @@ import Trending from "../components/Trending";
 import { IDestination, IRoom } from "../store/search/models/Hotel";
 import TModal from "../components/shared/TModal";
 import DestinationsModalContent from "../components/DestinationsModalContent";
+import { SearchModalSettingsTypes } from "../helpers/enums";
+import GuestsModalContent from "../components/GuestsModalContent";
+import ModalContent from "../components/shared/ModalContent";
 
 const styles = {
   container: {
@@ -70,8 +73,9 @@ const destinationsModalData = (): IDestination[] => {
   });
   return modalData;
 };
+
 const HomeScreen = (): JSX.Element => {
-  console.warn(destinationsModalData());
+  const state = useSelector((state: AppState) => state.modal);
   return (
     <View style={styles.container}>
       <LinearGradient
@@ -86,7 +90,7 @@ const HomeScreen = (): JSX.Element => {
         </View>
         <Menu />
         <TModal>
-          <DestinationsModalContent destinations={destinationsModalData()} />
+          <ModalContent destinations={destinationsModalData()} />
         </TModal>
       </LinearGradient>
     </View>

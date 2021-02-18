@@ -3,12 +3,13 @@ import { Entypo } from "@expo/vector-icons";
 import { View, StyleSheet, Text, TouchableWithoutFeedback } from "react-native";
 import StyleGuide from "../../../styles/StyleGuide";
 import { useSelector, useDispatch } from "react-redux";
-import TModal from "../TModal";
-import { IModal } from "../../../store/common/modal/models/Modal";
 import { AppState } from "../../../store/rootStore";
-import { closeModal, openModal } from "../../../store/common/modal/ModalAction";
-// import DropDown from "../DropDown";
-// import { Dropdown } from "react-native-material-dropdown";
+import {
+  closeModal,
+  openModal,
+  setModalContent,
+} from "../../../store/common/modal/ModalAction";
+import { SearchModalSettingsTypes } from "../../../helpers/enums";
 
 const SearchBar = () => {
   const [text, setText] = useState<string>("");
@@ -16,9 +17,8 @@ const SearchBar = () => {
   const state = useSelector((state: AppState) => state.modal);
   const { isOpened } = state;
   const textInputFocusHandler = () => {
-    if (isOpened) {
-      dispatch(closeModal());
-    } else {
+    dispatch(setModalContent(SearchModalSettingsTypes.destination));
+    if (!isOpened) {
       dispatch(openModal());
     }
   };
@@ -26,16 +26,6 @@ const SearchBar = () => {
   return (
     <View style={styles.container}>
       <Entypo name="magnifying-glass" size={30} color={"rgba(0, 0, 0, 0.5)"} />
-      {/* <KeyboardAvoidingView> */}
-      {/* <TextInput
-        onBlur={() => Keyboard.dismiss()}
-        placeholder={"Hi Kateryna!\nWhere are you going next?"}
-        multiline
-        // editable={false}
-        style={{ ...styles.input, ...StyleGuide.typography.body }}
-        // onFocus={textInputFocusHandler}
-        // onChangeText={textInputChangedHandler}
-      /> */}
       <TouchableWithoutFeedback onPress={textInputFocusHandler}>
         <View style={{ flexDirection: "column" }}>
           <Text
