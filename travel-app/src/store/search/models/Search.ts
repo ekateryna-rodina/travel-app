@@ -1,12 +1,16 @@
 import { IHotelBase } from "./Hotel";
 
+export interface IDates {
+  startDate: string;
+  endDate: string;
+}
 export interface ISearch {
   destination: string;
   type: "country" | "city";
-  startDate: Date;
-  endDate: Date;
+  dates: IDates;
   guests: number;
 }
 export interface SearchResultState {
-  hotels?: IHotelBase[];
+  // hotels?: IHotelBase[];
+  dates: IDates;
 }

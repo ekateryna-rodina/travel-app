@@ -32,7 +32,6 @@ export const PickerButton = (props: PropsWithChildren<IPickerButtonProps>) => {
   const { type, children } = props;
   const dispatch = useDispatch();
   const state = useSelector((state: AppState) => state.modal);
-  const { isOpened } = state;
 
   const handlersSet = {
     [SearchModalSettingsTypes.destination]: () => {

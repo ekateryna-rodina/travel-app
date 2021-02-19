@@ -29,7 +29,9 @@ const Button = (props: PropsWithChildren<IButtonProps>) => {
       }}
       onPress={handler}
     >
-      <Text style={{ color }}>{children}</Text>
+      <Text style={[{ color }, StyleGuide.typography.footnoteBold]}>
+        {children}
+      </Text>
     </TouchableOpacity>
   );
 };

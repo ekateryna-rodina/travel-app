@@ -1,21 +1,28 @@
-import { SEARCH_SUCCESS } from "./models/actions";
+import { SEARCH_SUCCESS, SET_DATES } from "./models/actions";
 import { SearchActionTypes } from "./models/actions";
-import { SearchResultState } from "./models/Search";
+import { IDates, SearchResultState } from "./models/Search";
 import { IHotelBase } from "./models/Hotel";
-// import { Reducer } from "redux";
-// import { Action } from "redux";
+import { Action, Reducer } from "redux";
+import { AppActionTypes } from "../rootActionTypes";
 const initialSearchState: SearchResultState = {
-  hotels: [],
+  // hotels: [],
+  dates: { startDate: "", endDate: "" },
 };
 
-export const searchReducer = (
+export const searchReducer: Reducer<SearchResultState, SearchActionTypes> = (
   state = initialSearchState,
-  action: SearchActionTypes
-): SearchResultState => {
+  action
+) => {
   switch (action.type) {
     case SEARCH_SUCCESS:
       return {
+        ...state,
         hotels: action.payload,
+      };
+    case SET_DATES:
+      return {
+        ...state,
+        dates: action.payload,
       };
     default:
       return state;

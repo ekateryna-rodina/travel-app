@@ -7,6 +7,7 @@ import { searchReducer } from "./search/SearchReducer";
 const rootReducer = combineReducers({
   counter: counterReducer,
   modal: modalReducer,
+  search: searchReducer,
 });
 
 export default rootReducer;
