@@ -18,30 +18,36 @@ const formatDate = (startDate: string, endDate: string) => {
   if (startDate === "") {
     return title;
   }
-  const dd = new Date(startDate);
-  console.error(dd.toDateString());
-  // const startDateObj = moment(startDate, "YYYY-MM-DD");
-  // const endDateObj = moment(endDate, "YYYY-MM-DD");
-  // const [startMonth, startDay, endMonth, endDay] = [
-  //   startDateObj.month(),
-  //   startDateObj.day(),
-  //   endDateObj.month(),
-  //   endDateObj.day(),
-  // ];
 
-  // const [startMonthShort, endMonthShort] = [
-  //   moment.monthsShort(startMonth),
-  //   moment.monthsShort(endMonth),
-  // ];
+  // console.error(dd.t;
+  const startDateMoment = moment(startDate, "YYYY-MM-DD");
+  const endDateMoment = moment(endDate, "YYYY-MM-DD");
+  const [startMonth, startDay, endMonth, endDay] = [
+    startDateMoment.format("M"),
+    startDateMoment.format("D"),
+    endDateMoment.format("M"),
+    endDateMoment.format("D"),
+  ];
 
-  // if (startMonth === endMonth) {
-  //   title = `${startMonthShort} ${startDay} - ${endDay}`;
-  // } else {
-  //   title = `${startMonthShort} ${startDateObj.day} - ${endMonthShort} ${endDay}`;
-  // }
+  const [startMonthShort, endMonthShort] = [
+    moment.monthsShort()[parseInt(startMonth) - 1],
+    moment.monthsShort()[parseInt(endMonth) - 1],
+  ];
+
+  // // console.warn(startDateMoment.format("M"));
+  // console.warn();
+  // const monthNumber = startDateMoment.format("M");
+  // const monthShort = moment.monthsShort()[monthNumber];
+  // console.warn(monthShort);
+  // // console.warn(moment.monthsShort(3));
+  if (startMonth === endMonth) {
+    title = `${startMonthShort} ${startDay.toString()} - ${endDay.toString()}`;
+  } else {
+    title = `${startMonthShort} ${startDay.toString()} - ${endMonthShort} ${endDay.toString()}`;
+  }
   // console.warn(startDateObj);
   // console.warn(startDateObj.day());
-  console.warn(moment(startDate).isValid());
+  // console.warn(startDateObj);
   return title;
 };
 

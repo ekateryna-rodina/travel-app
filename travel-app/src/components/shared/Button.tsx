@@ -9,13 +9,21 @@ interface IButtonProps {
     backgroundColor: string;
     color?: string;
     borderRadius?: number;
+    textTransform?: string;
   };
   handler: () => void;
 }
 
 const Button = (props: PropsWithChildren<IButtonProps>) => {
   const { handler, style, children } = props;
-  const { width, height, color, backgroundColor, borderRadius } = style;
+  const {
+    width,
+    height,
+    color,
+    backgroundColor,
+    borderRadius,
+    textTransform,
+  } = style;
   return (
     <TouchableOpacity
       style={{
@@ -29,7 +37,9 @@ const Button = (props: PropsWithChildren<IButtonProps>) => {
       }}
       onPress={handler}
     >
-      <Text style={[{ color }, StyleGuide.typography.footnoteBold]}>
+      <Text
+        style={[{ color, textTransform }, StyleGuide.typography.footnoteBold]}
+      >
         {children}
       </Text>
     </TouchableOpacity>

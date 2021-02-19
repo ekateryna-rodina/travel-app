@@ -7,6 +7,7 @@ import moment from "moment";
 import Button from "./shared/Button";
 import { useDispatch } from "react-redux";
 import { setTravelDates } from "../store/search/SearchAction";
+import ModalFooter from "./shared/ModalFooter";
 
 const { height } = StyleGuide.size;
 const styles = StyleSheet.create({
@@ -15,11 +16,11 @@ const styles = StyleSheet.create({
     // marginVertical: StyleGuide.spacing,
   },
   header: {
-    // flex: 1,
-    backgroundColor: StyleGuide.palette.primaryTransparent,
+    backgroundColor: StyleGuide.palette.darkTransparent,
     padding: StyleGuide.spacing,
     ...globalStyles.roundedTopCorner,
-    // flex: 1,
+    // marginHorizontal: StyleGuide.spacing,
+    // marginTop: StyleGuide.spacing,
   },
   headerLabelText: {
     ...StyleGuide.typography.headline,
@@ -33,7 +34,7 @@ const styles = StyleSheet.create({
     // flex: 5,
     // flex: 5,
   },
-  buttonContainer: {
+  footer: {
     position: "absolute",
     bottom: 0,
     left: 0,
@@ -81,7 +82,7 @@ const getMarkedDays = (startDate: string, endDate: string) => {
 
     for (let i of dateArray) {
       days[i] = {
-        color: StyleGuide.palette.primary,
+        color: StyleGuide.palette.primaryTransparent,
         textColor: "white",
       };
     }
@@ -159,7 +160,7 @@ const DatesModalContent = () => {
           theme={{
             todayTextColor: StyleGuide.palette.bright,
             dayTextColor: "#2d4150",
-            textDisabledColor: StyleGuide.palette.primaryTransparent,
+            textDisabledColor: StyleGuide.palette.darkTransparent,
             monthTextColor: StyleGuide.palette.dark,
             indicatorColor: "blue",
             textDayFontFamily: "JosefinSans_400Regular",
@@ -173,9 +174,9 @@ const DatesModalContent = () => {
           }}
         />
       </View>
-      <View style={styles.buttonContainer}>
+      <View style={styles.footer}>
         <Button style={styles.button} handler={applyDates}>
-          OK
+          Select
         </Button>
       </View>
     </View>

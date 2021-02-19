@@ -18,7 +18,8 @@ const StyleGuide = {
     highlight: "#dfa51f",
     black: "#2b2d2f",
     light2: "#f0f2f5",
-    primaryTransparent: "rgba(45, 62, 82, 0.5)",
+    darkTransparent: "rgba(45, 62, 82, 0.5)",
+    primaryTransparent: "rgba(158, 128, 46, 0.5)",
   },
   typography: {
     body: {

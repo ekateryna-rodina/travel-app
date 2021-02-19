@@ -3,27 +3,71 @@ import { View, StyleSheet, Text, Animated, Easing } from "react-native";
 import { useSelector } from "react-redux";
 import { SearchModalSettingsTypes } from "../helpers/enums";
 import { AppState } from "../store/rootStore";
+import globalStyles from "../styles/GlobalStyles";
 import StyleGuide from "../styles/StyleGuide";
+import Button from "./shared/Button";
 import CountPicker from "./shared/CountPicker";
+import GuestsRow from "./shared/GuestsRow";
 
 const styles = StyleSheet.create({
   container: {
-    margin: StyleGuide.spacing,
-    // right: 400,
+    height: "100%",
+    width: "100%",
+    // margin: StyleGuide.spacing,
+  },
+  footer: {
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 85,
+    width: "100%",
+    backgroundColor: StyleGuide.palette.light,
+    padding: StyleGuide.spacing,
+    justifyContent: "flex-start",
+    alignItems: "center",
+  },
+  button: {
+    width: 80,
+    height: 40,
+    borderRadius: 10,
+    backgroundColor: StyleGuide.palette.dark,
+    color: StyleGuide.palette.white,
+    textTransform: "uppercase",
   },
 });
 
-const GuestsModalContent = (props) => {
+const ageCategoriesPropsData = [
+  {
+    headline: "Adults",
+    caption: "Ages 13 or above",
+    count: 0,
+    actionIncrease: () => console.warn("adults increase"),
+    actionDecrease: () => console.warn("adults decrease"),
+  },
+  {
+    headline: "Children",
+    caption: "Ages 2 - 12",
+    count: 0,
+    actionIncrease: () => console.warn("children increase"),
+    actionDecrease: () => console.warn("children decrease"),
+  },
+  {
+    headline: "Infants",
+    caption: "Under 2",
+    count: 0,
+    actionIncrease: () => console.warn("infants increase"),
+    actionDecrease: () => console.warn("infants decrease"),
+  },
+];
+const guestsCountHandler = () => {};
+
+const GuestsModalContent = () => {
   const animated = new Animated.Value(400);
   const state = useSelector((state: AppState) => state.modal);
   const { isOpened, selectedIndex } = state;
-  //   const { mount, unmount } = props;
   React.useEffect(() => {
-    // if (mount) {
     if (selectedIndex === SearchModalSettingsTypes.guests) {
-      //   console.warn(mount);
-      //   console.warn("iamhere");
-      //   animated.setValue(400);
       Animated.timing(animated, {
         toValue: 0,
         duration: 200,
@@ -32,7 +76,6 @@ const GuestsModalContent = (props) => {
         useNativeDriver: true,
       }).start();
     } else {
-      //   console.warn("iamhere");
       animated.setValue(0);
       Animated.timing(animated, {
         toValue: -400,
@@ -49,25 +92,28 @@ const GuestsModalContent = (props) => {
     >
       <View
         style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
+          marginHorizontal: StyleGuide.spacing,
+          marginVertical: StyleGuide.spacing * 2,
         }}
       >
-        <View style={{ flexDirection: "column" }}>
-          <Text>Adults</Text>
-          <Text>Ages 13 and above</Text>
-        </View>
-        <View>
-          <CountPicker
-            actionIncrease={() => console.warn("increase")}
-            actionDecrease={() => console.warn("decrease")}
-            count={{ adult: 5, children: 0, infant: 1 }}
-          />
-        </View>
+        {ageCategoriesPropsData.map((item, index) => {
+          return (
+            <GuestsRow
+              key={index.toString()}
+              headline={item.headline}
+              caption={item.caption}
+              count={item.count}
+              actionDecrease={item.actionDecrease}
+              actionIncrease={item.actionIncrease}
+            />
+          );
+        })}
       </View>
-      {/* <View></View>
-      <View></View> */}
+      <View style={styles.footer}>
+        <Button style={styles.button} handler={guestsCountHandler}>
+          Select
+        </Button>
+      </View>
     </Animated.View>
   );
 };
