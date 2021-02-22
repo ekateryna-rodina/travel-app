@@ -23,6 +23,7 @@ import {
 } from "@expo-google-fonts/josefin-sans";
 import { connect, Provider } from "react-redux";
 import store from "./src/store/rootStore";
+import SearchResultsScreen from "./src/containers/SearchResultsScreen";
 const Stack = createStackNavigator();
 
 const styles = StyleSheet.create({
@@ -57,9 +58,10 @@ const App = () => {
         <NavigationContainer>
           <Stack.Navigator
             screenOptions={{ headerShown: false }}
-            initialRouteName="Home"
+            initialRouteName="SeachResults"
           >
             <Stack.Screen name="Home" component={HomeScreen} />
+            <Stack.Screen name="SeachResults" component={SearchResultsScreen} />
           </Stack.Navigator>
         </NavigationContainer>
       </View>

@@ -223,7 +223,7 @@ const activities = [
 
 const hotels = [
   {
-    id: 1,
+    key: 1,
     location: 1,
     name: "Hotel Santa Caterina",
     type: "Hotel",
@@ -325,7 +325,7 @@ const hotels = [
   },
 
   {
-    id: 2,
+    key: 2,
     location: 2,
     name: "Cà Sagredo",
     type: "Hotel",
@@ -404,6 +404,818 @@ const hotels = [
     popularity: {
       isTrending: true,
       roomKeys: [2],
+    },
+  },
+
+  {
+    key: 4,
+    location: 10,
+    name: "Montecarlo Resort & SPA",
+    type: "Hotel",
+    rating: 5,
+    minPrice: 250,
+    images: [
+      require("../assets/hotels/hotel_4/common/1.jpg"),
+      require("../assets/hotels/hotel_4/common/2.jpg"),
+      require("../assets/hotels/hotel_4/common/3.jpg"),
+      require("../assets/hotels/hotel_4/common/4.jpg"),
+    ],
+    geoLocation: [40.629602535607994, 14.592922850526529],
+    address: "",
+    phone: "+39 089 871012",
+    policies: {
+      checkIn: "15:00",
+      checkOut: "12:00",
+      securityDeposit: 100,
+    },
+    rooms: [
+      {
+        key: 1,
+        type: "Deluxe Room Pool View",
+        amenities: [
+          "AIR CONDITIONING",
+          "MINIBAR",
+          "COFFEE MAKER",
+          "SAFE BOX",
+          "FLAT SCREEN TV",
+          "WI-FI",
+        ],
+        images: [
+          require("../assets/hotels/hotel_4/rooms/room_1/1.jpg"),
+          require("../assets/hotels/hotel_4/rooms/room_1/2.jpg"),
+          require("../assets/hotels/hotel_4/rooms/room_1/3.jpg"),
+        ],
+        price: 115,
+      },
+    ],
+    moto: "",
+    description: `** ALL INCLUSIVE** Situated between the Sinai Desert and the Red Sea, Oriental Rivoli Hotel offers 3 swimming pools and a private beach. It also has a Hammam and rooms with LCD TVs.
+      Decorated in luxurious oriental style, all rooms come with individually-controlled air conditioning and minibars. Each has a work desk and a safety deposit box. Some rooms feature private balconies.
+      Lavish amenities include massage facilities and a hot tub. Water activities including diving and snorkelling can be organised at the private beach.
+      This 4-star hotel enjoys a quiet location close to Naama Bay’s bars and restaurants. It is situated 15 minutes’ drive from the Sharm el-Sheikh International Airport.`,
+    reviews: [
+      {
+        text: "Absolutely lovely",
+        rating: {
+          cleanless: 5,
+          location: 5,
+          staff: 5,
+          comfort: 5,
+          facilities: 5,
+          valueForMoney: 5,
+        },
+      },
+      {
+        text: `Our family did enjoy food and service!`,
+        rating: {
+          cleanless: 5,
+          location: 5,
+          staff: 5,
+          comfort: 5,
+          facilities: 5,
+          valueForMoney: 5,
+        },
+      },
+    ],
+    amenities: [
+      "A la carte restaurant",
+      "Heated pool",
+      "Elevator in building",
+      "Play courts",
+      "Fitness facility",
+      "Handicap acessible",
+      "Reception 24H",
+      "Air conditioning",
+    ],
+    popularity: {
+      isTrending: true,
+      roomKeys: [1],
+    },
+  },
+
+  {
+    key: 3,
+    location: 10,
+    name: "Rivoli Hotel & SPA",
+    type: "Hotel",
+    rating: 5,
+    minPrice: 250,
+    images: [
+      require("../assets/hotels/hotel_3/common/1.jpg"),
+      require("../assets/hotels/hotel_3/common/2.jpg"),
+      require("../assets/hotels/hotel_3/common/4.jpg"),
+      require("../assets/hotels/hotel_3/common/5.jpg"),
+      require("../assets/hotels/hotel_3/common/6.jpg"),
+      require("../assets/hotels/hotel_3/common/7.jpg"),
+      require("../assets/hotels/hotel_3/common/8.jpg"),
+      require("../assets/hotels/hotel_3/common/9.jpg"),
+    ],
+    geoLocation: [40.629602535607994, 14.592922850526529],
+    address: "",
+    phone: "+39 089 871012",
+    policies: {
+      checkIn: "15:00",
+      checkOut: "12:00",
+      securityDeposit: 100,
+    },
+    rooms: [
+      {
+        key: 1,
+        type: "Superior Double Room with Pool View",
+        amenities: [
+          "AIR CONDITIONING",
+          "MINIBAR",
+          "COFFEE MAKER",
+          "SAFE BOX",
+          "FLAT SCREEN TV",
+          "WI-FI",
+        ],
+        images: [
+          require("../assets/hotels/hotel_3/rooms/room_1/1.jpg"),
+          // require("../assets/hotels/hotel_3/rooms/room_1/3.jpg"),
+          // require("../assets/hotels/hotel_3/rooms/room_1/4.jpg"),
+        ],
+        price: 115,
+      },
+    ],
+    moto: "THE TIMELESS BEAUTY OF THE AMALFI COAST",
+    description: `Situated between the Sinai Desert and the Red Sea, Oriental Rivoli Hotel offers 3 swimming pools and a private beach. It also has a Hammam and rooms with LCD TVs.
+    Decorated in luxurious oriental style, all rooms come with individually-controlled air conditioning and minibars. Each has a work desk and a safety deposit box. Some rooms feature private balconies.
+    Lavish amenities include massage facilities and a hot tub. Water activities including diving and snorkelling can be organised at the private beach.
+    This 4-star hotel enjoys a quiet location close to Naama Bay’s bars and restaurants. It is situated 15 minutes’ drive from the Sharm el-Sheikh International Airport.`,
+    reviews: [
+      {
+        text: "Absolutely lovely",
+        rating: {
+          cleanless: 5,
+          location: 5,
+          staff: 5,
+          comfort: 5,
+          facilities: 5,
+          valueForMoney: 5,
+        },
+      },
+      {
+        text: `Our family did enjoy food and service!`,
+        rating: {
+          cleanless: 5,
+          location: 5,
+          staff: 5,
+          comfort: 5,
+          facilities: 5,
+          valueForMoney: 5,
+        },
+      },
+    ],
+    amenities: [
+      "A la carte restaurant",
+      "Heated pool",
+      "Elevator in building",
+      "Play courts",
+      "Fitness facility",
+      "Handicap acessible",
+      "Reception 24H",
+      "Air conditioning",
+    ],
+    popularity: {
+      isTrending: true,
+      roomKeys: [1],
+    },
+  },
+
+  {
+    key: 6,
+    location: 10,
+    name: "Albatros Royal Moderna",
+    type: "Hotel",
+    rating: 5,
+    minPrice: 115,
+    images: [
+      require("../assets/hotels/hotel_6/common/1.jpg"),
+      require("../assets/hotels/hotel_6/common/2.jpg"),
+      require("../assets/hotels/hotel_6/common/3.jpg"),
+      require("../assets/hotels/hotel_6/common/4.jpg"),
+      require("../assets/hotels/hotel_6/common/5.jpg"),
+    ],
+    geoLocation: [40.629602535607994, 14.592922850526529],
+    address: "",
+    phone: "+39 089 871012",
+    policies: {
+      checkIn: "15:00",
+      checkOut: "12:00",
+      securityDeposit: 100,
+    },
+    rooms: [
+      {
+        key: 1,
+        type: "Superior Double Room with Pool View",
+        amenities: [
+          "AIR CONDITIONING",
+          "MINIBAR",
+          "COFFEE MAKER",
+          "SAFE BOX",
+          "FLAT SCREEN TV",
+          "WI-FI",
+        ],
+        images: [
+          require("../assets/hotels/hotel_6/rooms/room_1/1.jpg"),
+          require("../assets/hotels/hotel_6/rooms/room_1/2.jpg"),
+        ],
+        price: 115,
+      },
+      {
+        key: 2,
+        type: "Family room",
+        amenities: [
+          "AIR CONDITIONING",
+          "MINIBAR",
+          "COFFEE MAKER",
+          "SAFE BOX",
+          "FLAT SCREEN TV",
+          "WI-FI",
+        ],
+        images: [
+          require("../assets/hotels/hotel_6/rooms/room_2/1.jpg"),
+          require("../assets/hotels/hotel_6/rooms/room_2/2.jpg"),
+        ],
+        price: 115,
+      },
+    ],
+    moto: "",
+    description: `Situated between the Sinai Desert and the Red Sea, Oriental Rivoli Hotel offers 3 swimming pools and a private beach. It also has a Hammam and rooms with LCD TVs.
+    Decorated in luxurious oriental style, all rooms come with individually-controlled air conditioning and minibars. Each has a work desk and a safety deposit box. Some rooms feature private balconies.
+    Lavish amenities include massage facilities and a hot tub. Water activities including diving and snorkelling can be organised at the private beach.
+    This 4-star hotel enjoys a quiet location close to Naama Bay’s bars and restaurants. It is situated 15 minutes’ drive from the Sharm el-Sheikh International Airport.`,
+    reviews: [
+      {
+        text: "Absolutely lovely",
+        rating: {
+          cleanless: 5,
+          location: 5,
+          staff: 5,
+          comfort: 5,
+          facilities: 5,
+          valueForMoney: 5,
+        },
+      },
+      {
+        text: `Our family did enjoy food and service!`,
+        rating: {
+          cleanless: 5,
+          location: 5,
+          staff: 5,
+          comfort: 5,
+          facilities: 5,
+          valueForMoney: 5,
+        },
+      },
+    ],
+    amenities: [
+      "A la carte restaurant",
+      "Heated pool",
+      "Elevator in building",
+      "Play courts",
+      "Fitness facility",
+      "Handicap acessible",
+      "Reception 24H",
+      "Air conditioning",
+    ],
+    popularity: {
+      isTrending: true,
+      roomKeys: [1],
+    },
+  },
+
+  {
+    key: 5,
+    location: 10,
+    name: "Albatros Royal Moderna",
+    type: "Hotel",
+    rating: 5,
+    minPrice: 250,
+    images: [
+      require("../assets/hotels/hotel_5/common/1.jpg"),
+      require("../assets/hotels/hotel_5/common/2.jpg"),
+      require("../assets/hotels/hotel_5/common/3.jpg"),
+      require("../assets/hotels/hotel_5/common/4.jpg"),
+    ],
+    geoLocation: [40.629602535607994, 14.592922850526529],
+    address: "",
+    phone: "+39 089 871012",
+    policies: {
+      checkIn: "15:00",
+      checkOut: "12:00",
+      securityDeposit: 100,
+    },
+    rooms: [
+      {
+        key: 1,
+        type: "Superior Double Room with Pool View",
+        amenities: [
+          "AIR CONDITIONING",
+          "MINIBAR",
+          "COFFEE MAKER",
+          "SAFE BOX",
+          "FLAT SCREEN TV",
+          "WI-FI",
+        ],
+        images: [
+          require("../assets/hotels/hotel_5/rooms/room_1/1.jpg"),
+          require("../assets/hotels/hotel_5/rooms/room_1/2.jpg"),
+        ],
+        price: 115,
+      },
+    ],
+    moto: "THE TIMELESS BEAUTY OF THE AMALFI COAST",
+    description: `Situated between the Sinai Desert and the Red Sea, Oriental Rivoli Hotel offers 3 swimming pools and a private beach. It also has a Hammam and rooms with LCD TVs.
+    Decorated in luxurious oriental style, all rooms come with individually-controlled air conditioning and minibars. Each has a work desk and a safety deposit box. Some rooms feature private balconies.
+    Lavish amenities include massage facilities and a hot tub. Water activities including diving and snorkelling can be organised at the private beach.
+    This 4-star hotel enjoys a quiet location close to Naama Bay’s bars and restaurants. It is situated 15 minutes’ drive from the Sharm el-Sheikh International Airport.`,
+    reviews: [
+      {
+        text: "Absolutely lovely",
+        rating: {
+          cleanless: 5,
+          location: 5,
+          staff: 5,
+          comfort: 5,
+          facilities: 5,
+          valueForMoney: 5,
+        },
+      },
+      {
+        text: `Our family did enjoy food and service!`,
+        rating: {
+          cleanless: 5,
+          location: 5,
+          staff: 5,
+          comfort: 5,
+          facilities: 5,
+          valueForMoney: 5,
+        },
+      },
+    ],
+    amenities: [
+      "A la carte restaurant",
+      "Heated pool",
+      "Elevator in building",
+      "Play courts",
+      "Fitness facility",
+      "Handicap acessible",
+      "Reception 24H",
+      "Air conditioning",
+    ],
+    popularity: {
+      isTrending: true,
+      roomKeys: [1],
+    },
+  },
+
+  {
+    key: 7,
+    location: 10,
+    name: "Hocor Royal",
+    type: "Hotel",
+    rating: 5,
+    minPrice: 250,
+    images: [
+      require("../assets/hotels/hotel_7/common/1.jpg"),
+      require("../assets/hotels/hotel_7/common/2.jpg"),
+      require("../assets/hotels/hotel_7/common/3.jpg"),
+      require("../assets/hotels/hotel_7/common/4.jpg"),
+    ],
+    geoLocation: [40.629602535607994, 14.592922850526529],
+    address: "S.S. AMALFITANA, 9 84011 AMALFI (SA)",
+    phone: "+39 089 871012",
+    policies: {
+      checkIn: "15:00",
+      checkOut: "12:00",
+      securityDeposit: 100,
+    },
+    rooms: [
+      {
+        key: 1,
+        type: "Superior Double Room with View",
+        amenities: [
+          "AIR CONDITIONING",
+          "MINIBAR",
+          "COFFEE MAKER",
+          "SAFE BOX",
+          "FLAT SCREEN TV",
+          "WI-FI",
+        ],
+        images: [
+          require("../assets/hotels/hotel_7/rooms/room_1/1.jpg"),
+          require("../assets/hotels/hotel_7/rooms/room_1/2.jpg"),
+        ],
+        price: 115,
+      },
+    ],
+    moto: "THE TIMELESS BEAUTY OF THE AMALFI COAST",
+    description: `Situated between the Sinai Desert and the Red Sea, Oriental Rivoli Hotel offers 3 swimming pools and a private beach. It also has a Hammam and rooms with LCD TVs.
+    Decorated in luxurious oriental style, all rooms come with individually-controlled air conditioning and minibars. Each has a work desk and a safety deposit box. Some rooms feature private balconies.
+    Lavish amenities include massage facilities and a hot tub. Water activities including diving and snorkelling can be organised at the private beach.
+    This 4-star hotel enjoys a quiet location close to Naama Bay’s bars and restaurants. It is situated 15 minutes’ drive from the Sharm el-Sheikh International Airport.`,
+    reviews: [
+      {
+        text: "Absolutely lovely",
+        rating: {
+          cleanless: 5,
+          location: 5,
+          staff: 5,
+          comfort: 5,
+          facilities: 5,
+          valueForMoney: 5,
+        },
+      },
+      {
+        text: `Our family did enjoy food and service!`,
+        rating: {
+          cleanless: 5,
+          location: 5,
+          staff: 5,
+          comfort: 5,
+          facilities: 5,
+          valueForMoney: 5,
+        },
+      },
+    ],
+    amenities: [
+      "A la carte restaurant",
+      "Heated pool",
+      "Elevator in building",
+      "Play courts",
+      "Fitness facility",
+      "Handicap acessible",
+      "Reception 24H",
+      "Air conditioning",
+    ],
+    popularity: {
+      isTrending: true,
+      roomKeys: [1],
+    },
+  },
+  {
+    key: 8,
+    location: 11,
+    name: "Antono Royal",
+    type: "Hotel",
+    rating: 5,
+    minPrice: 250,
+    images: [
+      require("../assets/hotels/hotel_8/common/1.jpg"),
+      require("../assets/hotels/hotel_8/common/2.jpg"),
+      require("../assets/hotels/hotel_8/common/3.jpg"),
+      require("../assets/hotels/hotel_8/common/4.jpg"),
+    ],
+    geoLocation: [40.629602535607994, 14.592922850526529],
+    address: "S.S. AMALFITANA, 9 84011 AMALFI (SA)",
+    phone: "+39 089 871012",
+    policies: {
+      checkIn: "15:00",
+      checkOut: "12:00",
+      securityDeposit: 100,
+    },
+    rooms: [
+      {
+        key: 1,
+        type: "Superior Double Room with View",
+        amenities: [
+          "AIR CONDITIONING",
+          "MINIBAR",
+          "COFFEE MAKER",
+          "SAFE BOX",
+          "FLAT SCREEN TV",
+          "WI-FI",
+        ],
+        images: [
+          // require("../assets/hotels/hotel_8/rooms/room_1/1.jpg"),
+          // require("../assets/hotels/hotel_8/rooms/room_1/2.jpg"),
+        ],
+        price: 115,
+      },
+    ],
+    moto: "THE TIMELESS BEAUTY OF THE AMALFI COAST",
+    description: `Situated between the Sinai Desert and the Red Sea, Oriental Rivoli Hotel offers 3 swimming pools and a private beach. It also has a Hammam and rooms with LCD TVs.
+    Decorated in luxurious oriental style, all rooms come with individually-controlled air conditioning and minibars. Each has a work desk and a safety deposit box. Some rooms feature private balconies.
+    Lavish amenities include massage facilities and a hot tub. Water activities including diving and snorkelling can be organised at the private beach.
+    This 4-star hotel enjoys a quiet location close to Naama Bay’s bars and restaurants. It is situated 15 minutes’ drive from the Sharm el-Sheikh International Airport.`,
+    reviews: [
+      {
+        text: "Absolutely lovely",
+        rating: {
+          cleanless: 5,
+          location: 5,
+          staff: 5,
+          comfort: 5,
+          facilities: 5,
+          valueForMoney: 5,
+        },
+      },
+      {
+        text: `Our family did enjoy food and service!`,
+        rating: {
+          cleanless: 5,
+          location: 5,
+          staff: 5,
+          comfort: 5,
+          facilities: 5,
+          valueForMoney: 5,
+        },
+      },
+    ],
+    amenities: [
+      "A la carte restaurant",
+      "Heated pool",
+      "Elevator in building",
+      "Play courts",
+      "Fitness facility",
+      "Handicap acessible",
+      "Reception 24H",
+      "Air conditioning",
+    ],
+    popularity: {
+      isTrending: true,
+      roomKeys: [1],
+    },
+  },
+
+  {
+    key: 9,
+    location: 11,
+    name: "Antono Royal",
+    type: "Hotel",
+    rating: 5,
+    minPrice: 250,
+    images: [
+      require("../assets/hotels/hotel_9/common/2.jpg"),
+      require("../assets/hotels/hotel_9/common/3.jpg"),
+      require("../assets/hotels/hotel_9/common/5.jpg"),
+      require("../assets/hotels/hotel_9/common/4.jpg"),
+      require("../assets/hotels/hotel_9/common/6.jpg"),
+      // require("../assets/hotels/hotel_9/common/7.jpg"),
+    ],
+    geoLocation: [40.629602535607994, 14.592922850526529],
+    address: "S.S. AMALFITANA, 9 84011 AMALFI (SA)",
+    phone: "+39 089 871012",
+    policies: {
+      checkIn: "15:00",
+      checkOut: "12:00",
+      securityDeposit: 100,
+    },
+    rooms: [
+      {
+        key: 1,
+        type: "Double Room with View",
+        amenities: [
+          "AIR CONDITIONING",
+          "MINIBAR",
+          "COFFEE MAKER",
+          "SAFE BOX",
+          "FLAT SCREEN TV",
+          "WI-FI",
+        ],
+        images: [
+          require("../assets/hotels/hotel_9/rooms/room_1/1.jpg"),
+          require("../assets/hotels/hotel_9/rooms/room_1/2.jpg"),
+          require("../assets/hotels/hotel_9/rooms/room_1/3.jpg"),
+          require("../assets/hotels/hotel_9/rooms/room_1/4.jpg"),
+        ],
+        price: 115,
+      },
+    ],
+    moto: "THE TIMELESS BEAUTY OF THE AMALFI COAST",
+    description: `Situated between the Sinai Desert and the Red Sea, Oriental Rivoli Hotel offers 3 swimming pools and a private beach. It also has a Hammam and rooms with LCD TVs.
+    Decorated in luxurious oriental style, all rooms come with individually-controlled air conditioning and minibars. Each has a work desk and a safety deposit box. Some rooms feature private balconies.
+    Lavish amenities include massage facilities and a hot tub. Water activities including diving and snorkelling can be organised at the private beach.
+    This 4-star hotel enjoys a quiet location close to Naama Bay’s bars and restaurants. It is situated 15 minutes’ drive from the Sharm el-Sheikh International Airport.`,
+    reviews: [
+      {
+        text: "Absolutely lovely",
+        rating: {
+          cleanless: 5,
+          location: 5,
+          staff: 5,
+          comfort: 5,
+          facilities: 5,
+          valueForMoney: 5,
+        },
+      },
+      {
+        text: `Our family did enjoy food and service!`,
+        rating: {
+          cleanless: 5,
+          location: 5,
+          staff: 5,
+          comfort: 5,
+          facilities: 5,
+          valueForMoney: 5,
+        },
+      },
+    ],
+    amenities: [
+      "A la carte restaurant",
+      "Heated pool",
+      "Elevator in building",
+      "Play courts",
+      "Fitness facility",
+      "Handicap acessible",
+      "Reception 24H",
+      "Air conditioning",
+    ],
+    popularity: {
+      isTrending: true,
+      roomKeys: [1],
+    },
+  },
+  {
+    key: 10,
+    location: 11,
+    name: "Monou Grand Hotel",
+    type: "Hotel",
+    rating: 5,
+    minPrice: 250,
+    images: [
+      require("../assets/hotels/hotel_10/common/1.jpg"),
+      require("../assets/hotels/hotel_10/common/2.jpg"),
+      require("../assets/hotels/hotel_10/common/3.jpg"),
+      require("../assets/hotels/hotel_10/common/4.jpg"),
+      require("../assets/hotels/hotel_10/common/5.jpg"),
+    ],
+    geoLocation: [40.629602535607994, 14.592922850526529],
+    address: "S.S. AMALFITANA, 9 84011 AMALFI (SA)",
+    phone: "+39 089 871012",
+    policies: {
+      checkIn: "15:00",
+      checkOut: "12:00",
+      securityDeposit: 100,
+    },
+    rooms: [
+      {
+        key: 1,
+        type: "Double Room with View",
+        amenities: [
+          "AIR CONDITIONING",
+          "MINIBAR",
+          "COFFEE MAKER",
+          "SAFE BOX",
+          "FLAT SCREEN TV",
+          "WI-FI",
+        ],
+        images: [
+          require("../assets/hotels/hotel_10/rooms/room_1/1.jpg"),
+          require("../assets/hotels/hotel_10/rooms/room_1/2.jpg"),
+          require("../assets/hotels/hotel_10/rooms/room_1/3.jpg"),
+        ],
+        price: 115,
+      },
+      {
+        key: 2,
+        type: "Double Room with View",
+        amenities: [
+          "AIR CONDITIONING",
+          "MINIBAR",
+          "COFFEE MAKER",
+          "SAFE BOX",
+          "FLAT SCREEN TV",
+          "WI-FI",
+        ],
+        images: [
+          require("../assets/hotels/hotel_10/rooms/room_2/1.jpg"),
+          require("../assets/hotels/hotel_10/rooms/room_2/2.jpg"),
+          require("../assets/hotels/hotel_10/rooms/room_2/3.jpg"),
+        ],
+        price: 115,
+      },
+    ],
+    moto: "THE TIMELESS BEAUTY OF THE AMALFI COAST",
+    description: `Situated between the Sinai Desert and the Red Sea, Oriental Rivoli Hotel offers 3 swimming pools and a private beach. It also has a Hammam and rooms with LCD TVs.
+    Decorated in luxurious oriental style, all rooms come with individually-controlled air conditioning and minibars. Each has a work desk and a safety deposit box. Some rooms feature private balconies.
+    Lavish amenities include massage facilities and a hot tub. Water activities including diving and snorkelling can be organised at the private beach.
+    This 4-star hotel enjoys a quiet location close to Naama Bay’s bars and restaurants. It is situated 15 minutes’ drive from the Sharm el-Sheikh International Airport.`,
+    reviews: [
+      {
+        text: "Absolutely lovely",
+        rating: {
+          cleanless: 5,
+          location: 5,
+          staff: 5,
+          comfort: 5,
+          facilities: 5,
+          valueForMoney: 5,
+        },
+      },
+      {
+        text: `Our family did enjoy food and service!`,
+        rating: {
+          cleanless: 5,
+          location: 5,
+          staff: 5,
+          comfort: 5,
+          facilities: 5,
+          valueForMoney: 5,
+        },
+      },
+    ],
+    amenities: [
+      "A la carte restaurant",
+      "Heated pool",
+      "Elevator in building",
+      "Play courts",
+      "Fitness facility",
+      "Handicap acessible",
+      "Reception 24H",
+      "Air conditioning",
+    ],
+    popularity: {
+      isTrending: true,
+      roomKeys: [1],
+    },
+  },
+
+  {
+    key: 11,
+    location: 7,
+    name: "London Royal",
+    type: "Hotel",
+    rating: 5,
+    minPrice: 250,
+    images: [
+      require("../assets/hotels/hotel_11/common/1.jpg"),
+      require("../assets/hotels/hotel_11/common/2.jpg"),
+    ],
+    geoLocation: [40.629602535607994, 14.592922850526529],
+    address: "S.S. AMALFITANA, 9 84011 AMALFI (SA)",
+    phone: "+39 089 871012",
+    policies: {
+      checkIn: "15:00",
+      checkOut: "12:00",
+      securityDeposit: 100,
+    },
+    rooms: [
+      {
+        key: 1,
+        type: "Double Room with View",
+        amenities: [
+          "AIR CONDITIONING",
+          "MINIBAR",
+          "COFFEE MAKER",
+          "SAFE BOX",
+          "FLAT SCREEN TV",
+          "WI-FI",
+        ],
+        images: [
+          require("../assets/hotels/hotel_11/rooms/room_1/1.jpg"),
+          require("../assets/hotels/hotel_11/rooms/room_1/2.jpg"),
+          require("../assets/hotels/hotel_11/rooms/room_1/3.jpg"),
+          require("../assets/hotels/hotel_11/rooms/room_1/4.jpg"),
+          require("../assets/hotels/hotel_11/rooms/room_1/5.jpg"),
+        ],
+        price: 115,
+      },
+    ],
+    moto: "THE TIMELESS BEAUTY OF THE AMALFI COAST",
+    description: `Situated between the Sinai Desert and the Red Sea, Oriental Rivoli Hotel offers 3 swimming pools and a private beach. It also has a Hammam and rooms with LCD TVs.
+    Decorated in luxurious oriental style, all rooms come with individually-controlled air conditioning and minibars. Each has a work desk and a safety deposit box. Some rooms feature private balconies.
+    Lavish amenities include massage facilities and a hot tub. Water activities including diving and snorkelling can be organised at the private beach.
+    This 4-star hotel enjoys a quiet location close to Naama Bay’s bars and restaurants. It is situated 15 minutes’ drive from the Sharm el-Sheikh International Airport.`,
+    reviews: [
+      {
+        text: "Absolutely lovely",
+        rating: {
+          cleanless: 5,
+          location: 5,
+          staff: 5,
+          comfort: 5,
+          facilities: 5,
+          valueForMoney: 5,
+        },
+      },
+      {
+        text: `Our family did enjoy food and service!`,
+        rating: {
+          cleanless: 5,
+          location: 5,
+          staff: 5,
+          comfort: 5,
+          facilities: 5,
+          valueForMoney: 5,
+        },
+      },
+    ],
+    amenities: [
+      "A la carte restaurant",
+      "Heated pool",
+      "Elevator in building",
+      "Play courts",
+      "Fitness facility",
+      "Handicap acessible",
+      "Reception 24H",
+      "Air conditioning",
+    ],
+    popularity: {
+      isTrending: true,
+      roomKeys: [1],
     },
   },
 ];

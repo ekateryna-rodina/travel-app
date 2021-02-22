@@ -17,10 +17,14 @@ export interface IDestination {
 export interface IHotelBase {
   key: number;
   name: string;
-  country: string;
-  city: string;
+  // country: string;
+  // city: string;
+  location: number;
   type: "Hotel" | "Hostel";
   rating: number;
+  moto?: string;
+  images: number[];
+  minPrice: number;
 }
 
 export interface IRoom {
@@ -29,18 +33,16 @@ export interface IRoom {
   images: number[];
   price: number;
   amenities: string[];
-  description: string;
+  description?: string;
 }
 
 export interface IHotelDetails extends IHotelBase {
   minPrice: number;
-  images: number[];
   geoLocation: [];
   address: string;
   phone: string;
   rooms: IRoom[];
   description: string;
-  moto?: string;
   reviews?: [{}];
   policies: {};
 }

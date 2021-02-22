@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, Animated, Easing } from "react-native";
 import StyleGuide from "../styles/StyleGuide";
 import { Calendar, CalendarList, Agenda } from "react-native-calendars";
 import globalStyles from "../styles/GlobalStyles";
 import moment from "moment";
 import Button from "./shared/Button";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setTravelDates } from "../store/search/SearchAction";
 import ModalFooter from "./shared/ModalFooter";
+import { SearchModalSettingsTypes } from "../helpers/enums";
+import { AppState } from "../store/rootStore";
 
 const { height } = StyleGuide.size;
 const styles = StyleSheet.create({
@@ -95,10 +97,40 @@ const DatesModalContent = () => {
   let [endDate, setEndDate] = useState<string>(datePlaceholder);
   const [markedDays, setMarkedDays] = useState({});
   const dispatch = useDispatch();
+  const animated = new Animated.Value(300);
+  const state = useSelector((state: AppState) => state.modal);
+  const { isOpened, selectedIndex } = state;
   useEffect(() => {
     let days = getMarkedDays(startDate, endDate);
     setMarkedDays(days);
-  }, [startDate, endDate]);
+
+    // Animated.timing(animated, {
+    //   toValue: 0,
+    //   duration: 200,
+    //   delay: 500,
+    //   easing: Easing.linear,
+    //   useNativeDriver: true,
+    // }).start();
+
+    if (selectedIndex === SearchModalSettingsTypes.date) {
+      Animated.timing(animated, {
+        toValue: 0,
+        duration: 200,
+        delay: 500,
+        easing: Easing.linear,
+        useNativeDriver: true,
+      }).start();
+    } else {
+      animated.setValue(0);
+      Animated.timing(animated, {
+        toValue: -400,
+        duration: 1000,
+        delay: 500,
+        easing: Easing.linear,
+        useNativeDriver: true,
+      }).start();
+    }
+  }, [startDate, endDate, selectedIndex]);
 
   const selectDay = (selected: any) => {
     const { dateString, day, month, year } = selected;
@@ -128,7 +160,9 @@ const DatesModalContent = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <Animated.View
+      style={[styles.container, { transform: [{ translateX: animated }] }]}
+    >
       <View style={styles.header}>
         <View
           style={{
@@ -179,7 +213,7 @@ const DatesModalContent = () => {
           Select
         </Button>
       </View>
-    </View>
+    </Animated.View>
   );
 };
 

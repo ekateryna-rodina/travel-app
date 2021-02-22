@@ -7,10 +7,12 @@ interface IStarProps {
   rating: number;
   fullThreshold: number;
   halfThreshold: number;
+  size?: number;
 }
 
 interface IStarsProps {
   rating: number;
+  size?: number;
 }
 const styles = StyleSheet.create({
   container: {
@@ -30,10 +32,10 @@ const _getStarStyleName = (
   return rating >= 1 ? "star" : rating >= 0.5 ? "star-half-o" : "star-o";
 };
 
-const starSize = 24;
-
 const Star = (props: IStarProps) => {
-  const { rating, fullThreshold, halfThreshold } = props;
+  const { rating, fullThreshold, halfThreshold, size } = props;
+  const starSize = size || 24;
+
   const style =
     rating >= fullThreshold
       ? "star"
@@ -51,15 +53,15 @@ const Star = (props: IStarProps) => {
 };
 
 const Stars = (props: IStarsProps) => {
-  const { rating } = props;
+  const { rating, size } = props;
 
   return (
     <View style={styles.starsContainer}>
-      <Star rating={rating} fullThreshold={1} halfThreshold={0.5} />
-      <Star rating={rating} fullThreshold={2} halfThreshold={1.5} />
-      <Star rating={rating} fullThreshold={3} halfThreshold={2.5} />
-      <Star rating={rating} fullThreshold={4} halfThreshold={3.5} />
-      <Star rating={rating} fullThreshold={5} halfThreshold={4.5} />
+      <Star rating={rating} fullThreshold={1} halfThreshold={0.5} size={size} />
+      <Star rating={rating} fullThreshold={2} halfThreshold={1.5} size={size} />
+      <Star rating={rating} fullThreshold={3} halfThreshold={2.5} size={size} />
+      <Star rating={rating} fullThreshold={4} halfThreshold={3.5} size={size} />
+      <Star rating={rating} fullThreshold={5} halfThreshold={4.5} size={size} />
     </View>
   );
 };

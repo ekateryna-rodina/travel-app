@@ -9,10 +9,8 @@ const { height, width } = StyleGuide.size;
 const styles = StyleSheet.create({
   container: {
     height: height * 0.2,
+    width: "100%",
     backgroundColor: StyleGuide.palette.white,
-    top: 0,
-    left: 0,
-    right: 0,
     paddingTop: 65,
     paddingEnd: 25,
     paddingStart: 15,

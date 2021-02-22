@@ -26,7 +26,6 @@ const ModalContent = (props: IModalContentProps) => {
       case SearchModalSettingsTypes.date:
         return <DatesModalContent />;
       default:
-        console.warn("default");
         return <></>;
     }
   };
