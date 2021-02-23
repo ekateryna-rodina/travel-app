@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
   },
   text: {
+    ...StyleGuide.typography.subhead,
     color: StyleGuide.palette.white,
     lineHeight: 20,
     flex: 1,

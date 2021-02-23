@@ -16,7 +16,7 @@ interface IAmenity {
 
 interface IAmenitiesProps {
   amenities: IAmenity[];
-  title: string;
+  title?: string;
 }
 
 const colorGuide = StyleGuide.palette;

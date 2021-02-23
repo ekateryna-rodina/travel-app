@@ -64,7 +64,9 @@ const SearchResultsScreen = () => {
         >
           {hotels.map((item, index) => {
             // console.warn(item);
-            return <HotelCard item={item} index={index} />;
+            return (
+              <HotelCard key={index.toString()} item={item} index={index} />
+            );
           })}
         </Animated.ScrollView>
       </Animated.View>

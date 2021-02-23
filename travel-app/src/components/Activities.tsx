@@ -5,6 +5,7 @@ import globalStyles from "../styles/GlobalStyles";
 import { Title } from "./shared/Title";
 import CardList from "./shared/Cards";
 import { IActivity } from "../store/search/models/Hotel";
+import { CardTypes, TitleTypes } from "../helpers/enums";
 
 interface IActivitiesProps {
   activities: IActivity[];

@@ -1,7 +1,9 @@
 import React from "react";
 import { View, FlatList, StyleSheet, Dimensions } from "react-native";
 import StyleGuide from "../../../styles/StyleGuide";
-import ShowcaseItem from "./ShowCaseItem";
+import ShowcaseItem from "./ShowcaseItem";
+import { AntDesign } from "@expo/vector-icons";
+// import ShowcaseItem from "./ShowCaseItem";
 
 interface IShowcaseList {
   images: number[];
