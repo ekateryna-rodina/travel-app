@@ -45,6 +45,7 @@ const Star = (props: IStarProps) => {
 
   return (
     <FontAwesome
+      style={{ marginEnd: 1 }}
       name={style}
       size={starSize}
       color={StyleGuide.palette.bright}

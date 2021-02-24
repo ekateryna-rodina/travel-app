@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   expandLink: {
     marginVertical: StyleGuide.spacing / 3,
     color: StyleGuide.palette.white,
-    fontWeight: "bold",
+    ...StyleGuide.typography.footnoteBold,
   },
   scrollView: { paddingEnd: StyleGuide.spacing },
 });
