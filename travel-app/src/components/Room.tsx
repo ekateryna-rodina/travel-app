@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import StyleGuide from "../styles/StyleGuide";
 import { IRoom } from "../store/search/models/Hotel";
+import { MaterialIcons } from "@expo/vector-icons";
 
 interface IRoomProps {
   room: IRoom;
@@ -17,14 +18,15 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginTop: spacing / 3,
+    marginTop: spacing / 2,
     paddingVertical: spacing / 3,
   },
   type: {
-    fontSize: 16,
+    ...StyleGuide.typography.body,
   },
   price: {
-    fontSize: 16,
+    ...StyleGuide.typography.body,
+    marginEnd: 3,
   },
   guestsContainer: {
     flexDirection: "row",
@@ -32,7 +34,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "50%",
   },
-  image: { width: 350, height: 170, borderRadius: 5 },
+  guests: {
+    flex: 1,
+    ...StyleGuide.typography.footnoteBold,
+  },
+  image: { width: 350, height: 170 },
 });
 
 const Room = (props: IRoomProps) => {
@@ -50,11 +56,17 @@ const Room = (props: IRoomProps) => {
       <View>
         <View style={styles.typeRowContainer}>
           <Text style={styles.type}>{type}</Text>
-          <Text style={styles.price}>${price} / night</Text>
+          <Text style={styles.price}>
+            ${price} /{" "}
+            <View style={{}}>
+              <MaterialIcons name="nightlight-round" size={16} color="black" />
+            </View>
+          </Text>
         </View>
         <View style={styles.guestsContainer}>
-          <Text style={{ flex: 1 }}>Max guests: 3</Text>
-          <Text style={{ flex: 1 }}>Max kids: 1</Text>
+          <Text style={styles.guests}>Max guests: 3</Text>
+          <Text> {""}</Text>
+          <Text style={styles.guests}>Max kids: 1</Text>
         </View>
       </View>
     </View>

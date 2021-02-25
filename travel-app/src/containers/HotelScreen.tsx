@@ -47,21 +47,6 @@ let styles = StyleSheet.create({
     right: 0,
   },
 });
-//   animatedShowcase: (scrollA, showcaseHeight) => ({
-//     height: height * 0.45,
-//     transform: [
-//       {
-//         translateY: scrollA,
-//       },
-//       {
-//         scale: scrollA.interpolate({
-//           inputRange: [-showcaseHeight, 0, showcaseHeight, showcaseHeight + 1],
-//           outputRange: [2.8, 1, 1, 1],
-//         }),
-//       },
-//     ],
-//   }),
-// });
 const HotelScreen = ({ navigation }) => {
   const hotelData = data.hotels[0];
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -81,7 +66,7 @@ const HotelScreen = ({ navigation }) => {
 
   const showcaseHeight = height * 0.2;
   let animatedValue = scrollY.interpolate({
-    inputRange: [0, 80],
+    inputRange: [0, 70],
     outputRange: [1, 0.65],
   });
 
@@ -137,7 +122,7 @@ const HotelScreen = ({ navigation }) => {
             // amenities={amenities}
           />
           <Amenities amenities={amenities} />
-          {/* <Location geoLocation={geoLocation} /> */}
+          <Location geoLocation={geoLocation} />
           <Activities activities={activities} />
         </View>
       </Animated.ScrollView>

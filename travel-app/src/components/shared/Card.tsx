@@ -33,23 +33,10 @@ const styles = StyleSheet.create({
     height: height * 0.13,
   },
   halfOverlay: {
-    // ...StyleSheet.absoluteFillObject,
-    // ...globalStyles.roundedBottomCorner,
-    // backgroundColor: "rgba(245, 245, 245, 0.5)",
-    backgroundColor: "green",
-    // backgroundColor: "transparent",
-    // width: height * 0.26,
     height: width * 0.15,
-    // marginTop: width * 0.5,
     top: 60,
     left: 0,
     right: -2,
-    // marginTop: width * 0.13 - 30,
-    // bottom: 40,
-    // top: -height * 0.06,
-    // borderBottomRightRadius: 45,
-    // borderRadius: 30,
-    // borderBottomRiRadius: 17,
   },
   bottomOverlay: {
     borderRadius: 15,
@@ -72,13 +59,10 @@ const styles = StyleSheet.create({
     color: StyleGuide.palette.white,
   },
   bottomTextContainer: {
-    position: "absolute",
-    paddingTop: 15,
-    paddingLeft: 5,
-    left: 0,
-    right: 0,
-    bottom: 2,
-    justifyContent: "flex-start",
+    ...StyleSheet.absoluteFillObject,
+    marginHorizontal: StyleGuide.spacing * 2,
+    marginBottom: StyleGuide.spacing / 3,
+    justifyContent: "flex-end",
     alignItems: "flex-start",
   },
   darkTitle: {
@@ -182,17 +166,7 @@ const Card = (props: ICardProps) => {
         resizeMode="cover"
         blurRadius={type === CardTypes.city ? 3 : 0}
       />
-      <View
-        style={overlaySet[type]}
-        // style={{
-        //   ...StyleSheet.absoluteFillObject,
-        //   ...globalStyles.roundedBottomCorner,
-        //   height: height * 0.13,
-        //   width: height * 0.26,
-        //   marginEnd: 10,
-        //   backgroundColor: "rgba(245, 245, 245, 0.5)",
-        // }}
-      ></View>
+      <View style={overlaySet[type]}></View>
       <LinearGradient
         colors={["black", "red"]}
         locations={[0.6, 0.8]}
@@ -204,19 +178,3 @@ const Card = (props: ICardProps) => {
 };
 
 export default Card;
-// style={overlaySet[type]}
-
-// style={{
-//   position: "absolute",
-//   // backgroundColor: "red",
-//   height: width * 0.15,
-//   marginVertical: -((width * 0.13) / 0.8),
-//   marginEnd: StyleGuide.spacing,
-//   backgroundColor: "rgba(245, 245, 245, 0.5)",
-//   // marginTop: width * 0.5,
-//   bottom: 60,
-//   left: 0,
-//   right: -5,
-
-//   borderBottomRightRadius: 60,
-// }}

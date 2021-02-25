@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, Platform } from "react-native";
 import StyleGuide from "../../styles/StyleGuide";
 import { AntDesign } from "@expo/vector-icons";
 import Animated, {
@@ -16,6 +16,7 @@ interface IBackHeaderProps {
 }
 const headerImageHeight = 75;
 const HEADER_IMAGE_HEIGHT = 250;
+const height = Platform.OS === "android" ? 50 : 75;
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
@@ -31,8 +32,10 @@ const styles = StyleSheet.create({
 const BackHeader = (props) => {
   const { scrollY } = props;
   const toggleAnimated = useRef(new Animated.Value(0)).current;
+  const offset = Platform.OS === "android" ? 40 : 10;
   useCode(
-    () => set(toggleAnimated, greaterThan(scrollY, HEADER_IMAGE_HEIGHT - 10)),
+    () =>
+      set(toggleAnimated, greaterThan(scrollY, HEADER_IMAGE_HEIGHT - offset)),
     [toggleAnimated, scrollY]
   );
   return (
@@ -40,12 +43,19 @@ const BackHeader = (props) => {
       <Animated.View
         style={[
           StyleSheet.absoluteFillObject,
-          { backgroundColor: "white", opacity: toggleAnimated },
+          {
+            backgroundColor: StyleGuide.palette.white,
+            opacity: toggleAnimated,
+          },
         ]}
       />
 
       <AntDesign
-        style={{ marginHorizontal: 15, marginTop: 40, marginBottom: 15 }}
+        style={{
+          marginHorizontal: 15,
+          marginTop: Platform.OS === "android" ? 30 : 40,
+          marginBottom: 15,
+        }}
         name="arrowleft"
         size={24}
         color="white"
@@ -54,7 +64,11 @@ const BackHeader = (props) => {
         style={[StyleSheet.absoluteFillObject, { opacity: toggleAnimated }]}
       >
         <AntDesign
-          style={{ marginHorizontal: 15, marginTop: 40, marginBottom: 15 }}
+          style={{
+            marginHorizontal: 15,
+            marginTop: Platform.OS === "android" ? 30 : 40,
+            marginBottom: 15,
+          }}
           name="arrowleft"
           size={24}
           color="black"

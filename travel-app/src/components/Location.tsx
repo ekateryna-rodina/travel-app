@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { View, StyleSheet, Dimensions } from "react-native";
-import MapView, { Region } from "react-native-maps";
+import { View, StyleSheet, Dimensions, Image } from "react-native";
+import MapView, { Marker } from "react-native-maps";
 import globalStyles from "../styles/GlobalStyles";
 import StyleGuide from "../styles/StyleGuide";
 
@@ -52,10 +52,8 @@ const styles = StyleSheet.create({
 });
 
 export const Location = (props: ILocationProps) => {
-  const {
-    geoLocation: { latitude, longitude },
-  } = props;
-  // initial state, todo: predefined boundingBoxCalculation
+  const [latitude, longitude] = [props.geoLocation[0], props.geoLocation[1]];
+
   const mapSettings = {
     centroid: {
       latitude: latitude,
@@ -110,10 +108,29 @@ export const Location = (props: ILocationProps) => {
     <View style={styles.container}>
       <View style={styles.mapContainer}>
         <MapView
-          region={region}
-          onRegionChange={regionChangeHandler}
-          style={styles.map}
-        />
+          style={StyleSheet.absoluteFillObject}
+          region={{
+            latitude,
+            longitude,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          }}
+        >
+          <Marker
+            coordinate={{ latitude: latitude, longitude: longitude }}
+            // title={"We are here"}
+            // description={"Name of hotel"}
+          >
+            <Image
+              style={{
+                width: 60,
+                height: 60,
+                borderRadius: 30,
+              }}
+              source={require("../../assets/hotels/hotel_1/common/1.jpg")}
+            />
+          </Marker>
+        </MapView>
       </View>
     </View>
   );

@@ -31,10 +31,8 @@ const styles = StyleSheet.create({
   titleContainer: {},
 
   title: {
-    ...StyleGuide.typography.body,
-    fontSize: 22,
+    ...StyleGuide.typography.title3,
     color: StyleGuide.palette.white,
-    fontWeight: "bold",
     paddingVertical: StyleGuide.spacing / 3,
   },
   ratingRowContainer: {
@@ -78,39 +76,8 @@ const BasicInfoBanner = (props) => {
   };
 
   useEffect(() => {
-    console.warn(isExpanded_);
     toggleExpandable(isExpanded_);
-    // Animated.timing(animatedHeight, {
-    //   friction: 100,
-    //   toValue: isExpanded_ ? endHeight : startHeight,
-    //   useNativeDriver: false,
-    // }).start();
   }, [isExpanded_]);
-  // const translateY = new Animated.Value(startHeight);
-  // const handleShowLessMore = () => {
-  //   let _toValue = translateY.interpolate({
-  //     inputRange: [0, 1],
-  //     outputRange: [1, 0],
-  //   });
-  //   Animated.timing(translateY, {
-  //     toValue: _toValue,
-  //     duration: 100,
-  //   }).start();
-  // };
-
-  // useEffect(() => {
-  //   console.error(isExpanded_);
-  // }, [isExpanded_]);
-  // const translateY = interpolate(scrollY, {
-  //   inputRange: [0, HEADER_IMAGE_HEIGHT],
-  //   outputRange: [0, -backHeaderHeight],
-  //   extrapolate: Extrapolate.CLAMP,
-  // });
-  // const translateX = interpolate(scrollY, {
-  //   inputRange: [0, HEADER_IMAGE_HEIGHT],
-  //   outputRange: [0, 20],
-  // });
-
   return (
     <Animated.View style={[styles.container, { height: animatedHeight }]}>
       <View style={styles.contentContainer}>
@@ -125,8 +92,6 @@ const BasicInfoBanner = (props) => {
             {reviews.length} reviews{" "}
           </Button>
         </View>
-
-        {/* <View style={{ height: 300, marginVertical: 15 }}> */}
         <View style={{ height: 300 }}>
           <ExpandandableText
             text={description}

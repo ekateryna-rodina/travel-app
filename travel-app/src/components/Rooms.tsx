@@ -19,16 +19,16 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     marginTop: -45,
     paddingHorizontal: StyleGuide.spacing,
-    paddingVertical: StyleGuide.spacing,
+    paddingTop: StyleGuide.spacing,
     ...GlobalStyles.roundedTopCorner,
   },
   titleContainer: {
-    marginBottom: StyleGuide.spacing,
+    marginBottom: StyleGuide.spacing / 3,
+    // flex: 1,
   },
   title: {
-    color: StyleGuide.palette.light,
-    fontSize: 18,
-    fontWeight: "bold",
+    ...StyleGuide.typography.title3,
+    color: StyleGuide.palette.dark,
   },
 });
 
