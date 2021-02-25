@@ -52,8 +52,16 @@ const styles = StyleSheet.create({
 });
 
 const BasicInfoBanner = (props) => {
-  const { name, rating, reviews, description, scrollY } = props;
+  const {
+    name,
+    rating,
+    reviews,
+    description,
+    reviewsShown,
+    setReviewsShown,
+  } = props;
   const [isExpanded_, setIsExpanded_] = useState<0 | 1>(0);
+  const [reviewButtonText, setReviewText] = useState<string>("");
   const startHeight = 275;
   const endHeight = 490;
   const animatedHeight = useRef(new Animated.Value(startHeight)).current;
@@ -77,7 +85,13 @@ const BasicInfoBanner = (props) => {
 
   useEffect(() => {
     toggleExpandable(isExpanded_);
-  }, [isExpanded_]);
+    // change reviews button text
+    if (reviewsShown) {
+      setReviewText("Hide reviews");
+    } else {
+      setReviewText(`${reviews.length} reviews`);
+    }
+  }, [isExpanded_, reviewsShown]);
   return (
     <Animated.View style={[styles.container, { height: animatedHeight }]}>
       <View style={styles.contentContainer}>
@@ -87,9 +101,9 @@ const BasicInfoBanner = (props) => {
           <Stars rating={rating} />
           <Button
             style={styles.button}
-            handler={() => console.warn("open review")}
+            handler={() => setReviewsShown(!reviewsShown)}
           >
-            {reviews.length} reviews{" "}
+            {reviewButtonText}
           </Button>
         </View>
         <View style={{ height: 300 }}>

@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     justifyContent: "flex-end",
     alignItems: "flex-start",
+    // marginBottom: -70,
   },
   label: {
     fontSize: 18,

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Easing } from "react-native";
 import Animated from "react-native-reanimated";
 import BasicInfoBanner from "../components/BasicInfoBanner";
 import ShowcaseList from "../components/shared/showCase/ShowcaseList";
@@ -12,6 +12,7 @@ import Activities from "../components/Activities";
 import { AntDesign } from "@expo/vector-icons";
 import BackHeader from "../components/shared/BackHeader";
 import { onScroll, useValues } from "react-native-redash/lib/module/v1";
+import Reviews from "../components/Reviews";
 
 const { height, width } = StyleGuide.size;
 let styles = StyleSheet.create({
@@ -55,23 +56,50 @@ const HotelScreen = ({ navigation }) => {
     images,
     name,
     rating,
-    reviews,
+    // reviews,
     description,
     rooms,
     // amenities,
     geoLocation,
   } = hotelData;
-  const scrollY = new Animated.Value(0);
+  const [reviewsShown, setReviewsShown] = useState<0 | 1>(0);
+  const scrollY = useRef(new Animated.Value(0)).current;
   const { height, width } = StyleGuide.size;
 
-  const showcaseHeight = height * 0.2;
   let animatedValue = scrollY.interpolate({
     inputRange: [0, 70],
     outputRange: [1, 0.65],
   });
+  const animatedHeight = useRef(new Animated.Value(0)).current;
+  const toggleReview = (reviewsShown) => {
+    if (reviewsShown) {
+      Animated.timing(animatedHeight, {
+        duration: 500,
+        toValue: height * 0.45,
+        easing: Easing.linear,
+        useNativeDriver: true,
+      }).start();
+    } else {
+      Animated.timing(animatedHeight, {
+        duration: 500,
+        toValue: 0,
+        easing: Easing.linear,
+        useNativeDriver: true,
+      }).start();
+    }
+  };
+  useEffect(() => {
+    console.warn("fff");
+    toggleReview(reviewsShown);
+  }, [reviewsShown]);
   const amenities = [
     { name: "A la carte restaurant", icon: "restaurant" },
     { name: "Always fresh water in swimming pool", icon: "swimming-pool" },
+  ];
+  const reviews = [
+    "This hotel is beautiful and was clean. I loved having a king balcony room. It was spacious and we enjoyed having the balcony and the opportunity to use it for pictures. This hotel is conveniently located by multiple trains and restaurants.",
+    "Pleasantly surprised by overall room appearance and smart tv that was equipped with sufficient HDMI outputs for Fire and/or Apple TV needs.",
+    "It was an extraordinary experience definitely recommend it the staff was very helpful, room was clean and smell good. Already planning my next stay",
   ];
   return (
     <View>
@@ -89,6 +117,7 @@ const HotelScreen = ({ navigation }) => {
         )}
       >
         <Animated.View
+          key="showcase"
           style={{
             opacity: animatedValue,
             height: height * 0.45,
@@ -96,29 +125,32 @@ const HotelScreen = ({ navigation }) => {
               {
                 translateY: scrollY,
               },
-              {
-                scale: scrollY.interpolate({
-                  inputRange: [
-                    -showcaseHeight,
-                    0,
-                    showcaseHeight,
-                    showcaseHeight + 1,
-                  ],
-                  outputRange: [2.8, 1, 1, 1],
-                }),
-              },
             ],
           }}
         >
           <ShowcaseList images={images} labelPosition={styles.labelPosition} />
+          <Animated.View
+            style={{
+              flex: 1,
+              position: "absolute",
+              left: 0,
+              right: 0,
+              bottom: 0,
+              height: animatedHeight,
+            }}
+          >
+            <Reviews reviews={reviews} />
+          </Animated.View>
         </Animated.View>
-        <View style={styles.contentContainer}>
+        <View style={styles.contentContainer} key="content">
           <BasicInfoBanner
             name={name}
             rating={rating}
             reviews={reviews}
             description={description}
             scrollY={scrollY}
+            reviewsShown={reviewsShown}
+            setReviewsShown={setReviewsShown}
           />
           <Rooms rooms={rooms} navigation={navigation} amenities={amenities} />
           <Amenities title="Hotel amenities" amenities={amenities} />
