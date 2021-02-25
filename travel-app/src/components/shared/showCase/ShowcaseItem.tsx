@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
     color: StyleGuide.palette.white,
+    ...StyleGuide.typography.headline,
   },
   grayContainer: {
     width: 60,

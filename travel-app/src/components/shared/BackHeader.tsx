@@ -1,7 +1,14 @@
 import React, { useEffect, useRef } from "react";
-import { View, StyleSheet, Text, Platform } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Text,
+  Platform,
+  TouchableOpacity,
+} from "react-native";
 import StyleGuide from "../../styles/StyleGuide";
 import { AntDesign } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 import Animated, {
   Extrapolate,
   set,
@@ -31,6 +38,7 @@ const styles = StyleSheet.create({
 });
 const BackHeader = (props) => {
   const { scrollY } = props;
+  const navigation = useNavigation();
   const toggleAnimated = useRef(new Animated.Value(0)).current;
   const offset = Platform.OS === "android" ? 40 : 10;
   useCode(
@@ -49,20 +57,7 @@ const BackHeader = (props) => {
           },
         ]}
       />
-
-      <AntDesign
-        style={{
-          marginHorizontal: 15,
-          marginTop: Platform.OS === "android" ? 30 : 40,
-          marginBottom: 15,
-        }}
-        name="arrowleft"
-        size={24}
-        color="white"
-      />
-      <Animated.View
-        style={[StyleSheet.absoluteFillObject, { opacity: toggleAnimated }]}
-      >
+      <TouchableOpacity onPress={() => navigation.goBack()}>
         <AntDesign
           style={{
             marginHorizontal: 15,
@@ -71,8 +66,24 @@ const BackHeader = (props) => {
           }}
           name="arrowleft"
           size={24}
-          color="black"
+          color="white"
         />
+      </TouchableOpacity>
+      <Animated.View
+        style={[StyleSheet.absoluteFillObject, { opacity: toggleAnimated }]}
+      >
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <AntDesign
+            style={{
+              marginHorizontal: 15,
+              marginTop: Platform.OS === "android" ? 30 : 40,
+              marginBottom: 15,
+            }}
+            name="arrowleft"
+            size={24}
+            color="black"
+          />
+        </TouchableOpacity>
       </Animated.View>
     </View>
   );

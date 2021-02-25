@@ -1,17 +1,18 @@
 import React, { useEffect } from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { FontAwesome5 } from "@expo/vector-icons";
-import { Ionicons } from "@expo/vector-icons";
-import { Fontisto } from "@expo/vector-icons";
-import { MaterialIcons } from "@expo/vector-icons";
-import { FontAwesome } from "@expo/vector-icons";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Platform,
+} from "react-native";
 import StyleGuide from "../styles/StyleGuide";
 import globalStyles from "../styles/GlobalStyles";
 import { getIcon } from "../helpers/containers";
-// import { ICONS } from "../helpers/containers";
+import { MaterialIcons } from "@expo/vector-icons";
 
 interface IAmenity {
-  key: string;
+  key?: string;
   name: string;
   icon: any;
 }
@@ -19,53 +20,49 @@ interface IAmenity {
 interface IAmenitiesProps {
   amenities: IAmenity[];
   title?: string;
+  isRoom?: boolean;
 }
-
+const { height, width } = StyleGuide.size;
 const colorGuide = StyleGuide.palette;
 const styles = StyleSheet.create({
-  container: {
+  hotelContainer: {
     ...globalStyles.roundedTopCorner,
     backgroundColor: colorGuide.dark,
-    marginTop: -45,
+    marginTop: Platform.OS === "ios" ? -45 : 0,
     paddingHorizontal: StyleGuide.spacing,
-    height: 215,
+    flexDirection: "column",
+    height: height * 0.266,
+  },
+  roomContainer: {
+    flexDirection: "column",
+    height: height * 0.2,
   },
   titleContainer: {
     marginVertical: StyleGuide.spacing,
   },
   title: {
-    color: colorGuide.white,
     ...StyleGuide.typography.title3,
   },
   expandLink: {
     marginVertical: StyleGuide.spacing / 3,
-    color: colorGuide.white,
     ...StyleGuide.typography.footnoteBold,
   },
 });
 
-const restaurant = () => {
-  return (
-    <FontAwesome5
-      name="swimming-pool"
-      size={20}
-      color={StyleGuide.palette.light}
-    />
-  );
-};
-
 const Amenities = (props: IAmenitiesProps) => {
-  const { amenities, title } = props;
-  const ICONS = { hey: () => {} };
+  const { amenities, title, isRoom } = props;
 
-  const allAmenities = [
-    { name: "A la carte restaurant", icon: "restaurant" },
-    { name: "Always fresh water in swimming pool", icon: "swimming-pool" },
-  ];
   return (
-    <View style={styles.container}>
+    <View style={isRoom ? styles.roomContainer : styles.hotelContainer}>
       <View style={styles.titleContainer}>
-        <Text style={styles.title}>Featured amenities</Text>
+        <Text
+          style={[
+            styles.title,
+            { color: isRoom ? StyleGuide.palette.dark : colorGuide.white },
+          ]}
+        >
+          {title}
+        </Text>
       </View>
       <View
         style={{
@@ -74,7 +71,7 @@ const Amenities = (props: IAmenitiesProps) => {
           flexWrap: "wrap",
         }}
       >
-        {allAmenities.map((amenity) => {
+        {amenities.map((amenity) => {
           return (
             <View style={{ width: "45%", marginEnd: 5 }}>
               <View
@@ -90,7 +87,9 @@ const Amenities = (props: IAmenitiesProps) => {
                   style={{
                     flex: 4,
                     alignSelf: "center",
-                    color: StyleGuide.palette.light,
+                    color: isRoom
+                      ? StyleGuide.palette.dark
+                      : StyleGuide.palette.light,
                     ...StyleGuide.typography.callout,
                   }}
                 >
@@ -108,7 +107,18 @@ const Amenities = (props: IAmenitiesProps) => {
           flexGrow: 1,
         }}
       >
-        <Text style={styles.expandLink}>Show all amenities</Text>
+        <Text
+          style={[
+            styles.expandLink,
+            {
+              color: isRoom
+                ? StyleGuide.palette.dark
+                : StyleGuide.palette.white,
+            },
+          ]}
+        >
+          Show all amenities
+        </Text>
       </TouchableOpacity>
     </View>
   );

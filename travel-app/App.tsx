@@ -25,6 +25,7 @@ import { connect, Provider } from "react-redux";
 import store from "./src/store/rootStore";
 import SearchResultsScreen from "./src/containers/SearchResultsScreen";
 import HotelScreen from "./src/containers/HotelScreen";
+import RoomScreen from "./src/containers/RoomScreen";
 const Stack = createStackNavigator();
 
 const styles = StyleSheet.create({
@@ -64,6 +65,7 @@ const App = () => {
             <Stack.Screen name="Home" component={HomeScreen} />
             <Stack.Screen name="SeachResults" component={SearchResultsScreen} />
             <Stack.Screen name="Hotel" component={HotelScreen} />
+            <Stack.Screen name="Room" component={RoomScreen} />
           </Stack.Navigator>
         </NavigationContainer>
       </View>

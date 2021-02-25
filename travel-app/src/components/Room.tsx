@@ -10,9 +10,12 @@ interface IRoomProps {
 }
 
 const spacing = StyleGuide.spacing;
+const { width, height } = StyleGuide.size;
 const styles = StyleSheet.create({
   container: {
     marginVertical: spacing / 3,
+    marginHorizontal: (width - 350) / 2,
+    height: height * 0.3,
   },
   typeRowContainer: {
     flexDirection: "row",
@@ -33,6 +36,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center",
     width: "50%",
+    // height: 200,
   },
   guests: {
     flex: 1,
@@ -48,7 +52,7 @@ const Room = (props: IRoomProps) => {
     <View style={styles.container}>
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate("RoomScreen", { room });
+          navigation.navigate("Room", { room });
         }}
       >
         <Image style={styles.image} source={images[0]} />

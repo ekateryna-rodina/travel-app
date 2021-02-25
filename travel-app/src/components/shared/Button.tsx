@@ -10,6 +10,7 @@ interface IButtonProps {
     color?: string;
     borderRadius?: number;
     textTransform?: string;
+    fontSize?: number;
   };
   handler: () => void;
 }
@@ -23,6 +24,7 @@ const Button = (props: PropsWithChildren<IButtonProps>) => {
     backgroundColor,
     borderRadius,
     textTransform,
+    fontSize,
   } = style;
   return (
     <TouchableOpacity
@@ -38,7 +40,10 @@ const Button = (props: PropsWithChildren<IButtonProps>) => {
       onPress={handler}
     >
       <Text
-        style={[{ color, textTransform }, StyleGuide.typography.footnoteBold]}
+        style={[
+          StyleGuide.typography.footnoteBold,
+          { color, fontSize: fontSize },
+        ]}
       >
         {children}
       </Text>

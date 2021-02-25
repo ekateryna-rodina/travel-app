@@ -1,6 +1,6 @@
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
-import { View, Image, Text, StyleSheet } from "react-native";
+import { View, Image, Text, StyleSheet, Platform } from "react-native";
 import { CardTypes } from "../../helpers/enums";
 import globalStyles from "../../styles/GlobalStyles";
 import GlobalStyles from "../../styles/GlobalStyles";
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     backgroundColor: "rgba(245, 245, 245, 0.7)",
     flex: 1,
-    top: 180,
+    top: Platform.OS === "ios" ? 180 : 160,
   },
   centeredTextContainer: {
     position: "absolute",
@@ -60,10 +60,11 @@ const styles = StyleSheet.create({
   },
   bottomTextContainer: {
     ...StyleSheet.absoluteFillObject,
-    marginHorizontal: StyleGuide.spacing * 2,
+    // marginHorizontal: StyleGuide.spacing * 3,
     marginBottom: StyleGuide.spacing / 3,
     justifyContent: "flex-end",
     alignItems: "flex-start",
+    marginHorizontal: (width - height * 0.38) / 2,
   },
   darkTitle: {
     ...StyleGuide.typography.footnoteBold,
@@ -95,7 +96,7 @@ const styles = StyleSheet.create({
     ...globalStyles.roundedTopCorner,
     width: height * 0.38,
     height: height * 0.28,
-    marginHorizontal: StyleGuide.spacing,
+    marginHorizontal: (width - height * 0.38) / 3,
   },
   linearGradient: {
     flex: 1,
@@ -166,13 +167,20 @@ const Card = (props: ICardProps) => {
         resizeMode="cover"
         blurRadius={type === CardTypes.city ? 3 : 0}
       />
-      <View style={overlaySet[type]}></View>
-      <LinearGradient
+      <View style={overlaySet[type]}>
+        {_renderContent(
+          type,
+          card.name,
+          card.hotelName,
+          card.city,
+          card.country
+        )}
+      </View>
+      {/* <LinearGradient
         colors={["black", "red"]}
         locations={[0.6, 0.8]}
         style={[styles.linearGradient, { position: "absolute" }]}
-      ></LinearGradient>
-      {_renderContent(type, card.name, card.hotelName, card.city, card.country)}
+      ></LinearGradient> */}
     </View>
   );
 };

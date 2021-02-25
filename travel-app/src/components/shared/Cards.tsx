@@ -36,6 +36,9 @@ const Cards = (props: ICardsProps) => {
         style={{ position: "absolute" }}
         showsHorizontalScrollIndicator={false}
         horizontal={true}
+        snapToAlignment={"start"}
+        decelerationRate={"fast"}
+        snapToInterval={StyleGuide.size.width}
         data={items}
         renderItem={(c) => (
           <Card

@@ -13,7 +13,7 @@ interface IRoomsProps {
 const { height } = StyleGuide.size;
 const styles = StyleSheet.create({
   container: {
-    height: height * 0.42,
+    height: height * 0.41,
     backgroundColor: StyleGuide.palette.light,
     alignItems: "flex-start",
     justifyContent: "flex-start",
@@ -40,6 +40,7 @@ const Rooms = (props: IRoomsProps) => {
         <Text style={styles.title}>Available rooms</Text>
       </View>
       <FlatList
+        style={{ marginStart: -StyleGuide.spacing }}
         showsHorizontalScrollIndicator={false}
         horizontal={true}
         data={rooms}

@@ -21,15 +21,7 @@ const styles = StyleSheet.create({
     backgroundColor: colorGuide.light,
     paddingHorizontal: StyleGuide.spacing,
     ...globalStyles.roundedTopCorner,
-    height: 350,
-  },
-  titleContainer: {
-    marginVertical: StyleGuide.spacing,
-  },
-  title: {
-    color: colorGuide.dark,
-    fontSize: 18,
-    fontWeight: "bold",
+    height: height * 0.4,
   },
 });
 

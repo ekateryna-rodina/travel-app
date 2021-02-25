@@ -27,8 +27,8 @@ let styles = StyleSheet.create({
     overflow: "hidden",
   },
   contentContainer: {
-    width: "100%",
-    height: "100%",
+    // width: "100%",
+    // height: "100%",
   },
   labelPosition: {
     top: 0,
@@ -58,7 +58,7 @@ const HotelScreen = ({ navigation }) => {
     reviews,
     description,
     rooms,
-    amenities,
+    // amenities,
     geoLocation,
   } = hotelData;
   const scrollY = new Animated.Value(0);
@@ -69,7 +69,10 @@ const HotelScreen = ({ navigation }) => {
     inputRange: [0, 70],
     outputRange: [1, 0.65],
   });
-
+  const amenities = [
+    { name: "A la carte restaurant", icon: "restaurant" },
+    { name: "Always fresh water in swimming pool", icon: "swimming-pool" },
+  ];
   return (
     <View>
       <BackHeader {...{ scrollY }} />
@@ -77,6 +80,7 @@ const HotelScreen = ({ navigation }) => {
         showsVerticalScrollIndicator={false}
         nestedScrollEnabled={true}
         scrollEventThrottle={1}
+        bounces={false}
         onScroll={Animated.event(
           [{ nativeEvent: { contentOffset: { y: scrollY } } }],
           {
@@ -116,12 +120,8 @@ const HotelScreen = ({ navigation }) => {
             description={description}
             scrollY={scrollY}
           />
-          <Rooms
-            rooms={rooms}
-            navigation={navigation}
-            // amenities={amenities}
-          />
-          <Amenities amenities={amenities} />
+          <Rooms rooms={rooms} navigation={navigation} amenities={amenities} />
+          <Amenities title="Hotel amenities" amenities={amenities} />
           <Location geoLocation={geoLocation} />
           <Activities activities={activities} />
         </View>

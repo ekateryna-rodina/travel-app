@@ -32,15 +32,16 @@ const StyleGuide = {
       lineHeight: 20,
       fontFamily: "JosefinSans_600SemiBold",
     },
-    // body-bold: {
-    //   fontSize: 17,
-    //   lineHeight: 20,
-    //   fontFamily: "JosefinSans_400Regular",
-    // },
+
     callout: {
       fontSize: 16,
       lineHeight: 20,
       fontFamily: "JosefinSans_400Regular",
+    },
+    calloutBold: {
+      fontSize: 16,
+      lineHeight: 20,
+      fontFamily: "JosefinSans_700Bold",
     },
     caption: {
       fontSize: 11,
