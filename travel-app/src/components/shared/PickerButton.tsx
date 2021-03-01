@@ -48,8 +48,16 @@ export const PickerButton = (props: PropsWithChildren<IPickerButtonProps>) => {
     },
   };
 
+  const modalHandler = (type) => {
+    if (!state.isOpened) {
+      dispatch(openModal());
+    }
+
+    handlersSet[type]();
+  };
+
   return (
-    <TouchableOpacity style={styles.button} onPress={handlersSet[type]}>
+    <TouchableOpacity style={styles.button} onPress={() => modalHandler(type)}>
       <Text style={styles.text}>{children}</Text>
     </TouchableOpacity>
   );

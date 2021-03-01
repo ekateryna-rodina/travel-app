@@ -1,9 +1,8 @@
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
-import { View, Image, Text, StyleSheet, Platform } from "react-native";
+import { Image, Platform, StyleSheet, Text, View } from "react-native";
 import { CardTypes } from "../../helpers/enums";
 import globalStyles from "../../styles/GlobalStyles";
-import GlobalStyles from "../../styles/GlobalStyles";
 import StyleGuide from "../../styles/StyleGuide";
 import { ICardExtended } from "./Cards";
 
@@ -13,7 +12,7 @@ interface ICard {
   description?: string;
 }
 interface ICardProps {
-  key: string;
+  key?: string;
   type: CardTypes;
   card: ICardExtended;
 }
@@ -33,10 +32,19 @@ const styles = StyleSheet.create({
     height: height * 0.13,
   },
   halfOverlay: {
-    height: width * 0.15,
-    top: 60,
-    left: 0,
-    right: -2,
+    // position: "absolute",
+    // bottom: 0,
+    // left: 0,
+    // right: 0,
+    // top: 0,
+    // backgroundColor: "rgba(255, 255, 255, 0.1)",
+    // width: height * 0.26,
+    height: height * 0.13,
+    ...StyleSheet.absoluteFillObject,
+    ...globalStyles.roundedBottomCorner,
+    width: height * 0.26,
+    overflow: "hidden",
+    borderBottomRightRadius: 45,
   },
   bottomOverlay: {
     borderRadius: 15,
@@ -60,11 +68,24 @@ const styles = StyleSheet.create({
   },
   bottomTextContainer: {
     ...StyleSheet.absoluteFillObject,
-    // marginHorizontal: StyleGuide.spacing * 3,
     marginBottom: StyleGuide.spacing / 3,
     justifyContent: "flex-end",
     alignItems: "flex-start",
-    marginHorizontal: (width - height * 0.38) / 2,
+    left: StyleGuide.spacing / 3,
+    top: 5,
+  },
+  wholeTextContainer: {
+    marginVertical: StyleGuide.spacing / 3,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 15,
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: "rgba(245, 245, 245, 0.7)",
+    flex: 1,
+  },
+  darkTextArea: {
+    color: "white",
+    ...StyleGuide.typography.body,
   },
   darkTitle: {
     ...StyleGuide.typography.footnoteBold,
@@ -72,7 +93,7 @@ const styles = StyleSheet.create({
   },
   darkSubtitle: {
     color: StyleGuide.palette.dark,
-    ...StyleGuide.typography.footnote,
+    ...StyleGuide.typography.footnoteBold,
   },
   city: {
     ...globalStyles.roundedBottomCorner,
@@ -91,6 +112,10 @@ const styles = StyleSheet.create({
     width: height * 0.42,
     height: height * 0.2,
     marginEnd: 10,
+    marginVertical: StyleGuide.spacing / 3,
+    backgroundColor: "rgba(255, 255, 255, 0.5)",
+    justifyContent: "center",
+    alignItems: "center",
   },
   activity: {
     ...globalStyles.roundedTopCorner,
@@ -99,9 +124,18 @@ const styles = StyleSheet.create({
     marginHorizontal: (width - height * 0.38) / 3,
   },
   linearGradient: {
+    ...StyleSheet.absoluteFillObject,
     flex: 1,
     bottom: 0,
+    borderBottomRightRadius: 45,
   },
+  mission: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  review: {},
+  special: {},
 });
 
 const _renderContent = (
@@ -121,9 +155,8 @@ const _renderContent = (
     case CardTypes.hotel:
       return (
         <View style={styles.bottomTextContainer}>
-          <Text style={styles.darkTitle}>{name}</Text>
           <View>
-            <Text style={[styles.darkSubtitle]}>in {hotelName},</Text>
+            <Text style={[styles.darkSubtitle]}>{hotelName}</Text>
             <Text style={[styles.darkSubtitle]}>
               {" "}
               {city}, {country}
@@ -137,6 +170,12 @@ const _renderContent = (
           <Text style={styles.darkTitle}>{name}</Text>
         </View>
       );
+    case CardTypes.mission:
+      return (
+        <View style={styles.wholeTextContainer}>
+          <Text style={styles.darkTextArea}>loren ipsun</Text>
+        </View>
+      );
     default:
       return <></>;
   }
@@ -148,14 +187,16 @@ const Card = (props: ICardProps) => {
   const stylesSet = {
     [CardTypes.city]: styles.city,
     [CardTypes.hotel]: styles.hotel,
-    [CardTypes.text]: styles.text,
+    [CardTypes.mission]: styles.mission,
     [CardTypes.activity]: styles.activity,
+    [CardTypes.review]: styles.review,
+    [CardTypes.special]: styles.special,
   };
 
   const overlaySet = {
     [CardTypes.city]: styles.fullOverlay,
     [CardTypes.hotel]: styles.halfOverlay,
-    [CardTypes.text]: {},
+    [CardTypes.mission]: {},
     [CardTypes.activity]: styles.bottomOverlay,
   };
 
@@ -168,6 +209,22 @@ const Card = (props: ICardProps) => {
         blurRadius={type === CardTypes.city ? 3 : 0}
       />
       <View style={overlaySet[type]}>
+        {type === CardTypes.hotel && (
+          <LinearGradient
+            colors={["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 0.6)"]}
+            locations={[0.1, 0.7]}
+            style={[styles.linearGradient]}
+          >
+            {_renderContent(
+              type,
+              card.name,
+              card.hotelName,
+              card.city,
+              card.country
+            )}
+          </LinearGradient>
+        )}
+
         {_renderContent(
           type,
           card.name,
@@ -176,11 +233,6 @@ const Card = (props: ICardProps) => {
           card.country
         )}
       </View>
-      {/* <LinearGradient
-        colors={["black", "red"]}
-        locations={[0.6, 0.8]}
-        style={[styles.linearGradient, { position: "absolute" }]}
-      ></LinearGradient> */}
     </View>
   );
 };

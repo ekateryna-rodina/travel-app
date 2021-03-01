@@ -1,7 +1,8 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import globalStyles from "../../../styles/GlobalStyles";
 import StyleGuide from "../../../styles/StyleGuide";
+import ProgressBar from "../ProgressBar";
 import SearchBar from "./SearchBar";
 import { SearchSettings } from "./SearchSettings";
 
@@ -11,6 +12,7 @@ const styles = StyleSheet.create({
     height: height * 0.2,
     width: "100%",
     backgroundColor: StyleGuide.palette.white,
+    zIndex: 1,
     paddingTop: 65,
     paddingEnd: 25,
     paddingStart: 15,
@@ -21,9 +23,12 @@ const styles = StyleSheet.create({
 
 const SearchBarContainer = () => {
   return (
-    <View style={styles.container}>
-      <SearchBar />
-      <SearchSettings />
+    <View>
+      <View style={styles.container}>
+        <SearchBar />
+        <SearchSettings />
+      </View>
+      <ProgressBar />
     </View>
   );
 };

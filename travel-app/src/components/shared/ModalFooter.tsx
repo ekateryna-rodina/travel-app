@@ -1,20 +1,23 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
+import { closeModal } from "../../store/common/modal/ModalAction";
 import StyleGuide from "../../styles/StyleGuide";
 import Button from "./Button";
+import { useDispatch } from "react-redux";
 
 interface IModalFooterProps {
   handler: Function;
+  disabled?: boolean;
 }
 
+const { height } = StyleGuide.size;
 const styles = StyleSheet.create({
   footer: {
     position: "absolute",
-    bottom: 0,
+    bottom: 5,
     left: 0,
     right: 0,
-    height: "28%",
-    width: "100%",
+    height: height * 0.1,
     backgroundColor: StyleGuide.palette.light,
     padding: StyleGuide.spacing,
     justifyContent: "flex-start",
@@ -29,11 +32,21 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
   },
 });
+
 const ModalFooter = (props: IModalFooterProps) => {
-  const { handler } = props;
+  const { handler, disabled } = props;
+  const dispatch = useDispatch();
+  const globalHandler = (handler: Function) => {
+    handler();
+    dispatch(closeModal());
+  };
   return (
     <View style={styles.footer}>
-      <Button style={styles.button} handler={handler}>
+      <Button
+        style={styles.button}
+        disabled={disabled}
+        handler={() => globalHandler(handler)}
+      >
         Select
       </Button>
     </View>

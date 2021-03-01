@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     marginVertical: StyleGuide.spacing,
+    justifyContent: "space-between",
   },
 });
 

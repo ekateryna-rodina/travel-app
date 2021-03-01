@@ -1,11 +1,11 @@
-import React from "react";
-import { View, StyleSheet } from "react-native";
 import {
-  Entypo,
   AntDesign,
-  MaterialCommunityIcons,
+  Entypo,
   Ionicons,
+  MaterialCommunityIcons,
 } from "@expo/vector-icons";
+import React from "react";
+import { StyleSheet, View } from "react-native";
 import StyleGuide from "../styles/StyleGuide";
 
 const { height } = StyleGuide.size;
@@ -30,22 +30,20 @@ const styles = StyleSheet.create({
 
 const Menu = () => {
   return (
-    <View style={styles.footer}>
-      <View style={styles.container}>
-        <Entypo name="magnifying-glass" size={iconSize} color={iconColor} />
-        <AntDesign name="hearto" size={iconSize} color={iconColor} />
-        <MaterialCommunityIcons
-          name="map-marker-check-outline"
-          size={iconSize}
-          color={iconColor}
-        />
-        <AntDesign name="message1" size={iconSize} color={iconColor} />
-        <Ionicons
-          name="person-circle-outline"
-          size={iconSize}
-          color={iconColor}
-        />
-      </View>
+    <View style={styles.container}>
+      <Entypo name="magnifying-glass" size={iconSize} color={iconColor} />
+      <AntDesign name="hearto" size={iconSize} color={iconColor} />
+      <MaterialCommunityIcons
+        name="map-marker-check-outline"
+        size={iconSize}
+        color={iconColor}
+      />
+      <AntDesign name="message1" size={iconSize} color={iconColor} />
+      <Ionicons
+        name="person-circle-outline"
+        size={iconSize}
+        color={iconColor}
+      />
     </View>
   );
 };

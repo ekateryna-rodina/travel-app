@@ -89,7 +89,7 @@ const BasicInfoBanner = (props) => {
     if (reviewsShown) {
       setReviewText("Hide reviews");
     } else {
-      setReviewText(`${reviews.length} reviews`);
+      setReviewText(`Show ${reviews.length} reviews`);
     }
   }, [isExpanded_, reviewsShown]);
   return (

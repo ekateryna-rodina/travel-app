@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { View, StyleSheet, Text, Animated, Easing } from "react-native";
 import StyleGuide from "../styles/StyleGuide";
 import { Calendar, CalendarList, Agenda } from "react-native-calendars";
@@ -14,15 +14,12 @@ import { AppState } from "../store/rootStore";
 const { height } = StyleGuide.size;
 const styles = StyleSheet.create({
   container: {
-    // marginHorizontal: StyleGuide.spacing,
-    // marginVertical: StyleGuide.spacing,
+    height: height - height * 0.2 + 7,
   },
   header: {
     backgroundColor: StyleGuide.palette.darkTransparent,
     padding: StyleGuide.spacing,
     ...globalStyles.roundedTopCorner,
-    // marginHorizontal: StyleGuide.spacing,
-    // marginTop: StyleGuide.spacing,
   },
   headerLabelText: {
     ...StyleGuide.typography.headline,
@@ -31,29 +28,6 @@ const styles = StyleSheet.create({
   headerDatesText: {
     ...StyleGuide.typography.footnoteBold,
     color: StyleGuide.palette.light,
-  },
-  calendar: {
-    // flex: 5,
-    // flex: 5,
-  },
-  footer: {
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
-    height: "28%",
-    width: "100%",
-    backgroundColor: StyleGuide.palette.light,
-    padding: StyleGuide.spacing,
-    justifyContent: "flex-start",
-    alignItems: "center",
-  },
-  button: {
-    width: 80,
-    height: 40,
-    borderRadius: 10,
-    backgroundColor: StyleGuide.palette.dark,
-    color: StyleGuide.palette.white,
   },
 });
 
@@ -97,22 +71,13 @@ const DatesModalContent = () => {
   let [endDate, setEndDate] = useState<string>(datePlaceholder);
   const [markedDays, setMarkedDays] = useState({});
   const dispatch = useDispatch();
-  const animated = new Animated.Value(300);
+  const animated = useRef(new Animated.Value(300)).current;
   const state = useSelector((state: AppState) => state.modal);
   const { isOpened, selectedIndex } = state;
-  useEffect(() => {
-    let days = getMarkedDays(startDate, endDate);
-    setMarkedDays(days);
 
-    // Animated.timing(animated, {
-    //   toValue: 0,
-    //   duration: 200,
-    //   delay: 500,
-    //   easing: Easing.linear,
-    //   useNativeDriver: true,
-    // }).start();
-
+  React.useEffect(() => {
     if (selectedIndex === SearchModalSettingsTypes.date) {
+      animated.setValue(400);
       Animated.timing(animated, {
         toValue: 0,
         duration: 200,
@@ -124,13 +89,18 @@ const DatesModalContent = () => {
       animated.setValue(0);
       Animated.timing(animated, {
         toValue: -400,
-        duration: 1000,
+        duration: 400,
         delay: 500,
         easing: Easing.linear,
         useNativeDriver: true,
       }).start();
     }
-  }, [startDate, endDate, selectedIndex]);
+  }, [selectedIndex]);
+
+  React.useEffect(() => {
+    let days = getMarkedDays(startDate, endDate);
+    setMarkedDays(days);
+  }, [startDate, endDate]);
 
   const selectDay = (selected: any) => {
     const { dateString, day, month, year } = selected;
@@ -181,7 +151,7 @@ const DatesModalContent = () => {
           </View>
         </View>
       </View>
-      <View style={styles.calendar}>
+      <View>
         <CalendarList
           current={new Date()}
           onDayPress={(day) => {
@@ -208,11 +178,10 @@ const DatesModalContent = () => {
           }}
         />
       </View>
-      <View style={styles.footer}>
-        <Button style={styles.button} handler={applyDates}>
-          Select
-        </Button>
-      </View>
+      <ModalFooter
+        disabled={endDate === datePlaceholder || startDate === datePlaceholder}
+        handler={applyDates}
+      />
     </Animated.View>
   );
 };

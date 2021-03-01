@@ -8,32 +8,12 @@ import StyleGuide from "../styles/StyleGuide";
 import Button from "./shared/Button";
 import CountPicker from "./shared/CountPicker";
 import GuestsRow from "./shared/GuestsRow";
+import ModalFooter from "./shared/ModalFooter";
 
+const { height } = StyleGuide.size;
 const styles = StyleSheet.create({
   container: {
-    height: "100%",
-    width: "100%",
-    // margin: StyleGuide.spacing,
-  },
-  footer: {
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
-    height: 85,
-    width: "100%",
-    backgroundColor: StyleGuide.palette.light,
-    padding: StyleGuide.spacing,
-    justifyContent: "flex-start",
-    alignItems: "center",
-  },
-  button: {
-    width: 80,
-    height: 40,
-    borderRadius: 10,
-    backgroundColor: StyleGuide.palette.dark,
-    color: StyleGuide.palette.white,
-    textTransform: "uppercase",
+    height: height - height * 0.2 + 7,
   },
 });
 
@@ -109,11 +89,7 @@ const GuestsModalContent = () => {
           );
         })}
       </View>
-      <View style={styles.footer}>
-        <Button style={styles.button} handler={guestsCountHandler}>
-          Select
-        </Button>
-      </View>
+      <ModalFooter handler={guestsCountHandler} />
     </Animated.View>
   );
 };

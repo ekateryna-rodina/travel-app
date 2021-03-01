@@ -1,7 +1,5 @@
-import { ActionCreator, Dispatch } from "redux";
 import { AppState } from "react-native";
-import { IHotelBase } from "./models/Hotel";
-import { AppActionTypes } from "../rootActionTypes";
+import { Dispatch } from "redux";
 import {
   SEARCH_FAIL,
   SEARCH_REQUEST,
@@ -9,12 +7,8 @@ import {
   SET_DATES,
   SET_LOCATION,
 } from "./models/actions";
-import { request } from "../common/request/RequesAction";
+import { IHotelBase } from "./models/Hotel";
 import { IDates, ILocation } from "./models/Search";
-// export const searchResults = (hotels: IHotelBase[]): AppActionTypes => ({
-//   type: SEARCH_SUCCESS,
-//   payload: hotels,
-// });
 
 export const searchRequest = () => ({
   type: SEARCH_REQUEST,
@@ -23,6 +17,11 @@ export const searchRequest = () => ({
 export const searchFail = (error: any) => ({
   type: SEARCH_FAIL,
   payload: error,
+});
+
+export const searchSuccess = (results: IHotelBase[] = []) => ({
+  type: SEARCH_SUCCESS,
+  payload: results,
 });
 
 export const setDates = (dates: IDates) => ({
@@ -34,13 +33,6 @@ export const setLocation = (location: ILocation) => ({
   type: SET_LOCATION,
   payload: location,
 });
-
-// export function searchHotels() {
-//   return (dispatch: Dispatch, state: AppState) => {
-//     dispatch(request());
-//     dispatch(searchResults([]));
-//   };
-// }
 
 export function setTravelDates(dates: IDates) {
   return (dispatch: Dispatch, state: AppState) => {
@@ -63,5 +55,11 @@ export function setSearchRequest() {
 export function setSearchFailure(error: any) {
   return (dispatch: Dispatch, state: AppState) => {
     dispatch(searchFail(error));
+  };
+}
+
+export function setSearchSuccess(results: any = []) {
+  return (dispatch: Dispatch, state: AppState) => {
+    dispatch(searchSuccess());
   };
 }

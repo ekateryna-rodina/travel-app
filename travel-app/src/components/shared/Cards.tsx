@@ -1,16 +1,16 @@
 import React from "react";
-import { View, FlatList, Dimensions, StyleSheet } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
 import { CardTypes } from "../../helpers/enums";
 import StyleGuide from "../../styles/StyleGuide";
 import Card from "./Card";
 
 interface ICardBase {
-  name: string;
-  image: number;
+  name?: string;
+  image?: number;
 }
 export interface ICardExtended extends ICardBase {
   hotelName?: string;
-  hotelKey?: number | null;
+  hotelKey?: number | null | string;
   city?: string;
   country?: string;
 }
@@ -40,7 +40,7 @@ const Cards = (props: ICardsProps) => {
         decelerationRate={"fast"}
         snapToInterval={StyleGuide.size.width}
         data={items}
-        renderItem={(c) => (
+        renderItem={(c, index) => (
           <Card
             key={c.index.toString()}
             card={{

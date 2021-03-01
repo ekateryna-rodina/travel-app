@@ -18,9 +18,10 @@ export interface ISearch {
   guests: number;
 }
 export interface SearchResultState {
-  // hotels?: IHotelBase[];
+  hotels?: IHotelBase[];
   dates: IDates;
   location: ILocation;
   loading: boolean;
   error: any;
+  guests?: number;
 }

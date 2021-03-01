@@ -1,9 +1,7 @@
-import { createStore, applyMiddleware, combineReducers } from "redux";
-import { configureStore } from "@reduxjs/toolkit";
+import { applyMiddleware, createStore } from "redux";
 import thunk, { ThunkMiddleware } from "redux-thunk";
-import rootReducer from "./rootReducer";
 import { AppActionTypes } from "./rootActionTypes";
-import { counterReducer } from "./counter/CounterReducer";
+import rootReducer from "./rootReducer";
 
 // const store = configureStore({ reducer: counterReducer })
 
@@ -12,6 +10,6 @@ const middleware = applyMiddleware(
   thunk as ThunkMiddleware<AppState, AppActionTypes>
 );
 
-const store = configureStore({ reducer: rootReducer });
-
+// const store = configureStore({ reducer: rootReducer, middleware: middleware });
+const store = createStore(rootReducer, {}, middleware);
 export default store;

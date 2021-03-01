@@ -12,6 +12,7 @@ export interface IDestination {
   name: string;
   image: number;
   isCountry: boolean;
+  locationKey?: number;
 }
 
 export interface IHotelBase {

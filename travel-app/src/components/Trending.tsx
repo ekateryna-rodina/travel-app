@@ -1,17 +1,16 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { CardTypes, TitleTypes } from "../helpers/enums";
 import StyleGuide from "../styles/StyleGuide";
 import Cards from "./shared/Cards";
 import { Title } from "./shared/Title";
-import ICardExtended from "../components/shared/Cards";
 
-interface ITrending {
-  type: string;
-  image: number;
+export interface ITrending {
+  type?: string;
+  image?: number;
   city: string;
   country: string;
-  hotelKey: number;
+  hotelKey: string;
   hotelName: string;
   moto?: string;
 }
@@ -41,12 +40,12 @@ const Trending = (props: ITrendingProps) => {
   });
 
   return (
-    <>
+    <View style={{ marginTop: -StyleGuide.spacing * 2 }}>
       <Title style={styles.title} type={TitleTypes.secondary}>
         Trending Stays
       </Title>
       <Cards items={cards} type={CardTypes.hotel} />
-    </>
+    </View>
   );
 };
 

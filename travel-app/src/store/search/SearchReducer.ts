@@ -1,15 +1,18 @@
-import { SEARCH_SUCCESS, SET_DATES, SET_LOCATION } from "./models/actions";
-import { SearchActionTypes } from "./models/actions";
-import { IDates, SearchResultState } from "./models/Search";
-import { IHotelBase } from "./models/Hotel";
-import { Action, Reducer } from "redux";
-import { AppActionTypes } from "../rootActionTypes";
+import { Reducer } from "redux";
 import { SEARCH_FAIL, SEARCH_REQUEST } from "../../helpers/constants";
+import {
+  SearchActionTypes,
+  SEARCH_SUCCESS,
+  SET_DATES,
+  SET_LOCATION,
+} from "./models/actions";
+import { SearchResultState } from "./models/Search";
 const initialSearchState: SearchResultState = {
-  // hotels: [],
+  hotels: null,
   loading: false,
   error: null,
   dates: { startDate: "", endDate: "" },
+  guests: null,
   location: { locationKey: null, city: "", country: "" },
 };
 
@@ -17,9 +20,11 @@ export const searchReducer: Reducer<SearchResultState, SearchActionTypes> = (
   state = initialSearchState,
   action
 ) => {
+  console.warn(action.type);
   switch (action.type) {
     case SEARCH_REQUEST:
       return {
+        ...state,
         loading: true,
       };
     case SEARCH_SUCCESS:
@@ -41,7 +46,7 @@ export const searchReducer: Reducer<SearchResultState, SearchActionTypes> = (
     case SET_LOCATION:
       return {
         ...state,
-        locations: action.payload,
+        location: action.payload,
       };
     default:
       return state;

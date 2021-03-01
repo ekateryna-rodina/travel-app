@@ -1,4 +1,4 @@
-import { IHotelDetails } from "./store/search/models/Hotel";
+import { CardTypes } from "./helpers/enums";
 
 const countries = [
   {
@@ -1220,4 +1220,36 @@ const hotels = [
   },
 ];
 
-export default { countries, cities, hotels, activities, destinations };
+const stories = [
+  {
+    description:
+      "Our mission is to create safe and unforgettable experiences around top destinations of Europe and Asia by collaborating best hotels and organizing events and your surprizing discoveries.",
+    type: CardTypes.mission,
+  },
+
+  {
+    image: require("../assets/stories/1.jpg"),
+    date: "March 2019",
+    author: "Bob Ross and family",
+    description:
+      "Our stay at the Denali Back Country Lodge was special. What a lovely, quiet resort! At the end of a long road in Denali National Park, the resort is worth the drive. The sounds of a lovely stream help lull you to sleep. Also, the American Cruise Lines small boat cruise was wonderful. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+    type: CardTypes.review,
+  },
+  // {
+  //   image: require("../assets/stories/2.jpg"),
+  //   header: "Adventure of the week",
+  //   subheader: "Mystery of egyptian night",
+  //   description: "Enjoy folk storytelling event with special guest",
+  //   type: CardTypes.special,
+  // },
+  {
+    image: require("../assets/stories/3.jpg"),
+    date: "March 2020",
+    author: "Gillian Jefferson",
+    description:
+      "I recently went on a remarkable trip to Spain with Luxio and couldn't be happier. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like). ",
+    type: CardTypes.review,
+  },
+];
+
+export default { countries, cities, hotels, activities, destinations, stories };

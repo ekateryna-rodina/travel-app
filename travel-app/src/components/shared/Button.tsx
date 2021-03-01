@@ -13,10 +13,11 @@ interface IButtonProps {
     fontSize?: number;
   };
   handler: () => void;
+  disabled?: boolean;
 }
 
 const Button = (props: PropsWithChildren<IButtonProps>) => {
-  const { handler, style, children } = props;
+  const { handler, disabled, style, children } = props;
   const {
     width,
     height,
@@ -29,7 +30,9 @@ const Button = (props: PropsWithChildren<IButtonProps>) => {
   return (
     <TouchableOpacity
       style={{
-        backgroundColor,
+        backgroundColor: disabled
+          ? StyleGuide.palette.darkTransparent
+          : backgroundColor,
         width,
         height,
         padding: StyleGuide.spacing / 3,
@@ -37,6 +40,7 @@ const Button = (props: PropsWithChildren<IButtonProps>) => {
         justifyContent: "center",
         alignItems: "center",
       }}
+      disabled={disabled}
       onPress={handler}
     >
       <Text

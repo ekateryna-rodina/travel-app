@@ -1,12 +1,13 @@
-import React, { useState, useRef, useEffect } from "react";
-import { View, FlatList, Dimensions, ScrollView } from "react-native";
-import SearchResults, { HotelCard } from "../components/SearchResults";
-import SearchBarContainer from "../components/shared/search/SearchBarContainer";
+import React, { useEffect, useRef, useState } from "react";
+import { Dimensions, View } from "react-native";
 import Animated from "react-native-reanimated";
+import { SharedElement } from "react-navigation-shared-element";
+import { useSelector } from "react-redux";
+import { HotelCard } from "../components/SearchResults";
+import SearchBarContainer from "../components/shared/search/SearchBarContainer";
+import { AppState } from "../store/rootStore";
 import { IHotelBase } from "../store/search/models/Hotel";
-import data from "../data";
 import StyleGuide from "../styles/StyleGuide";
-import Menu from "../components/Menu";
 const { width, height } = Dimensions.get("screen");
 
 const SearchResultsScreen = () => {
@@ -22,9 +23,10 @@ const SearchResultsScreen = () => {
     inputRange: [0, headerHeight],
     outputRange: [height * 0.2 + 15, 0],
   });
+  const state = useSelector((state: AppState) => state.search);
   const [hotels, setHotels] = useState<IHotelBase[] | []>([]);
   useEffect(() => {
-    setHotels(data.hotels);
+    setHotels(state.hotels);
   }, []);
 
   const handleScroll = Animated.event(
@@ -33,19 +35,21 @@ const SearchResultsScreen = () => {
   );
   return (
     <View style={{ width: "100%", height: "100%" }}>
-      <Animated.View
-        style={{
-          position: "absolute",
-          zIndex: 100,
-          top: 0,
-          left: 0,
-          right: 0,
-          elevation: 1000,
-          transform: [{ translateY: headerY }],
-        }}
-      >
-        <SearchBarContainer />
-      </Animated.View>
+      <SharedElement id="searchBarSharedElement">
+        <Animated.View
+          style={{
+            position: "absolute",
+            zIndex: 100,
+            top: 0,
+            left: 0,
+            right: 0,
+            elevation: 1000,
+            transform: [{ translateY: headerY }],
+          }}
+        >
+          <SearchBarContainer />
+        </Animated.View>
+      </SharedElement>
       <Animated.View
         style={{
           flex: 1,

@@ -14,11 +14,11 @@ import { ICity, IDestination } from "../store/search/models/Hotel";
 import StyleGuide from "../styles/StyleGuide";
 import { AppState } from "../store/rootStore";
 import { SearchModalSettingsTypes } from "../helpers/enums";
-
+import { useDispatch } from "react-redux";
+import { setLocation } from "../store/search/SearchAction";
+import { closeModal } from "../store/common/modal/ModalAction";
 interface IDestinationsModalContentProps {
   destinations: IDestination[];
-  mount?: boolean;
-  unmount?: boolean;
 }
 
 const styles = StyleSheet.create({
@@ -30,12 +30,23 @@ const styles = StyleSheet.create({
 });
 const DestinationsModalContent = (props: IDestinationsModalContentProps) => {
   const state = useSelector((state: AppState) => state.modal);
-  const [oldState, setOldState] = React.useState();
   const { isOpened, selectedIndex } = state;
   const animated = new Animated.Value(400);
-  const { destinations, mount, unmount } = props;
+  const { destinations } = props;
+  const dispatch = useDispatch();
+  const setTravelLocation = (location) => {
+    const { locationKey, name } = location;
+    let locationData = {
+      locationKey,
+      city: locationKey ? name : null,
+      country: !locationKey ? name : null,
+    };
+
+    dispatch(setLocation(locationData));
+    dispatch(closeModal());
+  };
+
   React.useEffect(() => {
-    // if (mount) {
     if (selectedIndex === SearchModalSettingsTypes.destination) {
       animated.setValue(400);
       Animated.timing(animated, {
@@ -55,21 +66,22 @@ const DestinationsModalContent = (props: IDestinationsModalContentProps) => {
         useNativeDriver: true,
       }).start();
     }
-  }, [selectedIndex, mount, unmount]);
+  }, [selectedIndex]);
   return (
     <Animated.ScrollView
-      style={{ position: "absolute", transform: [{ translateX: animated }] }}
+      style={{
+        transform: [{ translateX: animated }],
+      }}
       showsVerticalScrollIndicator={false}
     >
       {destinations.map((item, index) => {
         return (
           <TouchableHighlight
             key={index.toString()}
-            onPress={() => console.warn("add")}
+            onPress={() => setTravelLocation(item)}
             underlayColor={"rgba(255, 255, 255, 0.3)"}
           >
             <View
-              key={index.toString()}
               style={{
                 flexDirection: "row",
                 justifyContent: "flex-start",
