@@ -3,6 +3,7 @@ import { Dimensions, View } from "react-native";
 import Animated from "react-native-reanimated";
 import { SharedElement } from "react-navigation-shared-element";
 import { useSelector } from "react-redux";
+import Menu from "../components/Menu";
 import { HotelCard } from "../components/SearchResults";
 import SearchBarContainer from "../components/shared/search/SearchBarContainer";
 import { AppState } from "../store/rootStore";
@@ -67,16 +68,18 @@ const SearchResultsScreen = () => {
           bounces={false}
         >
           {hotels.map((item, index) => {
-            // console.warn(item);
             return (
               <HotelCard key={index.toString()} item={item} index={index} />
             );
           })}
         </Animated.ScrollView>
       </Animated.View>
-      {/* <Menu /> */}
+      <Menu />
     </View>
   );
 };
 
+SearchResultsScreen.sharedElements = (route, otherRoute, showing) => {
+  return ["searchBarSharedElement"];
+};
 export default SearchResultsScreen;

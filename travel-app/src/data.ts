@@ -227,7 +227,7 @@ const hotels = [
     location: 1,
     name: "Hotel Santa Caterina",
     type: "Hotel",
-    rating: 5,
+    rating: 4.3,
     minPrice: 250,
     images: [
       require("../assets/hotels/hotel_1/common/1.jpg"),
@@ -334,6 +334,11 @@ const hotels = [
     imagesSrc: "./assets/hotels/hotel_2/",
     address: "CAMPO SANTA SOFIA 4198/99",
     phone: "+39 089 871012",
+    images: [
+      require("../assets/hotels/hotel_2/common/1.jpg"),
+      require("../assets/hotels/hotel_2/common/2.jpg"),
+      require("../assets/hotels/hotel_2/common/3.jpg"),
+    ],
     policies: {
       checkIn: "15:00",
       checkOut: "12:00",
@@ -412,7 +417,7 @@ const hotels = [
     location: 10,
     name: "Montecarlo Resort & SPA",
     type: "Hotel",
-    rating: 5,
+    rating: 4,
     minPrice: 250,
     images: [
       require("../assets/hotels/hotel_4/common/1.jpg"),
@@ -691,7 +696,7 @@ const hotels = [
     location: 10,
     name: "Albatros Royal Moderna",
     type: "Hotel",
-    rating: 5,
+    rating: 4.5,
     minPrice: 250,
     images: [
       require("../assets/hotels/hotel_5/common/1.jpg"),
@@ -945,7 +950,7 @@ const hotels = [
     location: 11,
     name: "Antono Royal",
     type: "Hotel",
-    rating: 5,
+    rating: 4.8,
     minPrice: 250,
     images: [
       require("../assets/hotels/hotel_9/common/2.jpg"),

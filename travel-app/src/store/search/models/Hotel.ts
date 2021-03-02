@@ -18,8 +18,8 @@ export interface IDestination {
 export interface IHotelBase {
   key: number;
   name: string;
-  // country: string;
-  // city: string;
+  country: string;
+  city: string;
   location: number;
   type: "Hotel" | "Hostel";
   rating: number;

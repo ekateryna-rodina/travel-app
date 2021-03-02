@@ -16,17 +16,17 @@ import {
   useFonts,
 } from "@expo-google-fonts/josefin-sans";
 import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { createSharedElementStackNavigator } from "react-navigation-shared-element";
 import { Provider } from "react-redux";
 import HomeScreen from "./src/containers/HomeScreen";
 import HotelScreen from "./src/containers/HotelScreen";
 import RoomScreen from "./src/containers/RoomScreen";
 import SearchResultsScreen from "./src/containers/SearchResultsScreen";
 import store from "./src/store/rootStore";
-// const Stack = createSharedElementStackNavigator();
-const Stack = createStackNavigator();
+const Stack = createSharedElementStackNavigator();
+// const Stack = createStackNavigator();
 const styles = StyleSheet.create({
   container: {
     flex: 1,

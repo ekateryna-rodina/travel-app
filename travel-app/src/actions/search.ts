@@ -17,6 +17,12 @@ export const search = () => async (dispatch, getState) => {
   } else {
     results = data.hotels;
   }
+
+  results = results.map((h) => {
+    const locationKey = h.location;
+    const city = data.cities.find((c) => c.key == locationKey);
+    return { ...h, city: city.name, country: city.country };
+  });
   //   development only!
   setTimeout(() => dispatch(searchSuccess(results)), 3000);
 };
