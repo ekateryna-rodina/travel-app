@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
 import {
   Dimensions,
@@ -8,7 +9,8 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { useSelector } from "react-redux";
+import { SharedElement } from "react-navigation-shared-element";
+import { useDispatch, useSelector } from "react-redux";
 import { AppState } from "../store/rootStore";
 import { IHotelBase } from "../store/search/models/Hotel";
 import StyleGuide from "../styles/StyleGuide";
@@ -30,12 +32,18 @@ const styles = StyleSheet.create({
 
 export const HotelCard = (props) => {
   const { item, index } = props;
-  console.error(item);
-  let { name, location, images, minPrice, city, country, rating } = item;
+  let { key, name, location, images, minPrice, city, country, rating } = item;
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const state = useSelector((state: AppState) => state.search);
+  const { activeHotel } = state;
 
-  if (images === undefined) {
-    console.warn(name);
-  }
+  const openHotelHandler = (e) => {
+    // dispatch(setOpenHotel(key));
+    // console.error(e.target);
+    // console.error(item);
+    navigation.navigate("Hotel", item);
+  };
 
   return (
     <View
@@ -48,17 +56,25 @@ export const HotelCard = (props) => {
     >
       <TouchableOpacity
         activeOpacity={0.9}
-        onPress={() => console.error("go to hotel")}
         style={{ flex: 3 }}
         key={item.key}
+        onPress={openHotelHandler}
       >
-        <Image
-          source={images[0]}
-          style={{
-            width: width - StyleGuide.spacing * 2,
-            height: "100%",
-          }}
-        />
+        <SharedElement id={`hotel.${key}`}>
+          {/* <ShowcaseList
+            images={images}
+            labelPosition={{ top: 0, left: 15, right: 0, bottom: 70 }}
+            navigation={props.navigation}
+            hotelKey={key}
+          /> */}
+          <Image
+            source={images[0]}
+            style={{
+              width: width - StyleGuide.spacing * 2,
+              height: "100%",
+            }}
+          />
+        </SharedElement>
         <View
           style={[
             StyleSheet.absoluteFillObject,
@@ -76,7 +92,10 @@ export const HotelCard = (props) => {
         }}
       >
         <Text style={styles.locationName}>{`${city}, ${country}`}</Text>
-        <Text style={styles.hotelName}>{name}</Text>
+        <SharedElement id={`hotel.${key}.name`}>
+          <Text style={styles.hotelName}>{name}</Text>
+        </SharedElement>
+
         <View
           style={{
             flexDirection: "row",
@@ -125,8 +144,6 @@ const SearchResults = (props) => {
   const searchState = useSelector((state: AppState) => state.search);
   const { dates, location, loading } = searchState;
   const { scroll, handleScroll, navigation } = props;
-
-  console.warn(navigation);
   const [hotels, setHotels] = useState<IHotelBase[] | []>([]);
   useEffect(() => {
     setHotels(searchState.hotels);
@@ -153,7 +170,6 @@ const SearchResults = (props) => {
           }}
         />
       }
-      <Menu />
     </View>
   );
 };

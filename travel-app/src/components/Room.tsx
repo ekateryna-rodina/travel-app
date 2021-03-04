@@ -1,12 +1,13 @@
-import React from "react";
-import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
-import StyleGuide from "../styles/StyleGuide";
-import { IRoom } from "../store/search/models/Hotel";
 import { MaterialIcons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
+import React from "react";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { SharedElement } from "react-navigation-shared-element";
+import { IRoom } from "../store/search/models/Hotel";
+import StyleGuide from "../styles/StyleGuide";
 
 interface IRoomProps {
   room: IRoom;
-  navigation: any;
 }
 
 const spacing = StyleGuide.spacing;
@@ -42,12 +43,13 @@ const styles = StyleSheet.create({
     flex: 1,
     ...StyleGuide.typography.footnoteBold,
   },
-  image: { width: 350, height: 170 },
+  image: { width: undefined, aspectRatio: 3 / 2, height: 170 },
 });
 
 const Room = (props: IRoomProps) => {
-  const { room, navigation } = props;
-  const { type, images, price } = room;
+  const { room } = props;
+  const { type, images, price, key } = room;
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -55,7 +57,9 @@ const Room = (props: IRoomProps) => {
           navigation.navigate("Room", { room });
         }}
       >
-        <Image style={styles.image} source={images[0]} />
+        <SharedElement id={`room.${key}`}>
+          <Image style={styles.image} source={images[0]} />
+        </SharedElement>
       </TouchableOpacity>
       <View>
         <View style={styles.typeRowContainer}>

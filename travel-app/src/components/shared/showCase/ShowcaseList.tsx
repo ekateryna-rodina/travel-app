@@ -1,13 +1,13 @@
 import React from "react";
-import { View, FlatList, StyleSheet, Dimensions } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
 import StyleGuide from "../../../styles/StyleGuide";
 import ShowcaseItem from "./ShowcaseItem";
-import { AntDesign } from "@expo/vector-icons";
-// import ShowcaseItem from "./ShowCaseItem";
 
 interface IShowcaseList {
   images: number[];
   labelPosition: {};
+  navigation: any;
+  hotelKey: number;
 }
 
 const styles = StyleSheet.create({
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
 });
 
 const ShowcaseList = (props: IShowcaseList) => {
-  const { images, labelPosition } = props;
+  const { images, labelPosition, navigation, hotelKey } = props;
   return (
     <View style={styles.container}>
       <FlatList
@@ -31,6 +31,9 @@ const ShowcaseList = (props: IShowcaseList) => {
             total={images.length}
             current={index}
             labelPosition={labelPosition}
+            navigation={navigation}
+            hotelKey={hotelKey}
+            isShared={index === 0}
           />
         )}
         snapToAlignment={"start"}

@@ -1,5 +1,8 @@
 import React from "react";
-import { View, Dimensions, Image, Text, StyleSheet } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
+import { SharedElement } from "react-navigation-shared-element";
+import { useSelector } from "react-redux";
+import { AppState } from "../../../store/rootStore";
 import StyleGuide from "../../../styles/StyleGuide";
 
 interface IShowcaseItem {
@@ -7,6 +10,9 @@ interface IShowcaseItem {
   total: number;
   current: number;
   labelPosition: {};
+  navigation: any;
+  hotelKey: number;
+  isShared: boolean;
 }
 
 const { width } = StyleGuide.size;
@@ -15,7 +21,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     justifyContent: "flex-end",
     alignItems: "flex-start",
-    // marginBottom: -70,
   },
   label: {
     fontSize: 18,
@@ -34,12 +39,40 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
 });
-
+const { height } = StyleGuide.size;
 const ShowcaseItem = (props: IShowcaseItem) => {
-  const { image, total, current, labelPosition } = props;
+  const { image, total, current, labelPosition, isShared, hotelKey } = props;
+  const state = useSelector((state: AppState) => state.search);
+  const { activeHotel } = state;
+  // console.error(`act ${activeHotel}`);
+  // const navigation = useNavigation();
+
+  // const hotelKey = navigation.getParam("key");
+  console.warn(hotelKey);
   return (
     <View style={{ flex: 1, width: width }}>
-      <Image source={image} />
+      {isShared ? (
+        <SharedElement id={`hotel.${hotelKey}.${image}`}>
+          <Image
+            style={{
+              height: height * 0.45,
+              width: undefined,
+              aspectRatio: 3 / 2,
+            }}
+            source={image}
+          />
+        </SharedElement>
+      ) : (
+        <Image
+          style={{
+            height: height * 0.45,
+            width: undefined,
+            aspectRatio: 3 / 2,
+          }}
+          source={image}
+        />
+      )}
+
       <View style={[styles.labelContainer, labelPosition]}>
         <View style={styles.grayContainer}>
           <Text style={styles.label}>

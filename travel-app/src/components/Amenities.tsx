@@ -1,15 +1,14 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
-  View,
+  Platform,
+  StyleSheet,
   Text,
   TouchableOpacity,
-  StyleSheet,
-  Platform,
+  View,
 } from "react-native";
-import StyleGuide from "../styles/StyleGuide";
-import globalStyles from "../styles/GlobalStyles";
 import { getIcon } from "../helpers/containers";
-import { MaterialIcons } from "@expo/vector-icons";
+import globalStyles from "../styles/GlobalStyles";
+import StyleGuide from "../styles/StyleGuide";
 
 interface IAmenity {
   key?: string;
@@ -71,9 +70,9 @@ const Amenities = (props: IAmenitiesProps) => {
           flexWrap: "wrap",
         }}
       >
-        {amenities.map((amenity) => {
+        {amenities.map((amenity, index) => {
           return (
-            <View style={{ width: "45%", marginEnd: 5 }}>
+            <View style={{ width: "45%", marginEnd: 5 }} key={index.toString()}>
               <View
                 style={{
                   flexDirection: "row",

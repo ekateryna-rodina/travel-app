@@ -8,6 +8,9 @@ export const SEARCH_REQUEST: string = "SEARCH_REQUEST";
 export const SET_DATES: string = "SET_DATES";
 export const SET_LOCATION: string = "SET_LOCATION";
 
+export const OPEN_HOTEL: string = "OPEN_HOTEL";
+export const OPEN_ROOM: string = "OPEN_ROOM";
+
 interface SearchResultsAction {
   type: typeof SEARCH_SUCCESS;
   payload: IHotelBase[];
@@ -32,4 +35,20 @@ interface SetLocationAction {
   payload: ILocation;
 }
 
-export type SearchActionTypes = SetDatesAction | SetLocationAction;
+interface OpenHotelAction {
+  type: typeof OPEN_HOTEL;
+  payload: number;
+}
+
+interface OpenRoomAction {
+  type: typeof OPEN_ROOM;
+  payload: number;
+}
+
+export type SearchActionTypes =
+  | SetDatesAction
+  | SetLocationAction
+  | SearchResultsAction
+  | SearchRequestAction
+  | OpenRoomAction
+  | OpenHotelAction;

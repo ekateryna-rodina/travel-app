@@ -1,18 +1,15 @@
-import React, { useState, useRef, useEffect } from "react";
-import { View, StyleSheet, Easing } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import React, { useEffect, useRef, useState } from "react";
+import { Easing, Image, StyleSheet, View } from "react-native";
 import Animated from "react-native-reanimated";
+import { SharedElement } from "react-navigation-shared-element";
+import Amenities from "../components/Amenities";
 import BasicInfoBanner from "../components/BasicInfoBanner";
-import ShowcaseList from "../components/shared/showCase/ShowcaseList";
+import Reviews from "../components/Reviews";
+import Rooms from "../components/Rooms";
+import BackHeader from "../components/shared/BackHeader";
 import data from "../data";
 import StyleGuide from "../styles/StyleGuide";
-import Rooms from "../components/Rooms";
-import Amenities from "../components/Amenities";
-import Location from "../components/Location";
-import Activities from "../components/Activities";
-import { AntDesign } from "@expo/vector-icons";
-import BackHeader from "../components/shared/BackHeader";
-import { onScroll, useValues } from "react-native-redash/lib/module/v1";
-import Reviews from "../components/Reviews";
 
 const { height, width } = StyleGuide.size;
 let styles = StyleSheet.create({
@@ -27,10 +24,7 @@ let styles = StyleSheet.create({
     alignItems: "center",
     overflow: "hidden",
   },
-  contentContainer: {
-    // width: "100%",
-    // height: "100%",
-  },
+  contentContainer: {},
   labelPosition: {
     top: 0,
     left: 15,
@@ -48,18 +42,17 @@ let styles = StyleSheet.create({
     right: 0,
   },
 });
-const HotelScreen = ({ navigation }) => {
-  const hotelData = data.hotels[0];
+const HotelScreen = (props) => {
+  const hotelData = props.route.params;
   const [scrollPosition, setScrollPosition] = useState(0);
   const activities = data.activities.filter((a) => a.location === 1);
   const {
+    key,
     images,
     name,
     rating,
-    // reviews,
     description,
     rooms,
-    // amenities,
     geoLocation,
   } = hotelData;
   const [reviewsShown, setReviewsShown] = useState<0 | 1>(0);
@@ -89,7 +82,6 @@ const HotelScreen = ({ navigation }) => {
     }
   };
   useEffect(() => {
-    console.warn("fff");
     toggleReview(reviewsShown);
   }, [reviewsShown]);
   const amenities = [
@@ -121,6 +113,7 @@ const HotelScreen = ({ navigation }) => {
           style={{
             opacity: animatedValue,
             height: height * 0.45,
+
             transform: [
               {
                 translateY: scrollY,
@@ -128,7 +121,23 @@ const HotelScreen = ({ navigation }) => {
             ],
           }}
         >
-          <ShowcaseList images={images} labelPosition={styles.labelPosition} />
+          <SharedElement id={`hotel.${key}`}>
+            <Image
+              style={{
+                height: height * 0.45,
+                width: undefined,
+                aspectRatio: 3 / 2,
+              }}
+              source={images[0]}
+            />
+            <Ionicons
+              style={{ position: "absolute", bottom: 60, left: 15 }}
+              name="camera-sharp"
+              size={30}
+              color="white"
+            />
+          </SharedElement>
+
           <Animated.View
             style={{
               flex: 1,
@@ -152,14 +161,23 @@ const HotelScreen = ({ navigation }) => {
             reviewsShown={reviewsShown}
             setReviewsShown={setReviewsShown}
           />
-          <Rooms rooms={rooms} navigation={navigation} amenities={amenities} />
+          <Rooms
+            rooms={rooms}
+            // navigation={props.navigation}
+            amenities={amenities}
+          />
           <Amenities title="Hotel amenities" amenities={amenities} />
-          <Location geoLocation={geoLocation} />
-          <Activities activities={activities} />
+          {/* <Location geoLocation={geoLocation} />
+          <Activities activities={activities} />   */}
         </View>
       </Animated.ScrollView>
     </View>
   );
 };
+
+// HotelScreen.sharedElements = (navigation: ReturnType<typeof useNavigation>) => {
+//   const item = navigation.getParam("item");
+//   return [`hotel.${item.key}`];
+// };
 
 export default HotelScreen;

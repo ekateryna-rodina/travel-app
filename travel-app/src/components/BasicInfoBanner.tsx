@@ -1,17 +1,12 @@
-import React, { useState, useRef, useEffect } from "react";
-import { View, Text, Easing, StyleSheet } from "react-native";
+import React, { useEffect, useRef, useState } from "react";
+import { Easing, StyleSheet, Text, View } from "react-native";
+import Animated from "react-native-reanimated";
+import { SharedElement } from "react-navigation-shared-element";
 import globalStyles from "../styles/GlobalStyles";
 import StyleGuide from "../styles/StyleGuide";
 import Button from "./shared/Button";
 import ExpandandableText from "./shared/ExpandableText";
 import Stars from "./Stars";
-import Animated, {
-  Extrapolate,
-  greaterThan,
-  interpolate,
-  useCode,
-  set,
-} from "react-native-reanimated";
 
 const { height, width } = StyleGuide.size;
 const styles = StyleSheet.create({
@@ -53,6 +48,7 @@ const styles = StyleSheet.create({
 
 const BasicInfoBanner = (props) => {
   const {
+    key,
     name,
     rating,
     reviews,
@@ -95,7 +91,9 @@ const BasicInfoBanner = (props) => {
   return (
     <Animated.View style={[styles.container, { height: animatedHeight }]}>
       <View style={styles.contentContainer}>
-        <Text style={styles.title}>{name}</Text>
+        <SharedElement id={`hotel.${key}.name`}>
+          <Text style={styles.title}>{name}</Text>
+        </SharedElement>
 
         <View style={styles.ratingRowContainer}>
           <Stars rating={rating} />

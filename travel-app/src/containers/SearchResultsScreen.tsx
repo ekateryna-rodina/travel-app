@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import React, { useEffect, useRef, useState } from "react";
 import { Dimensions, View } from "react-native";
 import Animated from "react-native-reanimated";
@@ -25,7 +26,7 @@ const SearchResultsScreen = () => {
     outputRange: [height * 0.2 + 15, 0],
   });
   const state = useSelector((state: AppState) => state.search);
-  const [hotels, setHotels] = useState<IHotelBase[] | []>([]);
+  const [hotels, setHotels] = useState<IHotelBase[] | null>(null);
   useEffect(() => {
     setHotels(state.hotels);
   }, []);
@@ -36,7 +37,7 @@ const SearchResultsScreen = () => {
   );
   return (
     <View style={{ width: "100%", height: "100%" }}>
-      <SharedElement id="searchBarSharedElement">
+      <SharedElement id="item.searchBarSharedElement">
         <Animated.View
           style={{
             position: "absolute",
@@ -56,7 +57,6 @@ const SearchResultsScreen = () => {
           flex: 1,
           justifyContent: "center",
           alignItems: "center",
-          //   bottom: 0,
           transform: [{ translateY: topAnimated }],
         }}
       >
@@ -67,11 +67,10 @@ const SearchResultsScreen = () => {
           alwaysBounceVertical={false}
           bounces={false}
         >
-          {hotels.map((item, index) => {
-            return (
-              <HotelCard key={index.toString()} item={item} index={index} />
-            );
-          })}
+          {hotels &&
+            hotels.map((item, index) => {
+              return <HotelCard key={index.toString()} item={item} />;
+            })}
         </Animated.ScrollView>
       </Animated.View>
       <Menu />
@@ -79,7 +78,9 @@ const SearchResultsScreen = () => {
   );
 };
 
-SearchResultsScreen.sharedElements = (route, otherRoute, showing) => {
+SearchResultsScreen.sharedElements = (
+  navigation: ReturnType<typeof useNavigation>
+) => {
   return ["searchBarSharedElement"];
 };
 export default SearchResultsScreen;

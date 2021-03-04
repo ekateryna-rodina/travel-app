@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import { View, StyleSheet, Text } from "react-native";
-import { MaterialIcons } from "@expo/vector-icons";
+import { Ionicons, MaterialIcons } from "@expo/vector-icons";
+import React from "react";
+import { Image, StyleSheet, Text, View } from "react-native";
+import { SharedElement } from "react-navigation-shared-element";
+import Amenities from "../components/Amenities";
 import BackHeader from "../components/shared/BackHeader";
 import Button from "../components/shared/Button";
 import DatePicker from "../components/shared/DatePicker";
 import PickerButton from "../components/shared/PickerButton";
-import ShowcaseList from "../components/shared/showCase/ShowcaseList";
 import { SearchModalSettingsTypes } from "../helpers/enums";
 import StyleGuide from "../styles/StyleGuide";
-import Amenities from "../components/Amenities";
 
 const styles = StyleSheet.create({
   titleContainer: {
@@ -60,14 +60,14 @@ const styles = StyleSheet.create({
     ...StyleGuide.typography.calloutBold,
   },
 });
-
+const { height, width } = StyleGuide.size;
 const RoomScreen = (props) => {
   const {
     route: {
       params: { room },
     },
   } = props;
-  const { type, images, description, price } = room;
+  const { type, images, description, price, key } = room;
   const { navigation } = props;
   // temp
   const amenities = [
@@ -80,10 +80,28 @@ const RoomScreen = (props) => {
     <View style={{ flex: 1 }}>
       <View style={{ flex: 2 }}>
         <BackHeader />
-        <ShowcaseList
+        <SharedElement id={`room.${key}`}>
+          <Image
+            style={{
+              // height: height * 0.45,
+              width: width,
+              height: undefined,
+              aspectRatio: 3 / 2,
+            }}
+            source={images[0]}
+          />
+          <Ionicons
+            style={{ position: "absolute", bottom: 60, left: 15 }}
+            name="camera-sharp"
+            size={30}
+            color="white"
+          />
+        </SharedElement>
+        {/* <ShowcaseList
           images={images}
           labelPosition={styles.showcaseLabelContainer}
-        />
+          navigation={navigation}
+        /> */}
       </View>
       <View
         style={{

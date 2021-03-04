@@ -1,6 +1,8 @@
 import { AppState } from "react-native";
 import { Dispatch } from "redux";
 import {
+  OPEN_HOTEL,
+  OPEN_ROOM,
   SEARCH_FAIL,
   SEARCH_REQUEST,
   SEARCH_SUCCESS,
@@ -34,6 +36,17 @@ export const setLocation = (location: ILocation) => ({
   payload: location,
 });
 
+export const openHotel = (key: number) => ({
+  type: OPEN_HOTEL,
+  payload: key,
+});
+
+export const openRoom = (key: number | string) => ({
+  type: OPEN_ROOM,
+  payload: key,
+});
+
+// dispatchers
 export function setTravelDates(dates: IDates) {
   return (dispatch: Dispatch, state: AppState) => {
     dispatch(setDates(dates));
@@ -60,6 +73,18 @@ export function setSearchFailure(error: any) {
 
 export function setSearchSuccess(results: any = []) {
   return (dispatch: Dispatch, state: AppState) => {
-    dispatch(searchSuccess());
+    dispatch(searchSuccess(results));
+  };
+}
+
+export function setOpenHotel(key: number | string) {
+  return (dispatch: Dispatch, state: AppState) => {
+    dispatch(openHotel(key));
+  };
+}
+
+export function setOpenRoom(key: number | string) {
+  return (dispatch: Dispatch, state: AppState) => {
+    dispatch(openRoom(key));
   };
 }

@@ -1,20 +1,18 @@
+import {
+  Feather,
+  FontAwesome5,
+  Fontisto,
+  Ionicons,
+  MaterialIcons,
+} from "@expo/vector-icons";
 import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { FontAwesome5 } from "@expo/vector-icons";
-import { Ionicons } from "@expo/vector-icons";
-import { MaterialIcons } from "@expo/vector-icons";
-import { FontAwesome } from "@expo/vector-icons";
 import StyleGuide from "../styles/StyleGuide";
-import { Feather } from "@expo/vector-icons";
-import globalStyles from "../styles/GlobalStyles";
-import { Fontisto } from "@expo/vector-icons";
 const commonProps = {
   color: StyleGuide.palette.light,
   size: 20,
 };
 
 export const getIcon = (type) => {
-  console.warn(type);
   switch (type) {
     case "restaurant":
       return (

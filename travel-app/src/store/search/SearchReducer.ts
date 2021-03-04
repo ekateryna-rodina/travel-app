@@ -1,6 +1,8 @@
 import { Reducer } from "redux";
 import { SEARCH_FAIL, SEARCH_REQUEST } from "../../helpers/constants";
 import {
+  OPEN_HOTEL,
+  OPEN_ROOM,
   SearchActionTypes,
   SEARCH_SUCCESS,
   SET_DATES,
@@ -14,13 +16,14 @@ const initialSearchState: SearchResultState = {
   dates: { startDate: "", endDate: "" },
   guests: null,
   location: { locationKey: null, city: "", country: "" },
+  activeHotel: "",
+  activeRoom: "",
 };
 
 export const searchReducer: Reducer<SearchResultState, SearchActionTypes> = (
   state = initialSearchState,
   action
 ) => {
-  console.warn(action.type);
   switch (action.type) {
     case SEARCH_REQUEST:
       return {
@@ -47,6 +50,16 @@ export const searchReducer: Reducer<SearchResultState, SearchActionTypes> = (
       return {
         ...state,
         location: action.payload,
+      };
+    case OPEN_HOTEL:
+      return {
+        ...state,
+        activeHotel: action.payload,
+      };
+    case OPEN_ROOM:
+      return {
+        ...state,
+        activeRoom: action.payload,
       };
     default:
       return state;

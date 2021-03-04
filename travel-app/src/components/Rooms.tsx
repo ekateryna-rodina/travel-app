@@ -1,12 +1,11 @@
 import React from "react";
-import { View, Text, FlatList, Dimensions, StyleSheet } from "react-native";
+import { Dimensions, FlatList, StyleSheet, Text, View } from "react-native";
 import Room from "../components/Room";
 import { IRoom } from "../store/search/models/Hotel";
 import GlobalStyles from "../styles/GlobalStyles";
 import StyleGuide from "../styles/StyleGuide";
 
 interface IRoomsProps {
-  navigation: any;
   rooms: IRoom[];
 }
 
@@ -33,7 +32,7 @@ const styles = StyleSheet.create({
 });
 
 const Rooms = (props: IRoomsProps) => {
-  const { rooms, navigation } = props;
+  const { rooms } = props;
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
@@ -45,9 +44,7 @@ const Rooms = (props: IRoomsProps) => {
         horizontal={true}
         data={rooms}
         keyExtractor={(image, index) => index.toString()}
-        renderItem={({ item, index }) => (
-          <Room room={item} navigation={navigation} />
-        )}
+        renderItem={({ item, index }) => <Room room={item} />}
         snapToAlignment={"start"}
         decelerationRate={"fast"}
         snapToInterval={Dimensions.get("window").width}

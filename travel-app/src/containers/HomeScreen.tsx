@@ -86,7 +86,7 @@ const HomeScreen = (): JSX.Element => {
         locations={[0.6, 0.8]}
         style={styles.linearGradient}
       >
-        <SharedElement id="searchBarSharedElement">
+        <SharedElement id="item.searchBarSharedElement">
           <SearchBarContainer />
         </SharedElement>
         <View style={styles.contentContainer}>

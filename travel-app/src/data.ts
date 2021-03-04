@@ -329,6 +329,7 @@ const hotels = [
     location: 2,
     name: "Cà Sagredo",
     type: "Hotel",
+    geoLocation: [40.629602535607994, 14.592922850526529],
     rating: 5,
     minPrice: 150,
     imagesSrc: "./assets/hotels/hotel_2/",
@@ -416,6 +417,7 @@ const hotels = [
     key: 4,
     location: 10,
     name: "Montecarlo Resort & SPA",
+    geoLocation: [40.629602535607994, 14.592922850526529],
     type: "Hotel",
     rating: 4,
     minPrice: 250,
@@ -425,7 +427,6 @@ const hotels = [
       require("../assets/hotels/hotel_4/common/3.jpg"),
       require("../assets/hotels/hotel_4/common/4.jpg"),
     ],
-    geoLocation: [40.629602535607994, 14.592922850526529],
     address: "",
     phone: "+39 089 871012",
     policies: {
@@ -502,6 +503,7 @@ const hotels = [
     key: 3,
     location: 10,
     name: "Rivoli Hotel & SPA",
+    geoLocation: [40.629602535607994, 14.592922850526529],
     type: "Hotel",
     rating: 5,
     minPrice: 250,
@@ -515,7 +517,6 @@ const hotels = [
       require("../assets/hotels/hotel_3/common/8.jpg"),
       require("../assets/hotels/hotel_3/common/9.jpg"),
     ],
-    geoLocation: [40.629602535607994, 14.592922850526529],
     address: "",
     phone: "+39 089 871012",
     policies: {
@@ -594,6 +595,7 @@ const hotels = [
     name: "Albatros Royal Moderna",
     type: "Hotel",
     rating: 5,
+    geoLocation: [40.629602535607994, 14.592922850526529],
     minPrice: 115,
     images: [
       require("../assets/hotels/hotel_6/common/1.jpg"),
@@ -602,7 +604,6 @@ const hotels = [
       require("../assets/hotels/hotel_6/common/4.jpg"),
       require("../assets/hotels/hotel_6/common/5.jpg"),
     ],
-    geoLocation: [40.629602535607994, 14.592922850526529],
     address: "",
     phone: "+39 089 871012",
     policies: {
@@ -698,13 +699,13 @@ const hotels = [
     type: "Hotel",
     rating: 4.5,
     minPrice: 250,
+    geoLocation: [40.629602535607994, 14.592922850526529],
     images: [
       require("../assets/hotels/hotel_5/common/1.jpg"),
       require("../assets/hotels/hotel_5/common/2.jpg"),
       require("../assets/hotels/hotel_5/common/3.jpg"),
       require("../assets/hotels/hotel_5/common/4.jpg"),
     ],
-    geoLocation: [40.629602535607994, 14.592922850526529],
     address: "",
     phone: "+39 089 871012",
     policies: {

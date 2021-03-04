@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, StyleSheet, Dimensions, Image } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import globalStyles from "../styles/GlobalStyles";
 import StyleGuide from "../styles/StyleGuide";
@@ -52,7 +52,8 @@ const styles = StyleSheet.create({
 });
 
 export const Location = (props: ILocationProps) => {
-  const [latitude, longitude] = [props.geoLocation[0], props.geoLocation[1]];
+  const { geoLocation } = props;
+  const [latitude, longitude] = [geoLocation[0], geoLocation[1]];
 
   const mapSettings = {
     centroid: {

@@ -16,6 +16,10 @@ import {
   useFonts,
 } from "@expo-google-fonts/josefin-sans";
 import { NavigationContainer } from "@react-navigation/native";
+import {
+  HeaderStyleInterpolators,
+  TransitionSpecs,
+} from "@react-navigation/stack";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { createSharedElementStackNavigator } from "react-navigation-shared-element";
@@ -53,6 +57,18 @@ const App = () => {
   if (!font) {
     return <Text>Loading...</Text>;
   }
+  const transitionConfig = {
+    gestureDirection: "horizontal",
+    transitionSpec: {
+      open: TransitionSpecs.TransitionIOSSpec,
+      close: TransitionSpecs.TransitionIOSSpec,
+    },
+    headerBackTitleVisible: false,
+    headerStyleInterpolator: HeaderStyleInterpolators.forFade,
+    cardStyleInterpolator: ({ current: { progress } }) => {
+      return { cardStyle: { opacity: progress } };
+    },
+  };
   return (
     <Provider store={store}>
       <View style={styles.container}>
@@ -63,8 +79,24 @@ const App = () => {
           >
             <Stack.Screen name="Home" component={HomeScreen} />
             <Stack.Screen name="SeachResults" component={SearchResultsScreen} />
-            <Stack.Screen name="Hotel" component={HotelScreen} />
-            <Stack.Screen name="Room" component={RoomScreen} />
+            <Stack.Screen
+              name="Hotel"
+              component={HotelScreen}
+              options={() => transitionConfig}
+              sharedElementsConfig={(route, otherRoute, showing) => {
+                const { key } = route.params;
+                return [{ id: `hotel.${key}`, animation: "move" }];
+              }}
+            />
+            <Stack.Screen
+              name="Room"
+              component={RoomScreen}
+              options={() => transitionConfig}
+              sharedElementsConfig={(route, otherRoute, showing) => {
+                const { key } = route.params;
+                return [{ id: `room.${key}`, animation: "move" }];
+              }}
+            />
           </Stack.Navigator>
         </NavigationContainer>
       </View>

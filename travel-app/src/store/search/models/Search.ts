@@ -24,4 +24,6 @@ export interface SearchResultState {
   loading: boolean;
   error: any;
   guests?: number;
+  activeHotel: string;
+  activeRoom: string;
 }
