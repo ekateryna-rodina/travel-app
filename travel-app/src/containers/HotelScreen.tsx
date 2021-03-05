@@ -7,6 +7,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
+import * as Animatable from "react-native-animatable";
 import Animated from "react-native-reanimated";
 import { SharedElement } from "react-navigation-shared-element";
 import Activities from "../components/Activities";
@@ -53,7 +54,6 @@ let styles = StyleSheet.create({
 });
 const HotelScreen = (props) => {
   const hotelData = props.route.params;
-  const [scrollPosition, setScrollPosition] = useState(0);
   const activities = data.activities.filter((a) => a.location === 1);
   const {
     key,
@@ -73,6 +73,9 @@ const HotelScreen = (props) => {
     inputRange: [0, 70],
     outputRange: [1, 0.65],
   });
+  const imageIconRef = useRef();
+  const contentRef = useRef();
+  const backIconRef = useRef();
   const animatedHeight = useRef(new Animated.Value(0)).current;
   const toggleReview = (reviewsShown) => {
     if (reviewsShown) {
@@ -105,8 +108,8 @@ const HotelScreen = (props) => {
     "It was an extraordinary experience definitely recommend it the staff was very helpful, room was clean and smell good. Already planning my next stay",
   ];
   return (
-    <View>
-      <BackHeader {...{ scrollY }} />
+    <View style={{ backgroundColor: StyleGuide.palette.dark }}>
+      <BackHeader {...{ scrollY, backIconRef }} />
       <Animated.ScrollView
         showsVerticalScrollIndicator={false}
         nestedScrollEnabled={true}
@@ -144,12 +147,20 @@ const HotelScreen = (props) => {
             <TouchableWithoutFeedback
               onPress={() => setGalleryOpened(!galleryOpened)}
             >
-              <Ionicons
-                style={{ position: "absolute", bottom: 60, left: 15 }}
-                name="camera-sharp"
-                size={30}
-                color="white"
-              />
+              <Animatable.View
+                ref={imageIconRef}
+                animation="fadeIn"
+                duration={3000}
+                delay={100}
+                useNativeDriver={true}
+              >
+                <Ionicons
+                  style={{ position: "absolute", bottom: 60, left: 15 }}
+                  name="camera-sharp"
+                  size={30}
+                  color="white"
+                />
+              </Animatable.View>
             </TouchableWithoutFeedback>
           </SharedElement>
 
@@ -166,7 +177,14 @@ const HotelScreen = (props) => {
             <Reviews reviews={reviews} />
           </Animated.View>
         </Animated.View>
-        <View style={styles.contentContainer} key="content">
+        <Animatable.View
+          style={styles.contentContainer}
+          key="content"
+          ref={contentRef}
+          animation="slideInUp"
+          duration={1000}
+          delay={200}
+        >
           <BasicInfoBanner
             name={name}
             rating={rating}
@@ -184,7 +202,7 @@ const HotelScreen = (props) => {
           <Amenities title="Hotel amenities" amenities={amenities} />
           <Location geoLocation={geoLocation} />
           <Activities activities={activities} />
-        </View>
+        </Animatable.View>
       </Animated.ScrollView>
       <ImageGallery {...{ images, galleryOpened, setGalleryOpened }} />
     </View>

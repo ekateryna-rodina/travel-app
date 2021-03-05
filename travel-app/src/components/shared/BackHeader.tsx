@@ -1,25 +1,20 @@
-import React, { useEffect, useRef } from "react";
-import {
-  View,
-  StyleSheet,
-  Text,
-  Platform,
-  TouchableOpacity,
-} from "react-native";
-import StyleGuide from "../../styles/StyleGuide";
 import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import Animated, {
-  Extrapolate,
-  set,
-  greaterThan,
-  useCode,
-  color,
-} from "react-native-reanimated";
-import { onScroll, useValues } from "react-native-redash/lib/module/v1";
+import React, { useRef } from "react";
+import {
+  Platform,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import * as Animatable from "react-native-animatable";
+import Animated, { greaterThan, set, useCode } from "react-native-reanimated";
+import StyleGuide from "../../styles/StyleGuide";
 
 interface IBackHeaderProps {
-  scrollY: Animated.Node<number>;
+  scrollY?: Animated.Node<number>;
+  backIconRef: React.RefObject<TextInput>;
 }
 const headerImageHeight = 75;
 const HEADER_IMAGE_HEIGHT = 250;
@@ -36,8 +31,8 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
   },
 });
-const BackHeader = (props) => {
-  const { scrollY } = props;
+const BackHeader = (props: IBackHeaderProps) => {
+  const { scrollY, backIconRef } = props;
   const navigation = useNavigation();
   const toggleAnimated = useRef(new Animated.Value(0)).current;
   const offset = Platform.OS === "android" ? 40 : 10;
@@ -58,16 +53,24 @@ const BackHeader = (props) => {
         ]}
       />
       <TouchableOpacity onPress={() => navigation.goBack()}>
-        <AntDesign
-          style={{
-            marginHorizontal: 15,
-            marginTop: Platform.OS === "android" ? 30 : 40,
-            marginBottom: 15,
-          }}
-          name="arrowleft"
-          size={24}
-          color="white"
-        />
+        <Animatable.View
+          ref={backIconRef}
+          animation="fadeIn"
+          duration={3000}
+          delay={100}
+          useNativeDriver={true}
+        >
+          <AntDesign
+            style={{
+              marginHorizontal: 15,
+              marginTop: Platform.OS === "android" ? 30 : 40,
+              marginBottom: 15,
+            }}
+            name="arrowleft"
+            size={24}
+            color="white"
+          />
+        </Animatable.View>
       </TouchableOpacity>
       <Animated.View
         style={[StyleSheet.absoluteFillObject, { opacity: toggleAnimated }]}

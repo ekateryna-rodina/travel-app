@@ -14,9 +14,13 @@ const spacing = StyleGuide.spacing;
 const { width, height } = StyleGuide.size;
 const styles = StyleSheet.create({
   container: {
+    // paddingStart: 15,
     marginVertical: spacing / 3,
-    marginHorizontal: (width - 350) / 2,
+    // marginStart: 15,
+    marginHorizontal: 15,
     height: height * 0.3,
+    justifyContent: "flex-start",
+    alignItems: "center",
   },
   typeRowContainer: {
     flexDirection: "row",
@@ -37,13 +41,17 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center",
     width: "50%",
-    // height: 200,
   },
   guests: {
     flex: 1,
     ...StyleGuide.typography.footnoteBold,
   },
-  image: { width: undefined, aspectRatio: 3 / 2, height: 170 },
+  image: {
+    width: undefined,
+    aspectRatio: 3 / 2,
+    height: height / 4,
+    borderRadius: 10,
+  },
 });
 
 const Room = (props: IRoomProps) => {

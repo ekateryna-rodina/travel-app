@@ -39,7 +39,9 @@ const Rooms = (props: IRoomsProps) => {
         <Text style={styles.title}>Available rooms</Text>
       </View>
       <FlatList
-        style={{ marginStart: -StyleGuide.spacing }}
+        contentContainerStyle={{
+          justifyContent: "center",
+        }}
         showsHorizontalScrollIndicator={false}
         horizontal={true}
         data={rooms}

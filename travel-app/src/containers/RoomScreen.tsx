@@ -1,5 +1,5 @@
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   Image,
   StyleSheet,
@@ -82,10 +82,11 @@ const RoomScreen = (props) => {
     { name: "Hand sanitizer", icon: "sanitizer" },
     { name: "Slippers", icon: "slippers" },
   ];
+  const backIconRef = useRef();
   return (
     <View style={{ flex: 1 }}>
       <View style={{ flex: 2 }}>
-        <BackHeader />
+        <BackHeader {...{ backIconRef }} />
         <SharedElement id={`room.${key}`}>
           <Image
             style={{
