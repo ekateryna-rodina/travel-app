@@ -17,13 +17,14 @@ export interface ISearch {
   dates: IDates;
   guests: number;
 }
-export interface SearchResultState {
+export interface ISearchResultState {
   hotels?: IHotelBase[];
   dates: IDates;
   location: ILocation;
   loading: boolean;
   error: any;
   guests?: number;
-  activeHotel: string;
-  activeRoom: string;
+  images: number[];
+  // activeHotel: string;
+  // activeRoom: string;
 }

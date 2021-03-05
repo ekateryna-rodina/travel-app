@@ -1,8 +1,15 @@
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
-import React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import React, { useState } from "react";
+import {
+  Image,
+  StyleSheet,
+  Text,
+  TouchableWithoutFeedback,
+  View,
+} from "react-native";
 import { SharedElement } from "react-navigation-shared-element";
 import Amenities from "../components/Amenities";
+import ImageGallery from "../components/ImageGallery";
 import BackHeader from "../components/shared/BackHeader";
 import Button from "../components/shared/Button";
 import DatePicker from "../components/shared/DatePicker";
@@ -51,7 +58,6 @@ const styles = StyleSheet.create({
   },
   price: {
     color: StyleGuide.palette.dark,
-    // fontSize: 18,
     marginBottom: 5,
     ...StyleGuide.typography.callout,
   },
@@ -67,8 +73,8 @@ const RoomScreen = (props) => {
       params: { room },
     },
   } = props;
-  const { type, images, description, price, key } = room;
-  const { navigation } = props;
+  const { type, images, price, key } = room;
+  const [galleryOpened, setGalleryOpened] = useState<boolean>(false);
   // temp
   const amenities = [
     { name: "Complementary bottle", icon: "gift" },
@@ -83,25 +89,21 @@ const RoomScreen = (props) => {
         <SharedElement id={`room.${key}`}>
           <Image
             style={{
-              // height: height * 0.45,
               width: width,
               height: undefined,
               aspectRatio: 3 / 2,
             }}
             source={images[0]}
           />
-          <Ionicons
-            style={{ position: "absolute", bottom: 60, left: 15 }}
-            name="camera-sharp"
-            size={30}
-            color="white"
-          />
+          <TouchableWithoutFeedback onPress={() => setGalleryOpened(true)}>
+            <Ionicons
+              style={{ position: "absolute", bottom: 15, left: 15 }}
+              name="camera-sharp"
+              size={30}
+              color="white"
+            />
+          </TouchableWithoutFeedback>
         </SharedElement>
-        {/* <ShowcaseList
-          images={images}
-          labelPosition={styles.showcaseLabelContainer}
-          navigation={navigation}
-        /> */}
       </View>
       <View
         style={{
@@ -134,7 +136,6 @@ const RoomScreen = (props) => {
           style={{
             height: 135,
             position: "absolute",
-            // top: 275,
             left: 0,
             right: 0,
             bottom: 0,
@@ -190,6 +191,7 @@ const RoomScreen = (props) => {
             </View>
           </View>
         </View>
+        <ImageGallery {...{ images, galleryOpened, setGalleryOpened }} />
       </View>
     </View>
   );

@@ -1,6 +1,7 @@
 import { AppState } from "react-native";
 import { Dispatch } from "redux";
 import {
+  OPEN_GALLERY,
   OPEN_HOTEL,
   OPEN_ROOM,
   SEARCH_FAIL,
@@ -36,7 +37,7 @@ export const setLocation = (location: ILocation) => ({
   payload: location,
 });
 
-export const openHotel = (key: number) => ({
+export const openHotel = (key: number | string) => ({
   type: OPEN_HOTEL,
   payload: key,
 });
@@ -44,6 +45,11 @@ export const openHotel = (key: number) => ({
 export const openRoom = (key: number | string) => ({
   type: OPEN_ROOM,
   payload: key,
+});
+
+export const openGallery = (images: number[]) => ({
+  type: OPEN_GALLERY,
+  payload: images,
 });
 
 // dispatchers
@@ -86,5 +92,11 @@ export function setOpenHotel(key: number | string) {
 export function setOpenRoom(key: number | string) {
   return (dispatch: Dispatch, state: AppState) => {
     dispatch(openRoom(key));
+  };
+}
+
+export function setGallery(images: number[]) {
+  return (dispatch: Dispatch, state: AppState) => {
+    dispatch(openGallery(images));
   };
 }

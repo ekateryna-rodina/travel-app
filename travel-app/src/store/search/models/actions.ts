@@ -7,6 +7,7 @@ export const SEARCH_FAIL: string = "SEARCH_FAIL";
 export const SEARCH_REQUEST: string = "SEARCH_REQUEST";
 export const SET_DATES: string = "SET_DATES";
 export const SET_LOCATION: string = "SET_LOCATION";
+export const OPEN_GALLERY: string = "OPEN_GALLERY";
 
 export const OPEN_HOTEL: string = "OPEN_HOTEL";
 export const OPEN_ROOM: string = "OPEN_ROOM";
@@ -44,6 +45,10 @@ interface OpenRoomAction {
   type: typeof OPEN_ROOM;
   payload: number;
 }
+interface OpenGalleryAction {
+  type: typeof OPEN_GALLERY;
+  payload: number[];
+}
 
 export type SearchActionTypes =
   | SetDatesAction
@@ -51,4 +56,5 @@ export type SearchActionTypes =
   | SearchResultsAction
   | SearchRequestAction
   | OpenRoomAction
-  | OpenHotelAction;
+  | OpenHotelAction
+  | OpenGalleryAction;

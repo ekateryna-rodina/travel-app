@@ -1,6 +1,7 @@
 import { Reducer } from "redux";
 import { SEARCH_FAIL, SEARCH_REQUEST } from "../../helpers/constants";
 import {
+  OPEN_GALLERY,
   OPEN_HOTEL,
   OPEN_ROOM,
   SearchActionTypes,
@@ -8,19 +9,18 @@ import {
   SET_DATES,
   SET_LOCATION,
 } from "./models/actions";
-import { SearchResultState } from "./models/Search";
-const initialSearchState: SearchResultState = {
+import { ISearchResultState } from "./models/Search";
+const initialSearchState: ISearchResultState = {
   hotels: null,
   loading: false,
   error: null,
   dates: { startDate: "", endDate: "" },
   guests: null,
   location: { locationKey: null, city: "", country: "" },
-  activeHotel: "",
-  activeRoom: "",
+  images: null,
 };
 
-export const searchReducer: Reducer<SearchResultState, SearchActionTypes> = (
+export const searchReducer: Reducer<ISearchResultState, SearchActionTypes> = (
   state = initialSearchState,
   action
 ) => {
@@ -60,6 +60,11 @@ export const searchReducer: Reducer<SearchResultState, SearchActionTypes> = (
       return {
         ...state,
         activeRoom: action.payload,
+      };
+    case OPEN_GALLERY:
+      return {
+        ...state,
+        images: action.payload,
       };
     default:
       return state;

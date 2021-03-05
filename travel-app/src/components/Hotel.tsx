@@ -1,19 +1,10 @@
 import { Ionicons } from "@expo/vector-icons";
 import React, { useEffect, useRef, useState } from "react";
-import {
-  Easing,
-  Image,
-  StyleSheet,
-  TouchableWithoutFeedback,
-  View,
-} from "react-native";
+import { Easing, Image, StyleSheet, View } from "react-native";
 import Animated from "react-native-reanimated";
 import { SharedElement } from "react-navigation-shared-element";
-import Activities from "../components/Activities";
 import Amenities from "../components/Amenities";
 import BasicInfoBanner from "../components/BasicInfoBanner";
-import ImageGallery from "../components/ImageGallery";
-import Location from "../components/Location";
 import Reviews from "../components/Reviews";
 import Rooms from "../components/Rooms";
 import BackHeader from "../components/shared/BackHeader";
@@ -51,7 +42,7 @@ let styles = StyleSheet.create({
     right: 0,
   },
 });
-const HotelScreen = (props) => {
+const Hotel = (props) => {
   const hotelData = props.route.params;
   const [scrollPosition, setScrollPosition] = useState(0);
   const activities = data.activities.filter((a) => a.location === 1);
@@ -67,7 +58,6 @@ const HotelScreen = (props) => {
   const [reviewsShown, setReviewsShown] = useState<0 | 1>(0);
   const scrollY = useRef(new Animated.Value(0)).current;
   const { height, width } = StyleGuide.size;
-  const [galleryOpened, setGalleryOpened] = useState<boolean>(false);
 
   let animatedValue = scrollY.interpolate({
     inputRange: [0, 70],
@@ -94,7 +84,6 @@ const HotelScreen = (props) => {
   useEffect(() => {
     toggleReview(reviewsShown);
   }, [reviewsShown]);
-  useEffect(() => {}, [galleryOpened]);
   const amenities = [
     { name: "A la carte restaurant", icon: "restaurant" },
     { name: "Always fresh water in swimming pool", icon: "swimming-pool" },
@@ -141,16 +130,12 @@ const HotelScreen = (props) => {
               }}
               source={images[0]}
             />
-            <TouchableWithoutFeedback
-              onPress={() => setGalleryOpened(!galleryOpened)}
-            >
-              <Ionicons
-                style={{ position: "absolute", bottom: 60, left: 15 }}
-                name="camera-sharp"
-                size={30}
-                color="white"
-              />
-            </TouchableWithoutFeedback>
+            <Ionicons
+              style={{ position: "absolute", bottom: 60, left: 15 }}
+              name="camera-sharp"
+              size={30}
+              color="white"
+            />
           </SharedElement>
 
           <Animated.View
@@ -182,13 +167,12 @@ const HotelScreen = (props) => {
             amenities={amenities}
           />
           <Amenities title="Hotel amenities" amenities={amenities} />
-          <Location geoLocation={geoLocation} />
-          <Activities activities={activities} />
+          {/* <Location geoLocation={geoLocation} />
+          <Activities activities={activities} />   */}
         </View>
       </Animated.ScrollView>
-      <ImageGallery {...{ images, galleryOpened, setGalleryOpened }} />
     </View>
   );
 };
 
-export default HotelScreen;
+export default Hotel;

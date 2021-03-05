@@ -31,13 +31,6 @@ const ModalContent = (props: IModalContentProps) => {
   };
 
   React.useEffect(() => {}, [isOpened, selectedIndex]);
-  //   return (
-  //     <View>
-  //       <DestinationsModalContent destinations={destinations} />
-  //       <GuestsModalContent
-  //       />
-  //     </View>
-  //   );
   return <View>{_renderModalContent()}</View>;
 };
 
